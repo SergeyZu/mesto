@@ -1,0 +1,12 @@
+.profile__info {
+    flex-basis: 62.5%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: max-content min-content;
+    grid-template-rows: min-content min-content;
+    column-gap: 18px;
+    row-gap: 16px;
+    grid-template-areas:
+        "title edit-button"
+        "subtitle subtitle";
+}
