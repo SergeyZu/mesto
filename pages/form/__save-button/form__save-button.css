@@ -1,0 +1,14 @@
+.form__save-button {
+    width: 358px;
+    min-height: 50px;
+    padding: 0;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    border-radius: 2px;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 15px;
+}

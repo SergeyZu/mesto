@@ -1,0 +1,8 @@
+.form {
+    display: grid;
+    grid-template-columns: 430px 32px;
+    grid-template-rows: 32px 330px;
+    grid-template-areas:
+        ". close-button"
+        "container .";
+}

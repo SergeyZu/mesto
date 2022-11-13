@@ -1,0 +1,7 @@
+.form__close-button {
+    border: none;
+    padding: 0;
+    width: 32px;
+    background: none;
+    grid-area: close-button;
+}
