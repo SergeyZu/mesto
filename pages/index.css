@@ -8,15 +8,9 @@
 
 @import url(/pages/page/page.css);
 
+
+
 @import url(/pages/page/__header/page__header.css);
-
-@import url(/pages/page/__profile/page__profile.css);
-
-@import url(/pages/page/__cards/page__cards.css);
-
-@import url(/pages/page/__footer/page__footer.css);
-
-
 
 @import url(/pages/header/header.css);
 
@@ -27,6 +21,8 @@
 @import url(/pages/content/content.css);
 
 
+
+@import url(/pages/page/__profile/page__profile.css);
 
 @import url(/pages/profile/profile.css);
 
@@ -44,6 +40,8 @@
 
 
 
+@import url(/pages/page/__cards/page__cards.css);
+
 @import url(/pages/cards/cards.css);
 
 @import url(/pages/card/card.css);
@@ -57,6 +55,8 @@
 @import url(/pages/card/__like/card__like.css);
 
 
+
+@import url(/pages/page/__footer/page__footer.css);
 
 @import url(/pages/footer/footer.css);
 
