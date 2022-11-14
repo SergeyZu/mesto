@@ -5,3 +5,9 @@
     max-width: 358px;
     min-height: 26px;
 }
+
+@media screen and (max-width: 650px) {
+    .form__field {
+        max-width: 238px;
+    }
+}

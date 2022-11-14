@@ -9,5 +9,12 @@
     grid-area: container;
     padding: 34px 36px 37px;
     box-sizing: border-box;
+}
 
+@media screen and (max-width: 650px) {
+    .form__container {
+        max-width: 282px;
+        min-height: 322px;
+        padding: 28px 22px 25px;
+    }
 }

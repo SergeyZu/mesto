@@ -5,4 +5,17 @@
     grid-template-areas:
         ". close-button"
         "container .";
+    gap: 8px;
+}
+
+@media screen and (max-width: 650px) {
+    .form {
+        grid-template-columns: 282px;
+        grid-template-rows: 20px 322px;
+        grid-template-areas:
+            "close-button"
+            "container";
+        gap: 16px;
+        justify-items: end;
+    }
 }

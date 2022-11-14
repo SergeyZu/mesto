@@ -1,8 +1,14 @@
 .popup__form {    
-    gap: 8px;
     position: absolute;
     left: 50%;
     top: 50%;
     margin-left: -215px;
     margin-top: -185px;
+}
+
+@media screen and (max-width: 650px) {
+    .popup__form {
+        margin-left: -141px;
+        margin-top: -179px;
+    }
 }
