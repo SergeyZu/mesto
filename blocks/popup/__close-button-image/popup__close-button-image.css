@@ -1,5 +1,10 @@
 .popup__close-button-image {
     width: 32px;
+    transition: opacity 0.3s ease;
+}
+
+.popup__close-button-image:hover {
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 650px) {
