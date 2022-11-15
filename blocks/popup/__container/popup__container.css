@@ -1,4 +1,4 @@
-.form {
+.popup__container {
     display: grid;
     grid-template-columns: 430px 32px;
     grid-template-rows: 32px 330px;
@@ -6,10 +6,15 @@
         ". close-button"
         "container .";
     gap: 8px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -215px;
+    margin-top: -185px;
 }
 
 @media screen and (max-width: 650px) {
-    .form {
+    .popup__container {
         grid-template-columns: 282px;
         grid-template-rows: 20px 322px;
         grid-template-areas:
@@ -17,5 +22,7 @@
             "container";
         gap: 16px;
         justify-items: end;
+        margin-left: -141px;
+        margin-top: -179px;        
     }
 }

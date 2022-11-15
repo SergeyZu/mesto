@@ -1,9 +1,9 @@
-.form__close-button-image {
+.popup__close-button-image {
     width: 32px;
 }
 
 @media screen and (max-width: 650px) {
-    .form__close-button-image {
+    .popup__close-button-image {
         width: 20px;
     }
 }
