@@ -3,7 +3,11 @@
     border: none;
     padding: 0;
     grid-area: close-button;
+<<<<<<< HEAD
     background: none;
+=======
+    background: none;    
+>>>>>>> e01b692a9e3793dc30947e603a9cc42b2a5ed265
     background-image: url(../../../images/close-button.svg);
     background-size: 32px 32px;
     background-repeat: no-repeat;
