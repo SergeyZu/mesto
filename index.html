@@ -16,10 +16,10 @@
             <img class="profile__avatar" src="./images/cousteau.jpg" alt="Аватарка">
             <div class="profile__info">                
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <img class="profile__edit-button" src="./images/edit-button.svg" alt="Кнопка Редактировать">
+                <button class="profile__edit-button" type="button"></button>
                 <p class="profile__subtitle">Исследователь океана</p>
             </div>
-            <div class="profile__add-button">+</div>
+            <button class="profile__add-button" type="button"></button>
         </section>
         <section class="page__cards">
             <ul class="cards">
@@ -27,42 +27,42 @@
                     <img class="card__image" src="./images/card_altai.jpg" alt="Алтай">
                     <div class="card__bottom">
                         <h2 class="card__title">Алтай</h2>
-                        <img class="card__like" src="./images/like.svg" alt="Мне нравится">
+                        <button class="card__like" type="button"></button>
                     </div>                    
                 </li>
                 <li class="card">
                     <img class="card__image" src="./images/card_dombai.jpg" alt="Домбай">
                     <div class="card__bottom">
                         <h2 class="card__title">Домбай</h2>
-                        <img class="card__like" src="./images/like.svg" alt="Мне нравится">
+                        <button class="card__like" type="button"></button>
                     </div>                    
                 </li>
                 <li class="card">
                     <img class="card__image" src="./images/card_kamchatka.jpg" alt="Камчатка">
                     <div class="card__bottom">
                         <h2 class="card__title">Камчатка</h2>
-                        <img class="card__like" src="./images/like.svg" alt="Мне нравится">
+                        <button class="card__like" type="button"></button>
                     </div>                    
                 </li>
                 <li class="card">
                     <img class="card__image" src="./images/card_baikal.jpg" alt="Байкал">
                     <div class="card__bottom">
                         <h2 class="card__title">Байкал</h2>
-                        <img class="card__like" src="./images/like.svg" alt="Мне нравится">
+                        <button class="card__like" type="button"></button>
                     </div>                    
                 </li>
                 <li class="card">
                     <img class="card__image" src="./images/card_elbrus.jpg" alt="Эльбрус">
                     <div class="card__bottom">
                         <h2 class="card__title">Эльбрус</h2>
-                        <img class="card__like" src="./images/like.svg" alt="Мне нравится">
+                        <button class="card__like" type="button"></button>
                     </div>                    
                 </li>
                 <li class="card">
                     <img class="card__image" src="./images/card_petropavlovsk.jpg" alt="Петропавловск-Камчатский">
                     <div class="card__bottom">
                         <h2 class="card__title">Петропавловск-Камчатский</h2>
-                        <img class="card__like" src="./images/like.svg" alt="Мне нравится">
+                        <button class="card__like" type="button"></button>
                     </div>                    
                 </li>
             </ul>
@@ -72,17 +72,15 @@
         <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
     <section class="popup">
-        <form class="popup__container" action="#">
-            <button class="popup__close-button">
-                <img class="popup__close-button-image" src="./images/Close-button.svg" alt="Закрыть">
-            </button>
-            <div class="popup__content">
+        <div class="popup__container">
+            <button class="popup__close-button" type="button"></button>
+            <form class="popup__content" action="#">
                 <h2 class="popup__title">Редактировать профиль</h2>      
-                <input class="popup__name popup__field" type="text" value="Жак-Ив Кусто">
-                <input class="popup__about popup__field" type="text" value="Исследователь океана">
-                <button class="popup__save-button">Сохранить</button>
-            </div>
-        </form>         
+                <input class="popup__field popup__field_name" name="name" type="text">
+                <input class="popup__field popup__field_about" name="about" type="text">
+                <button class="popup__save-button" type="submit">Сохранить</button>
+            </form>
+        </div>         
     </section>
     <script src="./scripts/index.js"></script>
 </body>
