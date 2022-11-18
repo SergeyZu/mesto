@@ -4,12 +4,22 @@
     font-weight: 500;
     margin: 0;
     grid-area: title;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 980px) {
+    .profile__title {
+        font-size: 32px;
+    }
 }
 
 @media screen and (max-width: 771px) {
     .profile__title {
         font-size: 27px;
         line-height: 33px;
+        width: 100%;
     }
 }
 

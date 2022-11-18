@@ -1,8 +1,7 @@
-.profile__info {
-    flex-basis: 62.5%;
+.profile__text-block {
     display: grid;
     align-items: center;
-    grid-template-columns: max-content min-content;
+    grid-template-columns: 1fr min-content;
     grid-template-rows: min-content min-content;
     column-gap: 18px;
     row-gap: 10px;
@@ -11,20 +10,8 @@
         "subtitle subtitle";
 }
 
-@media screen and (max-width: 980px) {
-    .profile__info {
-        flex-basis: 55%;
-    }
-}
-
-@media screen and (max-width: 771px) {
-    .profile__info {
-        flex-basis: 45%;
-    }
-}
-
 @media screen and (max-width: 650px) {
-    .profile__info {
+    .profile__text-block {
         column-gap: 9px;
         row-gap: 8px;
         justify-items: center;
