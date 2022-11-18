@@ -17,10 +17,10 @@ const formCloseButtonElement = popupElement.querySelector('.popup__close-button'
 const formElement = document.querySelector('.popup__content');
 
 //Поле формы Имя
-const nameInputElement = formElement.querySelector('.popup__field_name');
+const nameInputElement = formElement.querySelector('.popup__field_type_name');
 
 //Поле формы О себе
-const aboutInputElement = formElement.querySelector('.popup__field_about');
+const aboutInputElement = formElement.querySelector('.popup__field_type_about');
 
 //Кнопка Сохранить
 const saveButtonElement = formElement.querySelector('.popup__save-button');
