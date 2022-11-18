@@ -4,6 +4,10 @@
     font-weight: 400;
     grid-area: subtitle;
     margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: calc(100% - 42px);
 }
 
 @media screen and (max-width: 980px) {
