@@ -58,7 +58,7 @@
 
 @import url(../blocks/card/__like/card__like.css);
 
-@import url(../blocks/card/__liked/card__liked.css);
+@import url(../blocks/card/__like/_clicked/card__like_clicked.css);
 
 
 

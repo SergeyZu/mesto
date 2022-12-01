@@ -74,56 +74,27 @@ formProfileElement.addEventListener('submit', profileFormSubmitHandler);
 
 //ПОПАП ДОБАВЛЕНИЯ КАРТОЧКИ
 
-//Поле формы Название
-//const cardTitleInputElement = formCardElement.querySelector('.popup__field_type_title'); 
-
-//Поле формы Ссылка на картинку
-//const cardLinkInputElement = formCardElement.querySelector('.popup__field_type_link');
-
-//Кнопка Создать
-//const createButtonElement = formCardElement.querySelector('.popup__create-button');
-
-
-
-
-
-
 
 //Попап
 const popupCardElement = document.querySelector('.popup_type_card');
-
-
-
-
-
-
-
-
-
-
-
 
 
 function openCardPopup () {
     openPopup(popupCardElement);
 }
 
+//Кнопка открытия попапа / клик
+const addCardButtonElement = document.querySelector('.profile__add-button');
+addCardButtonElement.addEventListener('click', openCardPopup);
+
+
 function closeCardPopup () {
     closePopup(popupCardElement);
 };
 
-
-
-//Кнопка добавления карточки / клик
-const addCardButtonElement = document.querySelector('.profile__add-button');
-addCardButtonElement.addEventListener('click', openCardPopup);
-
-//Кнопка закрытия формы / клик
+//Кнопка закрытия попапа / клик
 const formCardCloseButtonElement = popupCardElement.querySelector('.popup__close-button');
 formCardCloseButtonElement.addEventListener('click', closeCardPopup);
-
-
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 // Массив данных карточек
@@ -156,7 +127,7 @@ const cardsDataElement = [
 
 // Дом узлы
 
-const cardsContainer = document.querySelector('.cards');
+
 const formCardElement = document.querySelector('.popup__card-content');
 const cardTitle = document.querySelector('.popup__field_type_card-title');
 const link = document.querySelector('.popup__field_type_link');
@@ -171,14 +142,20 @@ function generateCard(item) {
 
 	const image = cardElement.querySelector('.card__image');
 	image.src = item.url;
+    image.alt = title.textContent;
+    image.addEventListener('click', viewImageHandler);
 
 	const trash = cardElement.querySelector('.card__trash');
 	trash.addEventListener('click', deleteCardHandler)
 
 	const like = cardElement.querySelector('.card__like');
-	like.addEventListener('click', likedCardHandler)
-
+	like.addEventListener('click', likedCardHandler);
+    
 	return cardElement;
+}
+
+function viewImageHandler(event) {
+
 }
 
 function deleteCardHandler(event) {
@@ -186,21 +163,22 @@ function deleteCardHandler(event) {
 }
 
 function likedCardHandler(event) {
-  event.target.closest('.card__like').classList.toggle('card__liked');
+  event.target.classList.toggle('card__like_clicked');
 }
 
 // Добавление карточки
-
+const cardsContainer = document.querySelector('.cards');
 function addCard(item) {
-    cardsContainer.prepend(generateCard(item));
+    cardsContainer.append(generateCard(item));
   };
   
   
-  function cardFormSubmitHandler(event) {
+function cardFormSubmitHandler(event) {
     event.preventDefault();
     addCard({ title: cardTitle.value, url: link.value })
     cardTitle.value = '';
-    link.value = ''
+    link.value = '';
+    closeCardPopup ()
   };
   
   
