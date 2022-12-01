@@ -1,10 +1,10 @@
 //Функция отображения попапа
-const openPopup = function(popupName) {
+function openPopup(popupName) {
     popupName.classList.add('popup_opened');
 }
 
 //Функция скрытия попапа
-const closePopup = function(popupName) {
+function closePopup(popupName) {
     popupName.classList.remove('popup_opened'); 
 }
 
@@ -133,9 +133,16 @@ const cardTitle = document.querySelector('.popup__field_type_card-title');
 const link = document.querySelector('.popup__field_type_link');
 
 
+
 function generateCard(item) {
 	const cardTemplate = document.querySelector('#card-template').content;
 	const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+
+
+
+    cardElement
+
+
   
 	const title = cardElement.querySelector('.card__title');
 	title.textContent = item.title;
@@ -150,7 +157,7 @@ function generateCard(item) {
 
 	const like = cardElement.querySelector('.card__like');
 	like.addEventListener('click', likedCardHandler);
-    
+
 	return cardElement;
 }
 
@@ -182,11 +189,33 @@ function cardFormSubmitHandler(event) {
   };
   
   
+// Рендер всех карточек
   
-  // Рендер всех карточек
+formCardElement.addEventListener('submit', cardFormSubmitHandler);
   
-  formCardElement.addEventListener('submit', cardFormSubmitHandler);
-  
-  cardsDataElement.forEach(function(item) {
+cardsDataElement.forEach(function(item) {
     addCard(item);
-  });
+});
+
+
+
+//ПОПАП КАРТИНКА
+const popupImageElement = document.querySelector('.popup_type_image');
+
+function openImagePopup () {
+    openPopup(popupImageElement);
+}
+    
+const imageButtonElement = document.querySelector('.card__image');
+imageButtonElement.addEventListener('click', openImagePopup);
+    
+
+//Кнопка открытия попапа / клик
+//const imageButtonElement = document.querySelector('.card__image');
+//imageButtonElement.addEventListener('click', openImagePopup);
+
+
+/*
+element.addEventListener('click', function () {
+    console.log('Мы кликнули по элементу');
+  });*/

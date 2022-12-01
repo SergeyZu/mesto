@@ -1,0 +1,4 @@
+.popup__image {
+    grid-area: image;
+    max-height: 540px;
+}

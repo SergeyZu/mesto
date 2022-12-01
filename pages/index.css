@@ -76,11 +76,15 @@
 
 @import url(../blocks/popup/__container/popup__container.css);
 
+@import url(../blocks/popup/__container/_type/_image/popup__container_type_image.css);
+
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 
 @import url(../blocks/popup/__content/popup__content.css);
 
 @import url(../blocks/popup/__title/popup__title.css);
+
+@import url(../blocks/popup/__title/_tipe/_image/popup__title_type_image.css);
 
 @import url(../blocks/popup/__field/popup__field.css);
 
@@ -90,4 +94,10 @@
 
 @import url(../blocks/popup/__save-button/popup__save-button.css);
 
-@import url(../blocks/popup/__create-button/popup__create-button.css
+@import url(../blocks/popup/__create-button/popup__create-button.css);
+
+@import url(../blocks/popup/__image/popup__image.css);
+
+
+@import url(../blocks/popup/_type/_image/popup_type_image.css);
+
