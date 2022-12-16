@@ -1,3 +1,5 @@
+const popupElement = document.querySelector('popup');
+
 // ПОПАП РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 
 //Имя пользователя, отображаемое в профиле
@@ -77,7 +79,8 @@ function closePopup(popupName) {
 };
 
 
-function openProfilePopup () {
+
+function openProfilePopup (event) {
     openPopup(popupProfileElement);
     formNameElement.value = profileTitleElement.textContent;
     formAboutElement.value = profileSubtitleElement.textContent;
@@ -86,6 +89,14 @@ function openProfilePopup () {
 function closeProfilePopup () {
     closePopup(popupProfileElement);
 };
+
+function closeProfilePopupByClickOnOverlay (event, popupName) {
+    if (event.target === event.currentTarget) {
+        closePopup(popupProfileElement);
+    }
+};
+
+closeProfilePopupByClickOnOverlay(popupProfileElement);
 
 function profileFormSubmitHandler (evt) {
     evt.preventDefault();
@@ -101,6 +112,18 @@ function openCardPopup () {
 function closeCardPopup () {
     closePopup(popupCardElement);
 };
+
+function closeCardPopupByClickOnOverlay (event, popupName) {
+    if (event.target === event.currentTarget) {
+        closePopup(popupCardElement);
+    }
+};
+
+closeCardPopupByClickOnOverlay(popupProfileElement);
+
+popupCardElement.addEventListener('click', closeCardPopupByClickOnOverlay);
+
+
 
 function generateCard(item) {
 	
@@ -146,6 +169,17 @@ function closeImagePopup() {
     closePopup(popupImageElement);
 };
 
+function closeImagePopupByClickOnOverlay (event, popupName) {
+    if (event.target === event.currentTarget) {
+        closePopup(popupImageElement);
+    }
+};
+
+closeImagePopupByClickOnOverlay(popupImageElement);
+
+popupImageElement.addEventListener('click', closeImagePopupByClickOnOverlay);
+
+
 function deleteCardHandler(event) {
     event.target.closest('.card').remove();
 };
@@ -166,6 +200,16 @@ function cardFormSubmitHandler(event) {
     closeCardPopup ()
 };
 
+// // Закрытие попапа по клику на оверлее
+// function closePopupByClickOnOverlay (event, popupName) {
+//     if (event.target === event.currentTarget) {
+//         closePopup(popupProfileElement);
+//     }
+// };
+
+// closePopupByClickOnOverlay(popupProfileElement);
+
+
 cardsDataElement.forEach(function(item) {
     addCard(item);
 });
@@ -176,6 +220,8 @@ profileEditButtonElement.addEventListener('click', openProfilePopup);
 
 formProfileCloseButtonElement.addEventListener('click', closeProfilePopup);
 
+popupProfileElement.addEventListener('click', closeProfilePopupByClickOnOverlay);
+
 formProfileElement.addEventListener('submit', profileFormSubmitHandler);
 
 buttonAddCardElement.addEventListener('click', openCardPopup);
@@ -183,5 +229,7 @@ buttonAddCardElement.addEventListener('click', openCardPopup);
 formCardCloseButtonElement.addEventListener('click', closeCardPopup);
 
 popupImageCloseButtonElement.addEventListener('click', closeImagePopup);
+
+
  
 formCardElement.addEventListener('submit', cardFormSubmitHandler);
