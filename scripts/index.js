@@ -75,7 +75,7 @@ function openPopup(popupName) {
 
 //Функция скрытия попапа
 function closePopup(popupName) {
-    popupName.classList.remove('popup_opened'); 
+    popupName.classList.remove('popup_opened');
 };
 
 
@@ -84,10 +84,14 @@ function openProfilePopup (event) {
     openPopup(popupProfileElement);
     formNameElement.value = profileTitleElement.textContent;
     formAboutElement.value = profileSubtitleElement.textContent;
+    popupProfileElement.addEventListener('click', closeProfilePopupByClickOnOverlay);
+    document.addEventListener('keyup', closeProfilePopupByEsc); 
 };
 
 function closeProfilePopup () {
     closePopup(popupProfileElement);
+    popupProfileElement.removeEventListener('click', closeProfilePopupByClickOnOverlay);
+    document.removeEventListener('keyup', closeProfilePopupByEsc); 
 };
 
 function closeProfilePopupByClickOnOverlay (event, popupName) {
@@ -96,7 +100,11 @@ function closeProfilePopupByClickOnOverlay (event, popupName) {
     }
 };
 
-closeProfilePopupByClickOnOverlay(popupProfileElement);
+function closeProfilePopupByEsc (event) {
+    if (event.key === 'Escape') {
+        closePopup(popupProfileElement);
+    }
+};
 
 function profileFormSubmitHandler (evt) {
     evt.preventDefault();
@@ -107,10 +115,14 @@ function profileFormSubmitHandler (evt) {
 
 function openCardPopup () {
     openPopup(popupCardElement);
+    popupCardElement.addEventListener('click', closeCardPopupByClickOnOverlay);
+    document.addEventListener('keyup', closeCardPopupByEsc);    
 };
 
 function closeCardPopup () {
     closePopup(popupCardElement);
+    popupCardElement.removeEventListener('click', closeCardPopupByClickOnOverlay);
+    document.removeEventListener('keyup', closeCardPopupByEsc);
 };
 
 function closeCardPopupByClickOnOverlay (event, popupName) {
@@ -119,11 +131,11 @@ function closeCardPopupByClickOnOverlay (event, popupName) {
     }
 };
 
-closeCardPopupByClickOnOverlay(popupProfileElement);
-
-popupCardElement.addEventListener('click', closeCardPopupByClickOnOverlay);
-
-
+function closeCardPopupByEsc (event) {
+    if (event.key === 'Escape') {
+        closePopup(popupCardElement);
+    }
+};
 
 function generateCard(item) {
 	
@@ -154,6 +166,8 @@ function generateCard(item) {
         popupImage.src = item.url;
         popupImage.alt = title.textContent;
         openPopup(popupImageElement);
+        popupImageElement.addEventListener('click', closeImagePopupByClickOnOverlay);
+        document.addEventListener('keyup', closeImagePopupByEsc);
     }
 
 	trash.addEventListener('click', deleteCardHandler)
@@ -167,6 +181,7 @@ function generateCard(item) {
 
 function closeImagePopup() {
     closePopup(popupImageElement);
+    document.removeEventListener('keyup', closeImagePopupByEsc);
 };
 
 function closeImagePopupByClickOnOverlay (event, popupName) {
@@ -175,10 +190,11 @@ function closeImagePopupByClickOnOverlay (event, popupName) {
     }
 };
 
-closeImagePopupByClickOnOverlay(popupImageElement);
-
-popupImageElement.addEventListener('click', closeImagePopupByClickOnOverlay);
-
+function closeImagePopupByEsc (event) {
+    if (event.key === 'Escape') {
+        closePopup(popupImageElement);
+    }
+};
 
 function deleteCardHandler(event) {
     event.target.closest('.card').remove();
@@ -200,16 +216,6 @@ function cardFormSubmitHandler(event) {
     closeCardPopup ()
 };
 
-// // Закрытие попапа по клику на оверлее
-// function closePopupByClickOnOverlay (event, popupName) {
-//     if (event.target === event.currentTarget) {
-//         closePopup(popupProfileElement);
-//     }
-// };
-
-// closePopupByClickOnOverlay(popupProfileElement);
-
-
 cardsDataElement.forEach(function(item) {
     addCard(item);
 });
@@ -220,8 +226,6 @@ profileEditButtonElement.addEventListener('click', openProfilePopup);
 
 formProfileCloseButtonElement.addEventListener('click', closeProfilePopup);
 
-popupProfileElement.addEventListener('click', closeProfilePopupByClickOnOverlay);
-
 formProfileElement.addEventListener('submit', profileFormSubmitHandler);
 
 buttonAddCardElement.addEventListener('click', openCardPopup);
@@ -230,6 +234,4 @@ formCardCloseButtonElement.addEventListener('click', closeCardPopup);
 
 popupImageCloseButtonElement.addEventListener('click', closeImagePopup);
 
-
- 
 formCardElement.addEventListener('submit', cardFormSubmitHandler);
