@@ -69,11 +69,9 @@ const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     //сделаем кнопку неактивной, если поля формы невалидны
     buttonElement.classList.add('popup__button_disabled');
-    buttonElement.disabled = 'disabled';
   } else {
     // иначе сделаем кнопку активной
     buttonElement.classList.remove('popup__button_disabled');
-    buttonElement.disabled = '';
   }
 }
 
@@ -113,3 +111,12 @@ const enableValidation = () => {
 
 // Запускаем валидацию
 enableValidation();
+
+
+
+
+
+
+
+
+// console.log(obj)
