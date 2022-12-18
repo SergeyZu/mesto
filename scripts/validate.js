@@ -1,4 +1,4 @@
-const obj = {
+const config = {
   formSelector: '.popup__content',
   inputSelector: '.popup__field',
   submitButtonSelector: '.popup__button',
@@ -7,29 +7,16 @@ const obj = {
   errorClass: 'popup__form-error_active'
 }
 
-// Форма
-const formElement = document.querySelector('.popup__content');
-
-// const form = document.querySelector('.popup__content');
-
-// Поле формы
-const inputElement = formElement.querySelector('.popup__field');
-
-// const formInput = form.querySelector('.popup__field');
-
-
-
 // Функция отображения ошибки
 const showInputError = (formElement, inputElement, errorMessage) => {
   // Спан поля с ошибкой
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   // выделяем невалидное поле
-  inputElement.classList.add('popup__field_type_error');
+  inputElement.classList.add(config.inputErrorClass);
   // вызываем сообщение об ошибке
-  errorElement.classList.add('popup__form-error_active');
+  errorElement.classList.add(config.errorClass);
   // задаем текст ошибки
   errorElement.textContent = errorMessage;
-
 }
 
 // Функция скрытия ошибки
@@ -37,9 +24,9 @@ const hideInputError = (formElement, inputElement) => {
   // Спан поля с ошибкой
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   // снимаем выделение с невалидного поля
-  inputElement.classList.remove('popup__field_type_error');
+  inputElement.classList.remove(config.inputErrorClass);
   // скрываем сообщение об ошибке
-  errorElement.classList.remove('popup__form-error_active');
+  errorElement.classList.remove(config.errorClass);
   // очищаем текст ошибки
   errorElement.textContent = '';
 }
@@ -68,11 +55,11 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     //сделаем кнопку неактивной, если поля формы невалидны
-    buttonElement.classList.add('popup__button_disabled');
+    buttonElement.classList.add(config.inactiveButtonClass);
     buttonElement.disabled = 'disabled';
   } else {
     // иначе сделаем кнопку активной
-    buttonElement.classList.remove('popup__button_disabled');
+    buttonElement.classList.remove(config.inactiveButtonClass);
     buttonElement.disabled = '';
   }
 }
@@ -80,9 +67,9 @@ const toggleButtonState = (inputList, buttonElement) => {
 // Устанавливаем прослушиватель для всех полей в форме
 const setEventListeners = (formElement) => {
   // создаем массив инпутов
-  const inputList = Array.from(formElement.querySelectorAll('.popup__field'));
+  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   // кнопка отправки формы
-  const buttonElement = formElement.querySelector('.popup__button');
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
   // активируем/деактивируем кнопку
   toggleButtonState(inputList, buttonElement);
   // обходим массив
@@ -100,7 +87,7 @@ const setEventListeners = (formElement) => {
 // Функция валидации
 const enableValidation = () => {
   // создаем массив форм
-  const formList = Array.from(document.querySelectorAll('.popup__content'));
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
   // обходим массив
   formList.forEach((formElement) => {
     // запрещаем отправку формы
@@ -112,4 +99,4 @@ const enableValidation = () => {
 }
 
 // Запускаем валидацию
-enableValidation();
+enableValidation(config);
