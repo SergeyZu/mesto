@@ -80,7 +80,6 @@ function openPopup(popupName) {
 // Функция закрытия попапа 
 function closePopup(popupName) {
     popupName.classList.remove('popup_opened');
-    popupName.removeEventListener('click', closePopupByClickOnOverlay);
     document.removeEventListener('keyup', closePopupByEsc);
 }
 
@@ -109,8 +108,6 @@ function openProfilePopup () {
 // Функция закрытия попапа Профиль
 function closeProfilePopup () {
     closePopup(popupProfileElement);
-    popupProfileElement.removeEventListener('click', closePopupByClickOnOverlay);
-    document.removeEventListener('keyup', closePopupByEsc); 
 };
 
 function profileFormSubmitHandler (evt) {
@@ -122,14 +119,15 @@ function profileFormSubmitHandler (evt) {
 
 function openCardPopup () {
     openPopup(popupCardElement);
+    const createButton = formCardElement.querySelector('.popup__create-button')
+    createButton.classList.add('popup__button_disabled');
+    createButton.disabled = 'disabled';
     popupCardElement.addEventListener('click', closePopupByClickOnOverlay);
     document.addEventListener('keyup', closePopupByEsc);    
 };
 
 function closeCardPopup () {
     closePopup(popupCardElement);
-    popupCardElement.removeEventListener('click', closePopupByClickOnOverlay);
-    document.removeEventListener('keyup', closePopupByEsc);
 };
 
 function generateCard(item) {
@@ -176,8 +174,6 @@ function generateCard(item) {
 
 function closeImagePopup() {
     closePopup(popupImageElement);
-    popupImageElement.removeEventListener('click', closePopupByClickOnOverlay);
-    document.removeEventListener('keyup', closePopupByEsc);
 };
 
 function deleteCardHandler(event) {
@@ -194,9 +190,8 @@ function addCard(item) {
     
 function cardFormSubmitHandler(event) {
     event.preventDefault();
-    addCard({ title: cardTitle.value, url: link.value })
-    cardTitle.value = '';
-    link.value = '';
+    addCard({ title: cardTitle.value, url: link.value });
+    event.target.reset();
     closeCardPopup ()
 };
 
@@ -219,30 +214,3 @@ formCardCloseButtonElement.addEventListener('click', closeCardPopup);
 popupImageCloseButtonElement.addEventListener('click', closeImagePopup);
 
 formCardElement.addEventListener('submit', cardFormSubmitHandler);
-
-
-
-
-
-
-
-
-
-// Шпаргалка
-
-// document.addEventListener('click', (evt) => {
-//     if(evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup')) {
-//         closePopup(evt.target);
-//     }
-// });
-
-
-
-
-// popups.forEach((popup) => {
-//     popup.addEventListener('click', (event) => {
-//         if (event.target === popup) {
-//             togglePopup(popup);
-//         }
-//     });
-// });
