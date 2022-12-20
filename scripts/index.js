@@ -1,4 +1,7 @@
-const popupElement = document.querySelector('popup');
+// const popupElement = document.querySelector('popup');
+// Класс 'popup' в данном проекте присвоен всем трем модальным окнам для унификации их настроек в CSS.
+// Каждому из трех попапов присвоен свой индивидуальный класс и для каждого создана переменная в JS.
+// Увидел, что переменная popupElement в данном файле после объявления нигде не используется, удаляю ее.
 
 // ПОПАП РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 
@@ -67,43 +70,47 @@ const popupImage = popupImageElement.querySelector('.popup__image');
 const popupImageCloseButtonElement = popupImageElement.querySelector('.popup__close-button');
 
 
-
-//Функция отображения попапа
+// Функция отображения попапа
 function openPopup(popupName) {
     popupName.classList.add('popup_opened');
-};
+    popupName.addEventListener('click', closePopupByClickOnOverlay);
+    document.addEventListener('keyup', closePopupByEsc); 
+}
 
-//Функция скрытия попапа
+// Функция закрытия попапа 
 function closePopup(popupName) {
     popupName.classList.remove('popup_opened');
-};
+    popupName.removeEventListener('click', closePopupByClickOnOverlay);
+    document.removeEventListener('keyup', closePopupByEsc);
+}
 
+// Функция закрытия попапа по клику на оверлей
+function closePopupByClickOnOverlay (event) {
+    if (event.target === event.currentTarget) {
+        closePopup(event.target.closest('.popup_opened'));
+    }
+}
 
+// Функция закрытия попапа через ESC
+function closePopupByEsc (event) {
+    if (event.key === 'Escape' ) {
+        const popup = document.querySelector('.popup_opened');
+        closePopup(popup);
+    }
+}
 
-function openProfilePopup (event) {
+// Функция открытия попапа Профиль
+function openProfilePopup () {
     openPopup(popupProfileElement);
     formNameElement.value = profileTitleElement.textContent;
     formAboutElement.value = profileSubtitleElement.textContent;
-    popupProfileElement.addEventListener('click', closeProfilePopupByClickOnOverlay);
-    document.addEventListener('keyup', closeProfilePopupByEsc); 
 };
 
+// Функция закрытия попапа Профиль
 function closeProfilePopup () {
     closePopup(popupProfileElement);
-    popupProfileElement.removeEventListener('click', closeProfilePopupByClickOnOverlay);
-    document.removeEventListener('keyup', closeProfilePopupByEsc); 
-};
-
-function closeProfilePopupByClickOnOverlay (event, popupName) {
-    if (event.target === event.currentTarget) {
-        closePopup(popupProfileElement);
-    }
-};
-
-function closeProfilePopupByEsc (event) {
-    if (event.key === 'Escape') {
-        closePopup(popupProfileElement);
-    }
+    popupProfileElement.removeEventListener('click', closePopupByClickOnOverlay);
+    document.removeEventListener('keyup', closePopupByEsc); 
 };
 
 function profileFormSubmitHandler (evt) {
@@ -115,26 +122,14 @@ function profileFormSubmitHandler (evt) {
 
 function openCardPopup () {
     openPopup(popupCardElement);
-    popupCardElement.addEventListener('click', closeCardPopupByClickOnOverlay);
-    document.addEventListener('keyup', closeCardPopupByEsc);    
+    popupCardElement.addEventListener('click', closePopupByClickOnOverlay);
+    document.addEventListener('keyup', closePopupByEsc);    
 };
 
 function closeCardPopup () {
     closePopup(popupCardElement);
-    popupCardElement.removeEventListener('click', closeCardPopupByClickOnOverlay);
-    document.removeEventListener('keyup', closeCardPopupByEsc);
-};
-
-function closeCardPopupByClickOnOverlay (event, popupName) {
-    if (event.target === event.currentTarget) {
-        closePopup(popupCardElement);
-    }
-};
-
-function closeCardPopupByEsc (event) {
-    if (event.key === 'Escape') {
-        closePopup(popupCardElement);
-    }
+    popupCardElement.removeEventListener('click', closePopupByClickOnOverlay);
+    document.removeEventListener('keyup', closePopupByEsc);
 };
 
 function generateCard(item) {
@@ -166,8 +161,8 @@ function generateCard(item) {
         popupImage.src = item.url;
         popupImage.alt = title.textContent;
         openPopup(popupImageElement);
-        popupImageElement.addEventListener('click', closeImagePopupByClickOnOverlay);
-        document.addEventListener('keyup', closeImagePopupByEsc);
+        popupImageElement.addEventListener('click', closePopupByClickOnOverlay);
+        document.addEventListener('keyup', closePopupByEsc);
     }
 
 	trash.addEventListener('click', deleteCardHandler)
@@ -181,19 +176,8 @@ function generateCard(item) {
 
 function closeImagePopup() {
     closePopup(popupImageElement);
-    document.removeEventListener('keyup', closeImagePopupByEsc);
-};
-
-function closeImagePopupByClickOnOverlay (event, popupName) {
-    if (event.target === event.currentTarget) {
-        closePopup(popupImageElement);
-    }
-};
-
-function closeImagePopupByEsc (event) {
-    if (event.key === 'Escape') {
-        closePopup(popupImageElement);
-    }
+    popupImageElement.removeEventListener('click', closePopupByClickOnOverlay);
+    document.removeEventListener('keyup', closePopupByEsc);
 };
 
 function deleteCardHandler(event) {
@@ -235,3 +219,30 @@ formCardCloseButtonElement.addEventListener('click', closeCardPopup);
 popupImageCloseButtonElement.addEventListener('click', closeImagePopup);
 
 formCardElement.addEventListener('submit', cardFormSubmitHandler);
+
+
+
+
+
+
+
+
+
+// Шпаргалка
+
+// document.addEventListener('click', (evt) => {
+//     if(evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup')) {
+//         closePopup(evt.target);
+//     }
+// });
+
+
+
+
+// popups.forEach((popup) => {
+//     popup.addEventListener('click', (event) => {
+//         if (event.target === popup) {
+//             togglePopup(popup);
+//         }
+//     });
+// });
