@@ -64,6 +64,13 @@ const toggleButtonState = (inputList, buttonElement) => {
   }
 }
 
+// Функция сброса введенных данных при закрытии формы
+const resetValidation = () => {
+  if (config.formSelector.closest('.popup') && !config.formSelector.closest('.popup_opened')) {
+    formSelector.reset()
+  }
+}
+
 // Устанавливаем прослушиватель для всех полей в форме
 const setEventListeners = (formElement) => {
   // создаем массив инпутов
