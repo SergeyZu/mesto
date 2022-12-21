@@ -16,7 +16,7 @@ const popupProfileElement = document.querySelector('.popup_type_profile');
 
 //Форма
 const formProfileElement = document.querySelector('.popup__profile-content');
-пше
+
 //Поле формы Имя
 const formNameElement = formProfileElement.querySelector('.popup__field_type_name');
 
