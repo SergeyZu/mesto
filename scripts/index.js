@@ -1,8 +1,3 @@
-// const popupElement = document.querySelector('popup');
-// Класс 'popup' в данном проекте присвоен всем трем модальным окнам для унификации их настроек в CSS.
-// Каждому из трех попапов присвоен свой индивидуальный класс и для каждого создана переменная в JS.
-// Увидел, что переменная popupElement в данном файле после объявления нигде не используется, удаляю ее.
-
 // ПОПАП РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 
 //Имя пользователя, отображаемое в профиле
@@ -85,7 +80,7 @@ function closePopup(popupName) {
 // Функция закрытия попапа по клику на оверлей
 function closePopupByClickOnOverlay (event) {
     if (event.target === event.currentTarget) {
-        closePopup(event.target.closest('.popup_opened'));
+        closePopup(event.target);
     }
 }
 
@@ -156,7 +151,6 @@ function generateCard(item) {
         popupImage.src = item.url;
         popupImage.alt = title.textContent;
         openPopup(popupImageElement);
-        document.addEventListener('keyup', closePopupByEsc);
     }
 
 	trash.addEventListener('click', deleteCardHandler)
