@@ -73,7 +73,6 @@ const popupImageCloseButtonElement = popupImageElement.querySelector('.popup__cl
 // Функция отображения попапа
 function openPopup(popupName) {
     popupName.classList.add('popup_opened');
-    popupName.addEventListener('click', closePopupByClickOnOverlay);
     document.addEventListener('keyup', closePopupByEsc); 
 }
 
@@ -119,10 +118,8 @@ function profileFormSubmitHandler (evt) {
 
 function openCardPopup () {
     openPopup(popupCardElement);
-    const createButton = formCardElement.querySelector('.popup__create-button')
-    createButton.classList.add('popup__button_disabled');
-    createButton.disabled = 'disabled';
-    popupCardElement.addEventListener('click', closePopupByClickOnOverlay);
+    const buttonElement = formCardElement.querySelector(config.submitButtonSelector);
+    disableSubmitButton(buttonElement);
     document.addEventListener('keyup', closePopupByEsc);    
 };
 
@@ -159,7 +156,6 @@ function generateCard(item) {
         popupImage.src = item.url;
         popupImage.alt = title.textContent;
         openPopup(popupImageElement);
-        popupImageElement.addEventListener('click', closePopupByClickOnOverlay);
         document.addEventListener('keyup', closePopupByEsc);
     }
 
@@ -214,3 +210,9 @@ formCardCloseButtonElement.addEventListener('click', closeCardPopup);
 popupImageCloseButtonElement.addEventListener('click', closeImagePopup);
 
 formCardElement.addEventListener('submit', cardFormSubmitHandler);
+
+popupProfileElement.addEventListener('click', closePopupByClickOnOverlay);
+
+popupCardElement.addEventListener('click', closePopupByClickOnOverlay);
+
+popupImageElement.addEventListener('click', closePopupByClickOnOverlay);

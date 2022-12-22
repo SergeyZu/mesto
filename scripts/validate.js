@@ -51,16 +51,24 @@ const hasInvalidInput = (inputList) => {
   });
 }
 
+const disableSubmitButton = (buttonElement) => {
+  buttonElement.classList.add(config.inactiveButtonClass);
+  buttonElement.disabled = 'disabled';
+}
+
+const enableSubmitButton = (buttonElement) => {
+  buttonElement.classList.remove(config.inactiveButtonClass);
+  buttonElement.disabled = '';
+}
+
 // Функция изменения активности кнопки
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     //сделаем кнопку неактивной, если поля формы невалидны
-    buttonElement.classList.add(config.inactiveButtonClass);
-    buttonElement.disabled = 'disabled';
+    disableSubmitButton(buttonElement);
   } else {
     // иначе сделаем кнопку активной
-    buttonElement.classList.remove(config.inactiveButtonClass);
-    buttonElement.disabled = '';
+    enableSubmitButton(buttonElement);
   }
 }
 
@@ -85,7 +93,7 @@ const setEventListeners = (formElement) => {
 }
 
 // Функция валидации
-const enableValidation = () => {
+const enableValidation = (config) => {
   // создаем массив форм
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   // обходим массив
