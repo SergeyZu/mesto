@@ -1,4 +1,4 @@
-const cardsDataElement = [
+export const cardsDataElement = [
 	{
     	url: './images/card_altai.jpg', 
         title: 'Алтай'

@@ -1,3 +1,5 @@
+import { cardsDataElement } from './cardsData.js';
+
 class Card {
     constructor(data, templateSelector) {
         this._title = data.title;
@@ -22,8 +24,8 @@ class Card {
         this._element.querySelector('.card__title').textContent = this._title;
         this._element.querySelector('.card__image').src = this._image;
         this._element.querySelector('.card__image').alt = this._title;
-        // this.element.querySelector('.card__trash') = this.trash;
-        // this.element.querySelector('.card__like') = this.like;
+        // this._element.querySelector('.card__trash') = this.trash;
+        // this._element.querySelector('.card__like') = this.like;
 
         return this._element;
     }
