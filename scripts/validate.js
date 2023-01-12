@@ -1,11 +1,11 @@
-const config = {
-  formSelector: '.popup__content',
-  inputSelector: '.popup__field',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__field_type_error',
-  errorClass: 'popup__form-error_active'
-}
+// const config = {
+//   formSelector: '.popup__content',
+//   inputSelector: '.popup__field',
+//   submitButtonSelector: '.popup__button',
+//   inactiveButtonClass: 'popup__button_disabled',
+//   inputErrorClass: 'popup__field_type_error',
+//   errorClass: 'popup__form-error_active'
+// }
 
 // Функция отображения ошибки
 const showInputError = (formElement, inputElement, errorMessage) => {
