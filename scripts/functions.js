@@ -27,11 +27,5 @@ function closePopupByEsc (event) {
     }
 }
 
-const disableSubmitButton = (buttonElement) => {
-      buttonElement.classList.add(config.inactiveButtonClass);
-      buttonElement.disabled = 'disabled';
-}
-    
 
-
-export { openPopup, closePopup, closePopupByClickOnOverlay, closePopupByEsc, disableSubmitButton };
+export { openPopup, closePopup, closePopupByClickOnOverlay, closePopupByEsc };
