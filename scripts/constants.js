@@ -76,7 +76,7 @@ export { popupImageElement, popupTitle, popupImage, popupImageCloseButtonElement
 
 
 
-const config = {
+export const config = {
     formSelector: '.popup__content',
     inputSelector: '.popup__field',
     submitButtonSelector: '.popup__button',
@@ -84,5 +84,3 @@ const config = {
     inputErrorClass: 'popup__field_type_error',
     errorClass: 'popup__form-error_active'
 }
-
-export { config };

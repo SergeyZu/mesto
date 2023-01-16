@@ -1,8 +1,14 @@
 import { profileTitleElement, profileSubtitleElement, popupProfileElement, formProfileElement, formNameElement, formAboutElement, profileEditButtonElement, formProfileCloseButtonElement, popupCardElement, buttonAddCardElement, formCardCloseButtonElement, formCardElement, cardTitle, link, config } from './constants.js'
 
-import { openPopup, closePopup, closePopupByClickOnOverlay, closePopupByEsc, disableSubmitButton } from './functions.js'
+import { openPopup, closePopup, closePopupByClickOnOverlay, closePopupByEsc } from './functions.js'
 
-import { addCard } from './Card.js'
+import Card from './сard.js'
+
+import { cardsDataElement } from './cardsData.js'
+
+import FormValidator from './validate.js'
+
+
 
 
 // Функция открытия попапа Профиль
@@ -28,68 +34,28 @@ function openCardPopup () {
     openPopup(popupCardElement);
     const buttonElement = formCardElement.querySelector(config.submitButtonSelector);
     disableSubmitButton(buttonElement);
-    document.addEventListener('keyup', closePopupByEsc);    
+    document.addEventListener('keyup', closePopupByEsc); 
 };
+
+const disableSubmitButton = (buttonElement) => {
+    buttonElement.classList.add(config.inactiveButtonClass);
+    buttonElement.disabled = 'disabled';
+}
+
+const enableSubmitButton = (buttonElement) => {
+    buttonElement.classList.remove(this._inactiveButtonClass);
+    buttonElement.disabled = '';
+}
 
 function closeCardPopup () {
     closePopup(popupCardElement);
 };
 
-// function generateCard(item) {
-	
-//     //Шаблон карточки
-//     const cardTemplate = document.querySelector('#card-template').content;
-
-//     //Карточка
-// 	const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-  
-// 	//Заголовок карточки
-//     const title = cardElement.querySelector('.card__title');
-// 	title.textContent = item.title;
-
-// 	//Картинка
-//     const image = cardElement.querySelector('.card__image');
-	
-//     //Корзина
-//     const trash = cardElement.querySelector('.card__trash');
-
-//     //Кнопка Мне нравится
-//     const like = cardElement.querySelector('.card__like');
-
-//     image.src = item.url;
-//     image.alt = title.textContent;
-
-// 	const viewImageHandler = function() {
-//         popupTitle.textContent = title.textContent;
-//         popupImage.src = item.url;
-//         popupImage.alt = title.textContent;
-//         openPopup(popupImageElement);
-//     }
-
-	// trash.addEventListener('click', deleteCardHandler)
-	
-	// like.addEventListener('click', likedCardHandler);
-
-    // image.addEventListener('click', viewImageHandler);
-
-// 	return cardElement;
-// };
-
-// function closeImagePopup() {
-//     closePopup(popupImageElement);
-// };
-
-// function deleteCardHandler(event) {
-//     event.target.closest('.card').remove();
-// };
-
-// function likedCardHandler(event) {
-//     event.target.classList.toggle('card__like_clicked');
-// };
-  
-// function addCard(item) {
-//     cardsContainer.prepend(generateCard(item));
-// };
+function addCard(item) {
+    const card = new Card(item, '#card-template');
+    const cardElement = card.generateCard();
+    document.querySelector('.cards').append(cardElement);
+};
     
 function cardFormSubmitHandler(event) {
     event.preventDefault();
@@ -97,6 +63,19 @@ function cardFormSubmitHandler(event) {
     event.target.reset();
     closeCardPopup ()
 };
+
+cardsDataElement.forEach((item) => {
+    addCard(item);
+});
+
+const popupProfile = document.querySelector('.popup__profile-content');
+const popupProfileValidator = new FormValidator(config, popupProfile);
+popupProfileValidator.enableValidation();
+
+const popupCard = document.querySelector('.popup__card-content');
+const popupCardValidator = new FormValidator(config, popupCard);
+popupCardValidator.enableValidation();
+
 
 
 
@@ -110,12 +89,8 @@ buttonAddCardElement.addEventListener('click', openCardPopup);
 
 formCardCloseButtonElement.addEventListener('click', closeCardPopup);
 
-// popupImageCloseButtonElement.addEventListener('click', closeImagePopup);
-
 formCardElement.addEventListener('submit', cardFormSubmitHandler);
 
 popupProfileElement.addEventListener('click', closePopupByClickOnOverlay);
 
 popupCardElement.addEventListener('click', closePopupByClickOnOverlay);
-
-// popupImageElement.addEventListener('click', closePopupByClickOnOverlay);

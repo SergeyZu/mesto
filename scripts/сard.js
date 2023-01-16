@@ -1,11 +1,9 @@
-import { cardsDataElement } from './cardsData.js'
-
 import { popupImageElement, popupTitle, popupImage, popupImageCloseButtonElement, cardsContainer } from './constants.js'
 
 import { openPopup, closePopup, closePopupByClickOnOverlay, closePopupByEsc } from './functions.js'
 
 
-class Card {
+export default class Card {
     constructor(data, templateSelector) {
         this._title = data.title;
         this._image = data.url;
@@ -67,22 +65,3 @@ class Card {
     }
 
 }
-
-export function addCard(item) {
-    const card = new Card(item, '#card-template');
-    const cardElement = card.generateCard();
-    document.querySelector('.cards').append(cardElement);
-};
-
-cardsDataElement.forEach((item) => {
-    addCard(item);
-});
-
-
-
-// function cardFormSubmitHandler(event) {
-//     event.preventDefault();
-//     addCard({ title: cardTitle.value, url: link.value });
-//     event.target.reset();
-//     closeCardPopup ()
-// };
