@@ -1,9 +1,12 @@
-import { config } from './constants.js'
+function disableSubmitButton (buttonElement) {
+    buttonElement.classList.add(this._inactiveButtonClass);
+    buttonElement.disabled = 'true';
+}
 
 // Функция отображения попапа
 function openPopup(popupName) {
     popupName.classList.add('popup_opened');
-    document.addEventListener('keyup', closePopupByEsc); 
+    document.addEventListener('keyup', closePopupByEsc);
 }
 
 // Функция закрытия попапа 

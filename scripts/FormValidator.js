@@ -1,4 +1,11 @@
-import { config } from './constants.js'
+const config = {
+  formSelector: '.popup__content',
+  inputSelector: '.popup__field',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__field_type_error',
+  errorClass: 'popup__form-error_active'
+}
 
 export default class FormValidator {
   constructor(selector, formElement) {
@@ -57,7 +64,7 @@ export default class FormValidator {
 
   _disableSubmitButton = (buttonElement) => {
     buttonElement.classList.add(this._inactiveButtonClass);
-    buttonElement.disabled = 'disabled';
+    buttonElement.disabled = 'true';
   }
 
   _enableSubmitButton = (buttonElement) => {
@@ -79,35 +86,29 @@ export default class FormValidator {
   // Устанавливаем прослушиватель для всех полей в форме
   _setEventListeners = () => {
     // создаем массив инпутов
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+
     // кнопка отправки формы
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+
     // активируем/деактивируем кнопку
-    this._toggleButtonState(inputList, buttonElement);
+    this._toggleButtonState(this._inputList, this._buttonElement);
     // обходим массив
-    inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
+
       // при вводе каждого символа
       inputElement.addEventListener('input', () => {
         // проверяем поле на валидность
         this._checkInputValidity(inputElement);
         // активируем/деактивируем кнопку
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState(this._inputList, this._buttonElement);
       });
     });
   }
 
   // Функция валидации
   enableValidation = () => {
-    // создаем массив форм
-    const formList = Array.from(document.querySelectorAll(this._formSelector));
-    // обходим массив
-    formList.forEach((formElement) => {
-      // запрещаем отправку формы
-      formElement.addEventListener('submit', (event) => {
-        event.preventDefault();
-      });
-      this._setEventListeners();
-    });
-  }
-
+      this._setEventListeners(this._formSelector);
+  };
+  
 }
