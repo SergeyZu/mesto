@@ -1,4 +1,5 @@
 .popup__field {
+    /* display: block; */
     font-family: 'Inter';
     font-size: 14px;
     line-height: 17px;
@@ -8,7 +9,8 @@
     border-bottom: solid 1px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 358px;
-    min-height: 26px;
+    /* height: 26px; */
+    height: 50px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

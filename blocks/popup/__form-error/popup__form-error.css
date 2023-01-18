@@ -1,3 +1,6 @@
 .popup__form-error {
-    display: none;
+    display: block;
+    height: 30px;
+    margin: 4px 0 0 6px;
+    box-sizing: border-box;
 }
