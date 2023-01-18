@@ -32,7 +32,6 @@ function profileFormSubmitHandler (evt) {
 
 function openCardPopup () {
     openPopup(popupCardElement);
-    // disableSubmitButton(buttonElement);
 };
 
 function closeCardPopup () {
