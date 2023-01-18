@@ -1,9 +1,9 @@
 const config = {
   formSelector: '.popup__content',
-  inputSelector: '.popup__field',
+  inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__field_type_error',
+  inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__form-error_active'
 }
 

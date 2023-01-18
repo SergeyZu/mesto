@@ -88,11 +88,21 @@
 
 @import url(../blocks/popup/__field/popup__field.css);
 
+/* @import url(../blocks/popup/__field/popup__field.css);
+
 @import url(../blocks/popup/__field/_type/_name/popup__field_type_name.css);
 
 @import url(../blocks/popup/__field/_type/_about/popup__field_type_about.css);
 
-@import url(../blocks/popup/__field/_type/_error/popup__field_type_error.css);
+@import url(../blocks/popup/__field/_type/_error/popup__field_type_error.css); */
+
+@import url(../blocks/popup/__input/popup__input.css);
+
+@import url(../blocks/popup/__input/_type/_about/popup__input_type_about.css);
+
+@import url(../blocks/popup/__input/_type/_error/popup__input_type_error.css);
+
+@import url(../blocks/popup/__input/_type/_name/popup__input_type_name.css);
 
 @import url(../blocks/popup/__save-button/popup__save-button.css);
 

@@ -13,10 +13,10 @@ const popupProfileElement = document.querySelector('.popup_type_profile');
 const formProfileElement = document.querySelector('.popup__profile-content');
 
 //Поле формы Имя
-const formNameElement = formProfileElement.querySelector('.popup__field_type_name');
+const formNameElement = formProfileElement.querySelector('.popup__input_type_name');
 
 //Поле формы О себе
-const formAboutElement = formProfileElement.querySelector('.popup__field_type_about');
+const formAboutElement = formProfileElement.querySelector('.popup__input_type_about');
 
 //Кнопка редактирования профиля
 const profileEditButtonElement = document.querySelector('.profile__edit-button');
@@ -44,10 +44,10 @@ const formCardCloseButtonElement = popupCardElement.querySelector('.popup__close
 const formCardElement = document.querySelector('.popup__card-content');
 
 //Поле формы Заголовок
-const cardTitle = document.querySelector('.popup__field_type_card-title');
+const cardTitle = document.querySelector('.popup__input_type_card-title');
 
 //Поле формы Ссылка
-const link = document.querySelector('.popup__field_type_link');
+const link = document.querySelector('.popup__input_type_link');
 
 // Контейнер для карточек
 const cardsContainer = document.querySelector('.cards');
@@ -78,9 +78,9 @@ export { popupImageElement, popupTitle, popupImage, popupImageCloseButtonElement
 
 export const config = {
     formSelector: '.popup__content',
-    inputSelector: '.popup__field',
+    inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__field_type_error',
+    inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__form-error_active'
 }
