@@ -30,5 +30,4 @@ function closePopupByEsc (event) {
     }
 }
 
-
 export { openPopup, closePopup, closePopupByClickOnOverlay, closePopupByEsc };
