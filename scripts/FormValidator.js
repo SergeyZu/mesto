@@ -8,6 +8,7 @@ const config = {
 }
 
 export default class FormValidator {
+
   constructor(selector, formElement) {
     this._formSelector = selector.formSelector;
     this._inputSelector = selector.inputSelector;
@@ -17,6 +18,8 @@ export default class FormValidator {
     this._errorClass = selector.errorClass;
     this._formElement = formElement;
   }
+
+
 
   // Функция отображения ошибки
   _showInputError = (inputElement, errorMessage) => {
@@ -64,12 +67,12 @@ export default class FormValidator {
 
   _disableSubmitButton = (buttonElement) => {
     buttonElement.classList.add(this._inactiveButtonClass);
-    buttonElement.disabled = 'true';
+    buttonElement.disabled = true;
   }
 
   _enableSubmitButton = (buttonElement) => {
     buttonElement.classList.remove(this._inactiveButtonClass);
-    buttonElement.disabled = '';
+    buttonElement.disabled = false;
   }
 
   // Функция изменения активности кнопки

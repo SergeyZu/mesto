@@ -44,7 +44,8 @@ export default class Card {
     }
 
     _deleteCardHandler() {
-        this._cardTrash.closest('.card').remove();
+        this._element.remove();
+        this._elemetn = null;
     }
 
     _likedCardHandler() {
