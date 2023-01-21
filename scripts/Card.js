@@ -1,7 +1,7 @@
 export default class Card {
     constructor(data, templateSelector, viewImageHandler) {
-        this._title = data.title;
-        this._image = data.url;
+        this._title = data.name;
+        this._image = data.link;
         this._templateSelector = templateSelector;
         this._viewImageHandler = viewImageHandler;
     }
@@ -45,7 +45,7 @@ export default class Card {
 
     _deleteCardHandler() {
         this._element.remove();
-        this._elemetn = null;
+        this._element = null;
     }
 
     _likedCardHandler() {

@@ -1,4 +1,4 @@
-import { buttonCloseList, profileTitleElement, profileSubtitleElement, popupProfileElement, formProfileElement, formNameElement, formAboutElement, profileEditButtonElement, popupCardElement, buttonAddCardElement, formCardElement, cardTitle, link, config, popupTitle, popupImage, popupImageElement, cardsContainer } from './constants.js'
+import { buttonCloseList, profileTitleElement, profileSubtitleElement, popupProfileElement, formProfileElement, formNameElement, formAboutElement, profileEditButtonElement, formProfileCloseButtonElement, popupCardElement, buttonAddCardElement, formCardCloseButtonElement, formCardElement, cardTitle, link, config, popupTitle, popupImage, popupImageElement, popupImageCloseButtonElement, cardsContainer } from './constants.js'
 
 import { openPopup, closePopup, closePopupByClickOnOverlay } from './functions.js'
 
@@ -23,17 +23,30 @@ function openProfilePopup () {
     formAboutElement.value = profileSubtitleElement.textContent;
 };
 
+// // Функция закрытия попапа Профиль
+// function closeProfilePopup () {
+//     closePopup(popupProfileElement);
+// };
+
 function profileFormSubmitHandler (evt) {
     evt.preventDefault();
     profileTitleElement.textContent = formNameElement.value;
     profileSubtitleElement.textContent = formAboutElement.value;
-    closePopup(popupProfileElement);
+    closeProfilePopup();
 };
 
 function openCardPopup () {
     popupCardValidator.resetValidation();
     openPopup(popupCardElement);
 };
+
+// function closeCardPopup () {
+//     closePopup(popupCardElement);
+// };
+
+// function closeImagePopup() {
+//     closePopup(popupImageElement);
+// };
 
 function viewImageHandler(name, link) {
     popupTitle.textContent = name;
@@ -57,7 +70,7 @@ function cardFormSubmitHandler(event) {
     event.preventDefault();
     rendererCard({ name: cardTitle.value, link: link.value });
     event.target.reset();
-    closePopup (popupCardElement);
+    closeCardPopup ()
 };
 
 cardsDataElement.forEach((item) => {
@@ -81,9 +94,13 @@ popupCardValidator.resetValidation();
 
 profileEditButtonElement.addEventListener('click', openProfilePopup);
 
+// formProfileCloseButtonElement.addEventListener('click', closeProfilePopup);
+
 formProfileElement.addEventListener('submit', profileFormSubmitHandler);
 
 buttonAddCardElement.addEventListener('click', openCardPopup);
+
+// formCardCloseButtonElement.addEventListener('click', closeCardPopup);
 
 formCardElement.addEventListener('submit', cardFormSubmitHandler);
 
@@ -92,3 +109,5 @@ popupProfileElement.addEventListener('click', closePopupByClickOnOverlay);
 popupCardElement.addEventListener('click', closePopupByClickOnOverlay);
 
 popupImageElement.addEventListener('click', closePopupByClickOnOverlay);
+
+// popupImageCloseButtonElement.addEventListener('click', closeImagePopup);

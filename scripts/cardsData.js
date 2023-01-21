@@ -1,26 +1,26 @@
 export const cardsDataElement = [
 	{
-    	url: './images/card_altai.jpg', 
-        title: 'Алтай'
+    	link: './images/card_altai.jpg', 
+        name: 'Алтай'
     },
     {
-        url: './images/card_dombai.jpg', 
-        title: 'Домбай'
+        link: './images/card_dombai.jpg', 
+        name: 'Домбай'
     },
     {
-        url: './images/card_kamchatka.jpg', 
-        title: 'Камчатка'
+        link: './images/card_kamchatka.jpg', 
+        name: 'Камчатка'
     },
     {
-        url: './images/card_baikal.jpg', 
-        title: 'Байкал'
+        link: './images/card_baikal.jpg', 
+        name: 'Байкал'
     },
     {
-        url: './images/card_elbrus.jpg', 
-        title: 'Эльбрус'
+        link: './images/card_elbrus.jpg', 
+        name: 'Эльбрус'
     },
     {
-        url: './images/card_petropavlovsk.jpg', 
-        title: 'Петропавловск-Камчатский'
+        link: './images/card_petropavlovsk.jpg', 
+        name: 'Петропавловск-Камчатский'
     }
 ];

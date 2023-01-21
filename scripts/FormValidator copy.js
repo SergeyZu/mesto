@@ -54,13 +54,26 @@ export default class FormValidator {
     });
   }
 
-  
+  // _disableSubmitButton = () => {
+  //   const submitButton = this._formElement.querySelector (this._submitButtonSelector);
+  //   submitButton.classList.add(this._inactiveButtonClass);
+  //   submitButton.disabled = true;
+  // }
+
+  // _enableSubmitButton = () => {
+  //   const submitButton = this._formElement.querySelector (this._submitButtonSelector);
+  //   submitButton.classList.remove(this._inactiveButtonClass);
+  //   submitButton.disabled = false;
+  // }
+
   _disableSubmitButton = () => {
+    this._submitButton = this._formElement.querySelector (this._submitButtonSelector);
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.disabled = true;
   }
 
   _enableSubmitButton = () => {
+    this._submitButton = this._formElement.querySelector (this._submitButtonSelector);
     this._submitButton.classList.remove(this._inactiveButtonClass);
     this._submitButton.disabled = false;
   }
@@ -68,6 +81,7 @@ export default class FormValidator {
 
   // Функция изменения активности кнопки
   _toggleButtonState() {
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     if (this._hasInvalidInput(this._inputList)) {
       //сделаем кнопку неактивной, если поля формы невалидны
       this._disableSubmitButton();
@@ -75,14 +89,6 @@ export default class FormValidator {
       // иначе сделаем кнопку активной
       this._enableSubmitButton();
     }
-  }
-
-  resetValidation() {
-    this._toggleButtonState();
-    this._inputList.forEach((inputElement) => {
-      this._hideInputError(inputElement);
-      inputElement.value = '';
-    });
   }
 
 
@@ -93,10 +99,10 @@ export default class FormValidator {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
 
     // кнопка отправки формы
-    this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
 
     // активируем/деактивируем кнопку
-    this._toggleButtonState();
+    this._toggleButtonState(this._inputList, this._buttonElement);
     // обходим массив
     this._inputList.forEach((inputElement) => {
 
@@ -105,14 +111,14 @@ export default class FormValidator {
         // проверяем поле на валидность
         this._checkInputValidity(inputElement);
         // активируем/деактивируем кнопку
-        this._toggleButtonState();
+        this._toggleButtonState(this._inputList, this._buttonElement);
       });
     });
   }
 
   // Функция валидации
   enableValidation = () => {
-      this._setEventListeners();
+      this._setEventListeners(this._formSelector);
   };
   
 }
