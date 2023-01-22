@@ -69,13 +69,11 @@ cardsDataElement.forEach((item) => {
 const popupProfile = document.querySelector('.popup__profile-content');
 const popupProfileValidator = new FormValidator(config, popupProfile);
 popupProfileValidator.enableValidation();
-popupProfileValidator.resetValidation();
 
 
 const popupCard = document.querySelector('.popup__card-content');
 const popupCardValidator = new FormValidator(config, popupCard);
 popupCardValidator.enableValidation();
-popupCardValidator.resetValidation();
 
 
 
@@ -86,9 +84,3 @@ formProfileElement.addEventListener('submit', profileFormSubmitHandler);
 buttonAddCardElement.addEventListener('click', openCardPopup);
 
 formCardElement.addEventListener('submit', cardFormSubmitHandler);
-
-popupProfileElement.addEventListener('click', closePopupByClickOnOverlay);
-
-popupCardElement.addEventListener('click', closePopupByClickOnOverlay);
-
-popupImageElement.addEventListener('click', closePopupByClickOnOverlay);
