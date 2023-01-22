@@ -46,14 +46,13 @@ export default class FormValidator {
   }
 
   // Проверяем все поля на валидность
-  _hasInvalidInput = (inputList) => {
+  _hasInvalidInput = () => {
     // если есть хотя бы одно невалидное поле
-    return inputList.some((inputElement) => {
+    return this._inputList.some((inputElement) => {
       // получаем значение true
       return !inputElement.validity.valid;
     });
   }
-
   
   _disableSubmitButton = () => {
     this._submitButton.classList.add(this._inactiveButtonClass);
@@ -65,10 +64,9 @@ export default class FormValidator {
     this._submitButton.disabled = false;
   }
 
-
   // Функция изменения активности кнопки
   _toggleButtonState() {
-    if (this._hasInvalidInput(this._inputList)) {
+    if (this._hasInvalidInput()) {
       //сделаем кнопку неактивной, если поля формы невалидны
       this._disableSubmitButton();
     } else {
@@ -81,11 +79,8 @@ export default class FormValidator {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
-      inputElement.value = '';
     });
   }
-
-
 
   // Устанавливаем прослушиватель для всех полей в форме
   _setEventListeners = () => {
