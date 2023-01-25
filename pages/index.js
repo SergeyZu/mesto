@@ -1,6 +1,6 @@
 import { buttonCloseList, profileTitleElement, profileSubtitleElement, popupProfileElement, formProfileElement, formNameElement, formAboutElement, profileEditButtonElement, popupCardElement, buttonAddCardElement, formCardElement, cardTitle, link, config, popupTitle, popupImage, popupImageElement, cardsContainer } from '../utils/constants.js'
 
-import { openPopup, closePopup, closePopupByClickOnOverlay, createCard } from '../utils/utils.js'
+import { openPopup, closePopup, closePopupByClickOnOverlay, rendererCard } from '../utils/utils.js'
 
 import Card from '../components/Card.js'
 
@@ -35,23 +35,10 @@ function openCardPopup () {
     openPopup(popupCardElement);
 };
 
-// function viewImageHandler(name, link) {
-//     popupTitle.textContent = name;
-//     popupImage.src = link;
-//     popupImage.alt = name;
-//     openPopup(popupImageElement);
-// }
-
-// function createCard(item) {
-//     const card = new Card(item, '#card-template', viewImageHandler );
-//     const cardElement = card.generateCard();
-//     return cardElement;
+// function rendererCard(item) {
+//     const cardItem = createCard(item);
+//     cardsContainer.prepend(cardItem);
 // };
-
-function rendererCard(item) {
-    const cardItem = createCard(item);
-    cardsContainer.prepend(cardItem);
-};
 
 function cardFormSubmitHandler(event) {
     event.preventDefault();

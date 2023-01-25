@@ -1,5 +1,5 @@
 import Card from '../components/Card.js'
-import { popupTitle, popupImage, popupImageElement } from '../utils/constants.js'
+import { popupTitle, popupImage, popupImageElement, cardsContainer } from '../utils/constants.js'
 
 // Функция отображения попапа
 function openPopup(popupName) {
@@ -41,4 +41,9 @@ function createCard(item) {
     return cardElement;
 };
 
-export { openPopup, closePopup, closePopupByClickOnOverlay, closePopupByEsc, createCard };
+function rendererCard(item) {
+    const cardItem = createCard(item);
+    cardsContainer.prepend(cardItem);
+};
+
+export { openPopup, closePopup, closePopupByClickOnOverlay, closePopupByEsc, rendererCard };
