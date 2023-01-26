@@ -1,8 +1,8 @@
 import { buttonCloseList, profileTitleElement, profileSubtitleElement, popupProfileElement, formProfileElement, formNameElement, formAboutElement, profileEditButtonElement, popupCardElement, buttonAddCardElement, formCardElement, cardTitle, link, config, popupTitle, popupImage, popupImageElement, cardsContainer } from '../utils/constants.js';
 
-// import { openPopup, closePopup, closePopupByClickOnOverlay, cardFormSubmitHandler, rendererCard } from '../utils/utils.js';
+import { openPopup, closePopup, closePopupByClickOnOverlay, cardFormSubmitHandler, rendererCard } from '../utils/utils.js';
 
-import { cardFormSubmitHandler, rendererCard } from '../utils/utils.js';
+// import { cardFormSubmitHandler, rendererCard } from '../utils/utils.js';
 
 import { cardsDataElement } from '../data/cardsData.js';
 
@@ -10,16 +10,16 @@ import Card from '../components/Card.js';
 
 import Section from '../components/Section.js'
 
-import Popup from '../components/Popup.js'
+// import Popup from '../components/Popup.js'
 
 import FormValidator from '../components/FormValidator.js';
 
-// // Универсальная функция закрытия попапа
-// buttonCloseList.forEach(btn => {
-//     const popup = btn.closest('.popup');
-//     popup.addEventListener('mousedown', closePopupByClickOnOverlay);
-//     btn.addEventListener('click', () => closePopup(popup)); 
-// })
+// Универсальная функция закрытия попапа
+buttonCloseList.forEach(btn => {
+    const popup = btn.closest('.popup');
+    popup.addEventListener('mousedown', closePopupByClickOnOverlay);
+    btn.addEventListener('click', () => closePopup(popup)); 
+})
 
 
 // Функция открытия попапа Профиль
@@ -29,12 +29,12 @@ function openProfilePopup () {
     formAboutElement.value = profileSubtitleElement.textContent;
 };
 
-// function profileFormSubmitHandler (evt) {
-//     evt.preventDefault();
-//     profileTitleElement.textContent = formNameElement.value;
-//     profileSubtitleElement.textContent = formAboutElement.value;
-//     closePopup(popupProfileElement);
-// };
+function profileFormSubmitHandler (evt) {
+    evt.preventDefault();
+    profileTitleElement.textContent = formNameElement.value;
+    profileSubtitleElement.textContent = formAboutElement.value;
+    closePopup(popupProfileElement);
+};
 
 function openCardPopup () {
     popupCardValidator.resetValidation();
@@ -74,9 +74,9 @@ const cardSection = new Section({
 );
 
 
-const popup = new Popup('.popup');
+// const popup = new Popup('.popup');
 
-const popupWithImage = new PopupWithImage(popupImageElement, cardsDataElement)
+// const popupWithImage = new PopupWithImage(popupImageElement, cardsDataElement)
 
 
 
