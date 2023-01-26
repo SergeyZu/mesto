@@ -1,12 +1,14 @@
-import { buttonCloseList, profileTitleElement, profileSubtitleElement, popupProfileElement, formProfileElement, formNameElement, formAboutElement, profileEditButtonElement, popupCardElement, buttonAddCardElement, formCardElement, cardTitle, link, config, popupTitle, popupImage, popupImageElement, cardsContainer } from '../utils/constants.js'
+import { buttonCloseList, profileTitleElement, profileSubtitleElement, popupProfileElement, formProfileElement, formNameElement, formAboutElement, profileEditButtonElement, popupCardElement, buttonAddCardElement, formCardElement, cardTitle, link, config, popupTitle, popupImage, popupImageElement, cardsContainer } from '../utils/constants.js';
 
-import { openPopup, closePopup, closePopupByClickOnOverlay, rendererCard } from '../utils/utils.js'
+import { openPopup, closePopup, closePopupByClickOnOverlay, cardFormSubmitHandler, rendererCard } from '../utils/utils.js';
 
-import Card from '../components/Card.js'
+import Card from '../components/Card.js';
 
-import { cardsDataElement } from '../data/cardsData.js'
+import Section from '../components/Section.js'
 
-import FormValidator from '../components/FormValidator.js'
+import { cardsDataElement } from '../data/cardsData.js';
+
+import FormValidator from '../components/FormValidator.js';
 
 // Универсальная функция закрытия попапа
 buttonCloseList.forEach(btn => {
@@ -35,21 +37,16 @@ function openCardPopup () {
     openPopup(popupCardElement);
 };
 
-// function rendererCard(item) {
-//     const cardItem = createCard(item);
-//     cardsContainer.prepend(cardItem);
+// function cardFormSubmitHandler(event) {
+//     event.preventDefault();
+//     rendererCard({ name: cardTitle.value, link: link.value });
+//     event.target.reset();
+//     closePopup (popupCardElement);
 // };
 
-function cardFormSubmitHandler(event) {
-    event.preventDefault();
-    rendererCard({ name: cardTitle.value, link: link.value });
-    event.target.reset();
-    closePopup (popupCardElement);
-};
-
-cardsDataElement.forEach((item) => {
-    rendererCard(item);
-});
+// cardsDataElement.forEach((item) => {
+//     rendererCard(item);
+// });
 
 
 
@@ -62,6 +59,15 @@ const popupCard = document.querySelector('.popup__card-content');
 const popupCardValidator = new FormValidator(config, popupCard);
 popupCardValidator.enableValidation();
 
+
+const cardSection = new Section({ 
+        items: cardsDataElement,
+        renderer: () => {
+            createCard(item);
+        }
+    }, 
+    cardsContainer
+);
 
 
 profileEditButtonElement.addEventListener('click', openProfilePopup);

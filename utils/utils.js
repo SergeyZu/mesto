@@ -1,5 +1,6 @@
-import Card from '../components/Card.js'
-import { popupTitle, popupImage, popupImageElement, cardsContainer } from '../utils/constants.js'
+import Card from '../components/Card.js';
+import { popupTitle, popupImage, popupImageElement, cardsContainer, cardTitle, link, popupCardElement } from '../utils/constants.js';
+import { cardsDataElement } from '../data/cardsData.js';
 
 // Функция отображения попапа
 function openPopup(popupName) {
@@ -28,6 +29,18 @@ function closePopupByEsc (event) {
     }
 }
 
+function cardFormSubmitHandler(event) {
+    event.preventDefault();
+    rendererCard({ name: cardTitle.value, link: link.value });
+    event.target.reset();
+    closePopup (popupCardElement);
+};
+
+cardsDataElement.forEach((item) => {
+    rendererCard(item);
+});
+
+
 function viewImageHandler(name, link) {
     popupTitle.textContent = name;
     popupImage.src = link;
@@ -46,4 +59,4 @@ function rendererCard(item) {
     cardsContainer.prepend(cardItem);
 };
 
-export { openPopup, closePopup, closePopupByClickOnOverlay, closePopupByEsc, rendererCard };
+export { openPopup, closePopup, closePopupByClickOnOverlay, closePopupByEsc, rendererCard, createCard, cardFormSubmitHandler };

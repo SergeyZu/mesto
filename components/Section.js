@@ -1,35 +1,30 @@
-// import Card from "../scripts/Card";
-import { createCard } from "../pages/index";
-
 export default class Section {
-    constructor({ items }, containerSelector) {
-        // renderer
+    constructor({ items, renderer }, containerSelector) {
         this._initialItems = items;
         this._containerSelector = containerSelector;
         // this._containerSelector = document.querySelector(containerSelector);
-        // this._renderer = renderer;
+        this._renderer = renderer;
     }
 
-    
 
     // Добавляем элемент в контейнер
-    _addItem(element) {
+    addItem(element) {
         this._containerSelector.prepend(element);
     };
 
     // Очищаем содержимое контейнера
-    clear() {
-        this._containerSelector.innerHTML = '';
-    };
+    // clear() {
+    //     this._containerSelector.innerHTML = '';
+    // };
 
     // Отрисовываем элементы из массива items
-    _renderInitialItems() {
-        this.clear();
+    renderInitialItems() {
+        // this.clear();
         
         this._initialItems.forEach(item => {
-            createCard(item);
+            this._renderer(item);
 
-            this._addItem(element);
+            this.addItem(element);
         });
 
     //     function rendererCard(item) {
