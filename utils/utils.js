@@ -1,6 +1,6 @@
 import Card from '../components/Card.js';
 import { popupTitle, popupImage, popupImageElement, cardsContainer, cardTitle, link, popupCardElement } from '../utils/constants.js';
-import { cardsDataElement } from '../data/cardsData.js';
+import { cardsDataElement } from './cardsData.js';
 
 // Функция отображения попапа
 function openPopup(popupName) {

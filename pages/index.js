@@ -4,7 +4,7 @@ import { openPopup, closePopup, closePopupByClickOnOverlay, cardFormSubmitHandle
 
 // import { cardFormSubmitHandler, rendererCard } from '../utils/utils.js';
 
-import { cardsDataElement } from '../data/cardsData.js';
+import { cardsDataElement } from '../utils/cardsData.js';
 
 import Card from '../components/Card.js';
 
@@ -73,8 +73,6 @@ const cardSection = new Section({
     cardsContainer
 );
 
-
-// const popup = new Popup('.popup');
 
 // const popupWithImage = new PopupWithImage(popupImageElement, cardsDataElement)
 
