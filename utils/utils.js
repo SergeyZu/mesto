@@ -1,6 +1,7 @@
 import Card from '../components/Card.js';
 import { popupTitle, popupImage, popupImageElement, cardsContainer, cardTitle, link, popupCardElement } from '../utils/constants.js';
 import { cardsDataElement } from './cardsData.js';
+import PopupWithImage from '../components/Popup.js'
 
 // Функция отображения попапа
 function openPopup(popupName) {
@@ -42,11 +43,13 @@ cardsDataElement.forEach((item) => {
 
 
 function viewImageHandler(name, link) {
+    
     popupTitle.textContent = name;
     popupImage.src = link;
     popupImage.alt = name;
     openPopup(popupImageElement);
 }
+
 
 function createCard(item) {
     const card = new Card(item, '#card-template', viewImageHandler );
@@ -60,4 +63,3 @@ function rendererCard(item) {
 };
 
 export { openPopup, closePopup, closePopupByClickOnOverlay, closePopupByEsc, rendererCard, createCard, cardFormSubmitHandler };
-// export { rendererCard, createCard, cardFormSubmitHandler };
