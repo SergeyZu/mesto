@@ -8,7 +8,11 @@ import { cardsDataElement } from '../utils/cardsData.js';
 
 import Card from '../components/Card.js';
 
-import Section from '../components/Section.js'
+import Section from '../components/Section.js';
+
+import PopupWithImage from '../components/PopupWithImage.js'
+
+import PopupWithForm from '../components/PopupWithForm.js'
 
 // import Popup from '../components/Popup.js'
 
@@ -64,7 +68,10 @@ const popupCardValidator = new FormValidator(config, popupCard);
 popupCardValidator.enableValidation();
 
 
-const cardSection = new Section({ 
+// const card = new Card(item, '#card-template', handleCardClick );
+
+
+export const cardSection = new Section({ 
         items: cardsDataElement,
         renderer: () => {
             createCard(item);
@@ -74,7 +81,7 @@ const cardSection = new Section({
 );
 
 
-// const popupWithImage = new PopupWithImage(popupImageElement, cardsDataElement)
+const popupWithImage = new PopupWithImage(cardsDataElement, popupImageElement)
 
 
 

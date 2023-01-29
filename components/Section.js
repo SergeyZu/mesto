@@ -8,7 +8,7 @@ export default class Section {
 
     // Добавляем элемент в контейнер
     addItem(element) {
-        this._containerSelector.prepend(element);
+        document.querySelector(this._containerSelector).prepend(element);
     };
 
     // Очищаем содержимое контейнера

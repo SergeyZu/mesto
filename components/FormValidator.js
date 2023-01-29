@@ -84,7 +84,7 @@ export default class FormValidator {
 
   // Устанавливаем прослушиватель для всех полей в форме
   _setEventListeners = () => {
-    // создаем массив инпутов
+    // создаем массив инпутов формы
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
 
     // кнопка отправки формы
@@ -92,9 +92,9 @@ export default class FormValidator {
 
     // активируем/деактивируем кнопку
     this._toggleButtonState();
+    
     // обходим массив
     this._inputList.forEach((inputElement) => {
-
       // при вводе каждого символа
       inputElement.addEventListener('input', () => {
         // проверяем поле на валидность
