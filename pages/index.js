@@ -28,6 +28,7 @@ buttonCloseList.forEach(btn => {
 
 // Функция открытия попапа Профиль
 function openProfilePopup () {
+    popupProfileValidator.resetValidation();
     openPopup(popupProfileElement);
     formNameElement.value = profileTitleElement.textContent;
     formAboutElement.value = profileSubtitleElement.textContent;
