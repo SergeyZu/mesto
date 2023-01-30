@@ -44,18 +44,6 @@ function openCardPopup () {
     openPopup(popupCardElement);
 };
 
-// function cardFormSubmitHandler(event) {
-//     event.preventDefault();
-//     rendererCard({ name: cardTitle.value, link: link.value });
-//     event.target.reset();
-//     closePopup (popupCardElement);
-// };
-
-// cardsDataElement.forEach((item) => {
-//     rendererCard(item);
-// });
-
-
 
 function cardFormSubmitHandler(event) {
     event.preventDefault();
