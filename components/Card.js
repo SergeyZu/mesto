@@ -1,12 +1,20 @@
 import PopupWithImage from "./PopupWithImage.js";
 
 export default class Card {
+    // constructor(data, templateSelector, handler) {
+    //     this._title = data.name;
+    //     this._image = data.link;
+    //     this._templateSelector = templateSelector;
+    //     this._handler = handler;
+    // }
+
     constructor(data, templateSelector, handler) {
         this._title = data.name;
         this._image = data.link;
         this._templateSelector = templateSelector;
         this._handler = handler;
     }
+
 
     _getTemplate() {
         const cardElement = document

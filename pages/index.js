@@ -12,9 +12,9 @@ import PopupWithImage from '../components/PopupWithImage.js'
 
 import PopupWithForm from '../components/PopupWithForm.js'
 
-// import Popup from '../components/Popup.js'
-
 import FormValidator from '../components/FormValidator.js';
+
+
 
 // Универсальная функция закрытия попапа
 buttonCloseList.forEach(btn => {
@@ -45,25 +45,12 @@ function openCardPopup () {
 };
 
 
-// function cardFormSubmitHandler(event) {
-//     event.preventDefault();
-//     renderCard({ name: cardTitle.value, link: link.value });
-//     event.target.reset();
-//     closePopup (popupCardElement);
-// };
-
-function cardFormSubmitHandler(event) {
+function handleCardFormSubmit(event) {
     event.preventDefault();
-    cardSection.renderInitialItems();
+    renderCard({ name: cardTitle.value, link: link.value });
     event.target.reset();
     closePopup (popupCardElement);
 };
-
-
-
-// cardsDataElement.forEach((item) => {
-//     renderCard(item);
-// });
 
 
 function handleCardClick(name, link) {
@@ -75,16 +62,17 @@ function handleCardClick(name, link) {
 }
 
 
-export function createCard(item) {
+function createCard(item) {
     const card = new Card(item, '#card-template', handleCardClick );
     const cardElement = card.generateCard();
     return cardElement;
 };
 
-// function renderCard(item) {
-//     const cardItem = createCard(item);
-//     cardsContainer.prepend(cardItem);
-// };
+function renderCard(item) {
+    const cardItem = createCard(item);
+    cardSection.addItem(cardItem);
+    return renderCard;
+};
 
 
 const popupProfile = document.querySelector('.popup__profile-content');
@@ -97,24 +85,19 @@ const popupCardValidator = new FormValidator(config, popupCard);
 popupCardValidator.enableValidation();
 
 
-
-// const cardSection = new Section({ 
-//         items: cardsDataElement,
-//         renderer: () => {
-//             createCard(item);
-//         }
-//     }, 
-//     '.cards'
-// );
-// cardSection.renderInitialItems();
-
-
-
-const cardSection = new Section({ items: cardsDataElement }, '.cards');
+const cardSection = new Section({ 
+        items: cardsDataElement,
+        renderer: (item) => {
+            createCard(item);
+        }
+    }, 
+    '.cards'
+);
 cardSection.renderInitialItems();
 
 
 const popupWithImage = new PopupWithImage(cardsDataElement, popupImageElement)
+
 
 
 
@@ -124,4 +107,4 @@ formProfileElement.addEventListener('submit', profileFormSubmitHandler);
 
 buttonAddCardElement.addEventListener('click', openCardPopup);
 
-formCardElement.addEventListener('submit', cardFormSubmitHandler);
+formCardElement.addEventListener('submit', handleCardFormSubmit);
