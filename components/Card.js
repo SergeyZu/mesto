@@ -1,12 +1,6 @@
 import PopupWithImage from "./PopupWithImage.js";
 
 export default class Card {
-    // constructor(data, templateSelector, handler) {
-    //     this._title = data.name;
-    //     this._image = data.link;
-    //     this._templateSelector = templateSelector;
-    //     this._handler = handler;
-    // }
 
     constructor(data, templateSelector, handler) {
         this._title = data.name;
@@ -39,26 +33,6 @@ export default class Card {
         
         this._cardLike.addEventListener('click', () => this._likedCardHandler());
     }
-
-    // _setEventListeners() {
-    //     this._cardImage = this._element.querySelector('.card__image');
-    //     this._cardTrash = this._element.querySelector('.card__trash');
-    //     this._cardLike = this._element.querySelector('.card__like');
-
-    //     this._cardImage.addEventListener('click', () => {
-    //         const popupWithImage = new PopupWithImage({ 
-    //                 name: this._title, 
-    //                 link: this._image 
-    //             },
-    //         '.popup_type_image'
-    //         );
-    //         return popupWithImage;
-    //     });
-
-    //     this._cardTrash.addEventListener('click', () => this._deleteCardHandler());
-        
-    //     this._cardLike.addEventListener('click', () => this._likedCardHandler());
-    // }
 
     generateCard() {
         this._element = this._getTemplate();

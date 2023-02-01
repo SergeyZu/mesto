@@ -1,5 +1,3 @@
-// import {createCard} from '../pages/index.js'
-
 export default class Section {
     constructor({ items, renderer }, selector) {
 
@@ -18,7 +16,6 @@ export default class Section {
         
         this._initialItems.forEach((item) => {
             this._renderer(item);
-            // const cardItem = createCard(item);
             this.addItem(item);
 
         });

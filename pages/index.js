@@ -68,11 +68,23 @@ function createCard(item) {
     return cardElement;
 };
 
+
+const cardSection = new Section({ 
+        items: cardsDataElement,
+        renderer: (item) => {
+            createCard(item);
+        }
+    }, '.cards'
+);
+cardSection.renderInitialItems();
+
+
 function renderCard(item) {
     const cardItem = createCard(item);
     cardSection.addItem(cardItem);
     return renderCard;
 };
+
 
 
 const popupProfile = document.querySelector('.popup__profile-content');
@@ -85,15 +97,7 @@ const popupCardValidator = new FormValidator(config, popupCard);
 popupCardValidator.enableValidation();
 
 
-const cardSection = new Section({ 
-        items: cardsDataElement,
-        renderer: (item) => {
-            createCard(item);
-        }
-    }, 
-    '.cards'
-);
-cardSection.renderInitialItems();
+
 
 
 const popupWithImage = new PopupWithImage(cardsDataElement, popupImageElement)
