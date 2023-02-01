@@ -70,20 +70,22 @@ function createCard(item) {
 
 
 const cardSection = new Section({ 
-        items: cardsDataElement,
-        renderer: (item) => {
-            createCard(item);
-        }
-    }, '.cards'
+    items: cardsDataElement,
+    renderer: (item) => {
+        renderCard(item);
+    }
+}, '.cards'
 );
 cardSection.renderInitialItems();
 
 
+
 function renderCard(item) {
-    const cardItem = createCard(item);
-    cardSection.addItem(cardItem);
-    return renderCard;
+const cardItem = createCard(item);
+cardSection.addItem(cardItem);
+return renderCard;
 };
+
 
 
 
