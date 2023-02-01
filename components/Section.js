@@ -1,9 +1,13 @@
+import {createCard} from '../pages/index.js'
+
 export default class Section {
-    constructor({ items, renderer }, selector) {
+    // constructor({ items, renderer }, selector) {
+    constructor({ items }, selector) {
 
         this._initialItems = items;
-        this._renderer = renderer;
         this._container = document.querySelector(selector);
+        // this._containerSelector = containerSelector;
+        // this._renderer = renderer;
     }
 
     // Добавляем элемент в контейнер
@@ -15,8 +19,13 @@ export default class Section {
     renderInitialItems() {
         
         this._initialItems.forEach((item) => {
-            this._renderer(item);
-            this.addItem(item);
+            const cardItem = createCard(item);
+            this.addItem(cardItem);
+            
+            
+
+
+            // this._renderer(item);
 
         });
     };
