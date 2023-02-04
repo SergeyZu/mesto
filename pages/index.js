@@ -16,12 +16,12 @@ import FormValidator from '../components/FormValidator.js';
 
 
 
-// Универсальная функция закрытия попапа
-buttonCloseList.forEach(btn => {
-    const popup = btn.closest('.popup');
-    popup.addEventListener('mousedown', closePopupByClickOnOverlay);
-    btn.addEventListener('click', () => closePopup(popup)); 
-})
+// // Универсальная функция закрытия попапа
+// buttonCloseList.forEach(btn => {
+//     const popup = btn.closest('.popup');
+//     popup.addEventListener('mousedown', closePopupByClickOnOverlay);
+//     btn.addEventListener('click', () => closePopup(popup)); 
+// })
 
 
 // Функция открытия попапа Профиль
@@ -31,6 +31,7 @@ const profilePopup = new PopupWithForm ('.popup_type_profile')
 function openProfilePopup () {
     popupProfileValidator.resetValidation();
     profilePopup.open();
+    profilePopup.setEventListeners();
     // openPopup(popupProfileElement);
     formNameElement.value = profileTitleElement.textContent;
     formAboutElement.value = profileSubtitleElement.textContent;
@@ -49,6 +50,7 @@ const cardPopup = new PopupWithForm ('.popup_type_card')
 function openCardPopup () {
     popupCardValidator.resetValidation();
     cardPopup.open();
+    cardPopup.setEventListeners();
     // openPopup(popupCardElement);
 };
 
@@ -64,6 +66,8 @@ const imagePopup = new PopupWithImage ('.popup_type_image')
 
 function handleCardClick(name, link) {    
     imagePopup.open(name, link);
+    imagePopup.setEventListeners();
+
 }
 
 // function handleCardClick(name, link) {
