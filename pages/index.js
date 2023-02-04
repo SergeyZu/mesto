@@ -25,9 +25,13 @@ buttonCloseList.forEach(btn => {
 
 
 // Функция открытия попапа Профиль
+
+const profilePopup = new PopupWithForm ('.popup_type_profile')
+
 function openProfilePopup () {
     popupProfileValidator.resetValidation();
-    openPopup(popupProfileElement);
+    profilePopup.open();
+    // openPopup(popupProfileElement);
     formNameElement.value = profileTitleElement.textContent;
     formAboutElement.value = profileSubtitleElement.textContent;
 };
@@ -39,9 +43,13 @@ function profileFormSubmitHandler (evt) {
     closePopup(popupProfileElement);
 };
 
+
+const cardPopup = new PopupWithForm ('.popup_type_card')
+
 function openCardPopup () {
     popupCardValidator.resetValidation();
-    openPopup(popupCardElement);
+    cardPopup.open();
+    // openPopup(popupCardElement);
 };
 
 
@@ -52,18 +60,23 @@ function handleCardFormSubmit(event) {
     closePopup (popupCardElement);
 };
 
+const imagePopup = new PopupWithImage ('.popup_type_image')
 
-function handleCardClick(name, link) {
-    
-    popupTitle.textContent = name;
-    popupImage.src = link;
-    popupImage.alt = name;
-    openPopup(popupImageElement);
+function handleCardClick(name, link) {    
+    imagePopup.open(name, link);
 }
+
+// function handleCardClick(name, link) {
+    
+//     popupTitle.textContent = name;
+//     popupImage.src = link;
+//     popupImage.alt = name;
+//     openPopup(popupImageElement);
+// }
 
 
 function createCard(item) {
-    const card = new Card(item, '#card-template', handleCardClick );
+    const card = new Card(item, '#card-template', handleCardClick);
     const cardElement = card.generateCard();
     return cardElement;
 };
