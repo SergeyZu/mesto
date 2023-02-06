@@ -1,5 +1,5 @@
-// Коллекция кнопок закрытия попапа
-export const buttonCloseList = document.querySelectorAll('.popup__close-button');
+// // Коллекция кнопок закрытия попапа
+// export const buttonCloseList = document.querySelectorAll('.popup__close-button');
 
 
 // ПОПАП РЕДАКТИРОВАНИЯ ПРОФИЛЯ
