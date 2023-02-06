@@ -1,0 +1,33 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "Данный проект выполнен в рамках программы обучения по специальности **_\"Веб-разработчик\"_** на платформе **Яндекс Практикум**.\r В настоящей проектной работе использовались ранее изученные технологии: **Flex-box**, **Grid**, **адаптивная верстка**.\r Также начато практическое освоение начальных знаний по **JavaScript** Реализованы 2 вида модальных окон: для отправки формы и для увеличения изображения.\r Файловая структура проекта построена по принципам **БЭМ**.\r **Адрес проекта** на GitHub: https://sergeyzu.github.io/mesto/",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergeyZu/mesto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergeyZu/mesto/issues"
+  },
+  "homepage": "https://github.com/SergeyZu/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "core-js": "^3.27.2"
+  }
+}
