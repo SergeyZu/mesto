@@ -1,26 +1,33 @@
+import altaiImage from '../images/card_altai.jpg';
+import dombaiImage from '../images/card_dombai.jpg';
+import kamchatkaImage from '../images/card_kamchatka.jpg';
+import baikalImage from '../images/card_baikal.jpg';
+import elbrusImage from '../images/card_elbrus.jpg';
+import petropavlovskImage from '../images/card_petropavlovsk.jpg';
+
 export const cardsDataElement = [
 	{
-    	link: './images/card_altai.jpg', 
+    	link: altaiImage, 
         name: 'Алтай'
     },
     {
-        link: './images/card_dombai.jpg', 
+        link: dombaiImage, 
         name: 'Домбай'
     },
     {
-        link: './images/card_kamchatka.jpg', 
+        link: kamchatkaImage, 
         name: 'Камчатка'
     },
     {
-        link: './images/card_baikal.jpg', 
+        link: baikalImage, 
         name: 'Байкал'
     },
     {
-        link: './images/card_elbrus.jpg', 
+        link: elbrusImage, 
         name: 'Эльбрус'
     },
     {
-        link: './images/card_petropavlovsk.jpg', 
+        link: petropavlovskImage, 
         name: 'Петропавловск-Камчатский'
     }
 ];

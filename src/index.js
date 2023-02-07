@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 import { profileTitleElement, profileSubtitleElement, formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, cardTitle, link, config, } from '../utils/constants.js';
 
 import { cardsDataElement } from '../utils/cardsData.js';
