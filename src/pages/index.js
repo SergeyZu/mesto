@@ -13,6 +13,7 @@ import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 
 import FormValidator from '../components/FormValidator.js';
+
 import UserInfo from '../components/UserInfo.js';
 
 
@@ -62,20 +63,22 @@ popupCardValidator.enableValidation();
 // Попап настройки профиля
 
 const profilePopup = new PopupWithForm ('.popup_type_profile', profileFormSubmitHandler);
+profilePopup.setEventListeners();
+
 const userInfo = new UserInfo ({titleSelector: '.profile__title', subtitleSelector:'.profile__subtitle'});
 
 function openProfilePopup () {
     popupProfileValidator.resetValidation();
-    profilePopup.open();
-    profilePopup.setEventListeners();
+    profilePopup.open();    
+    // profilePopup.setEventListeners();
     userInfo.getUserInfo()
     // formNameElement.value = profileTitleElement.textContent;
     // formAboutElement.value = profileSubtitleElement.textContent;
 }
 
-function profileFormSubmitHandler (evt) {
-    evt.preventDefault();
-    profilePopup.getInputValues()
+function profileFormSubmitHandler () {
+    // evt.preventDefault();
+    // profilePopup.setEventListeners()
     userInfo.setUserInfo()
     // profileTitleElement.textContent = formNameElement.value;
     // profileSubtitleElement.textContent = formAboutElement.value;
@@ -86,18 +89,19 @@ function profileFormSubmitHandler (evt) {
 // Попап создания карточки
 
 const cardPopup = new PopupWithForm ('.popup_type_card', handleCardFormSubmit);
+cardPopup.setEventListeners();
 
 function openCardPopup () {
     popupCardValidator.resetValidation();
     cardPopup.open();
-    cardPopup.setEventListeners();
+    // cardPopup.setEventListeners();
 }
 
 function handleCardFormSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
     renderCard({ name: cardTitle.value, link: link.value });
-    cardPopup.getInputValues();
-    event.target.reset();
+    // cardPopup.setEventListeners();
+    // event.target.reset();
     cardPopup.close();
 }
 
@@ -105,10 +109,10 @@ function handleCardFormSubmit(event) {
 // Попап с картинкой
 
 const imagePopup = new PopupWithImage ('.popup_type_image')
+imagePopup.setEventListeners();
 
 function handleCardClick(name, link) {    
     imagePopup.open(name, link);
-    imagePopup.setEventListeners();
 }
 
 
