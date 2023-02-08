@@ -1,19 +1,19 @@
-import '../pages/index.css';
+import './pages/index.css';
 
-import { profileTitleElement, profileSubtitleElement, formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, cardTitle, link, config, } from '../utils/constants.js';
+import { profileTitleElement, profileSubtitleElement, formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, cardTitle, link, config, } from './utils/constants.js';
 
-import { cardsDataElement } from '../utils/cardsData.js';
+import { cardsDataElement } from './utils/cardsData.js';
 
-import Card from '../components/Card.js';
+import Card from './components/Card.js';
 
-import Section from '../components/Section.js';
+import Section from './components/Section.js';
 
-import PopupWithImage from '../components/PopupWithImage.js'
+import PopupWithImage from './components/PopupWithImage.js'
 
-import PopupWithForm from '../components/PopupWithForm.js'
+import PopupWithForm from './components/PopupWithForm.js'
 
-import FormValidator from '../components/FormValidator.js';
-import UserInfo from '../components/UserInfo.js';
+import FormValidator from './components/FormValidator.js';
+import UserInfo from './components/UserInfo.js';
 
 
 
