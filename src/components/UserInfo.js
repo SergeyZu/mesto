@@ -1,18 +1,18 @@
 export default class UserInfo {
-    constructor ({ titleSelector, subtitleSelector }) {
-        this._title = document.querySelector(titleSelector);
-        this._subtitle = document.querySelector(subtitleSelector);
-        this._name = document.querySelector('.popup__input_type_name');
-        this._about = document.querySelector('.popup__input_type_about');
+    constructor ({ nameSelector, aboutSelector }) {
+        this._name = document.querySelector(nameSelector);
+        this._about = document.querySelector(aboutSelector);
     }
 
     getUserInfo() {
-        this._name.value = this._title.textContent;
-        this._about.value = this._subtitle.textContent;
+        return {
+            name: this._name.textContent,
+            about: this._about.textContent
+        }
     }
 
-    setUserInfo() {
-        this._title.textContent = this._name.value;
-        this._subtitle.textContent = this._about.value;
-    }
+    // setUserInfo() {
+    //     this._name.textContent = this._name.value;
+    //     this._about.textContent = this._about.value;
+    // }
 }

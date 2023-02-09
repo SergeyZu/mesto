@@ -65,15 +65,20 @@ popupCardValidator.enableValidation();
 const profilePopup = new PopupWithForm ('.popup_type_profile', profileFormSubmitHandler);
 profilePopup.setEventListeners();
 
-const userInfo = new UserInfo ({titleSelector: '.profile__title', subtitleSelector:'.profile__subtitle'});
+const userInfo = new UserInfo ({nameSelector: '.profile__title', aboutSelector:'.profile__subtitle'});
+
+function renderInitialInfo () {
+    const initialInfo = userInfo.getUserInfo();
+    formNameElement.value = initialInfo.name;
+    formAboutElement.value = initialInfo.about;
+}
 
 function openProfilePopup () {
     popupProfileValidator.resetValidation();
-    profilePopup.open();    
-    // profilePopup.setEventListeners();
-    userInfo.getUserInfo()
-    // formNameElement.value = profileTitleElement.textContent;
-    // formAboutElement.value = profileSubtitleElement.textContent;
+    profilePopup.open(); 
+    renderInitialInfo();
+    // formNameElement.value = userInfo.getUserInfo.name;
+    // formAboutElement.value = userInfo.getUserInfo.about;
 }
 
 function profileFormSubmitHandler () {
