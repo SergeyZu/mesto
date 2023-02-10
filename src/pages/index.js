@@ -81,10 +81,10 @@ function openProfilePopup () {
     // formAboutElement.value = userInfo.getUserInfo.about;
 }
 
-function profileFormSubmitHandler () {
+function profileFormSubmitHandler (inputValues) {
     // evt.preventDefault();
     // profilePopup.setEventListeners()
-    userInfo.setUserInfo()
+    userInfo.setUserInfo(inputValues)
     // profileTitleElement.textContent = formNameElement.value;
     // profileSubtitleElement.textContent = formAboutElement.value;
     profilePopup.close();
