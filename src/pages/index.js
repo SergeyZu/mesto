@@ -1,6 +1,6 @@
 import './index.css';
 
-import { profileTitleElement, profileSubtitleElement, formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, cardTitle, link, config, } from '../utils/constants.js';
+import { formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, config, } from '../utils/constants.js';
 
 import { cardsDataElement } from '../utils/cardsData.js';
 
@@ -77,16 +77,10 @@ function openProfilePopup () {
     popupProfileValidator.resetValidation();
     profilePopup.open(); 
     renderInitialInfo();
-    // formNameElement.value = userInfo.getUserInfo.name;
-    // formAboutElement.value = userInfo.getUserInfo.about;
 }
 
 function profileFormSubmitHandler (inputValues) {
-    // evt.preventDefault();
-    // profilePopup.setEventListeners()
     userInfo.setUserInfo(inputValues)
-    // profileTitleElement.textContent = formNameElement.value;
-    // profileSubtitleElement.textContent = formAboutElement.value;
     profilePopup.close();
 }
 
@@ -99,16 +93,13 @@ cardPopup.setEventListeners();
 function openCardPopup () {
     popupCardValidator.resetValidation();
     cardPopup.open();
-    // cardPopup.setEventListeners();
 }
 
-function handleCardFormSubmit(event) {
-    // event.preventDefault();
-    renderCard({ name: cardTitle.value, link: link.value });
-    // cardPopup.setEventListeners();
-    // event.target.reset();
+function handleCardFormSubmit(inputValues) {
+    renderCard(inputValues);
     cardPopup.close();
 }
+
 
 
 // Попап с картинкой
