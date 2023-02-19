@@ -31,6 +31,21 @@
     <footer class="footer page__footer">
         <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
+
+    <!-- Попап изменения аватара -->
+    <section class="popup popup_type_avatar">
+        <div class="popup__container">
+            <button class="popup__close-button" type="button"></button>            
+            <form class="popup__content popup__avatar-content popup__form" action="#" name="user-avatar" novalidate>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <div class="popup__field">
+                    <input id="avatar-input" class="popup__input popup__input_type_link" name="avatar" type="url" placeholder="https://somewebsite.com/someimage.jpg" required>
+                    <span class="popup__form-error avatar-input-error"></span>
+                </div>     
+                <button class="popup__save-button popup__button" type="submit">Сохранить</button>
+            </form>
+        </div>         
+    </section>
     
     <section class="popup popup_type_profile">
         <div class="popup__container">
@@ -67,6 +82,18 @@
             </form>
         </div>
     </section>
+
+    <!-- Попап удаления карточки -->
+    <section class="popup popup_type_delete-card">
+        <div class="popup__container">
+            <button class="popup__close-button" type="button"></button>
+            <form class="popup__content popup__delete-card-content popup__form" name="delete-card">
+                <h2 class="popup__title">Вы уверены?</h2>
+                <button class="popup__delete-button popup__button" type="submit">Создать</button>
+            </form>
+        </div>
+    </section>
+
     <section class="popup popup_type_image">
         <div class="popup__container popup__container_type_image">
             <button class="popup__close-button" type="button"></button>
