@@ -8,9 +8,11 @@ import Card from '../components/Card.js';
 
 import Section from '../components/Section.js';
 
-import PopupWithImage from '../components/PopupWithImage.js'
+import PopupWithImage from '../components/PopupWithImage.js';
 
-import PopupWithForm from '../components/PopupWithForm.js'
+import PopupWithForm from '../components/PopupWithForm.js';
+
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 
 import FormValidator from '../components/FormValidator.js';
 
@@ -33,7 +35,7 @@ cardSection.renderInitialItems();
 // Карточка
 
 function createCard(item) {
-    const card = new Card(item, '#card-template', handleCardClick);
+    const card = new Card(item, '#card-template', handleCardClick, confirmCardDelete);
     const cardElement = card.generateCard();
     return cardElement;
 };
@@ -98,6 +100,20 @@ function openCardPopup () {
 function handleCardFormSubmit(inputValues) {
     renderCard(inputValues);
     cardPopup.close();
+}
+
+
+// Попап удаления карточки
+
+const cardDeletePopup = new PopupWithConfirmation ('.popup_type_delete-card', confirmCardDelete);
+cardDeletePopup.setEventListeners();
+
+function confirmCardDelete() {
+    cardDeletePopup.open();
+}
+
+function handleTrashClick() {
+
 }
 
 
