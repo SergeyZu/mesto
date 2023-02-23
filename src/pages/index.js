@@ -18,7 +18,20 @@ import FormValidator from '../components/FormValidator.js';
 
 import UserInfo from '../components/UserInfo.js';
 
+// import { getUserData } from '../components/Api.js';
 
+// import { getCards } from '../components/Api.js';
+
+import Api from '../components/Api.js';
+
+const api = new Api(config)
+
+
+api.getUserData();
+
+api.getCards();
+
+api.setUserData();
 
 // Секция
 
@@ -112,9 +125,6 @@ function confirmCardDelete() {
     cardDeletePopup.open();
 }
 
-function handleTrashClick() {
-
-}
 
 
 
