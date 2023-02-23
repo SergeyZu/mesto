@@ -107,6 +107,33 @@ export default class Api {
         });
     }
 
+    addCard () {
+        return fetch('https://nomoreparties.co/v1/cohort-60/cards', {
+            method: 'POST',
+            headers: {
+                authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: 'mountains',
+                link: 'https://unsplash.com/photos/QyXIY0d76LA'
+            })
+        });
+    }
+
+    removeCard () {
+        return fetch('https://nomoreparties.co/v1/cohort-60/cards/cardID', {
+            method: 'DELETE',
+            headers: {
+                authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                _id: '63f75edf2680940b4f55d9f0'
+            })
+        });
+    }
+
 }
 
 // export function getUserData () {

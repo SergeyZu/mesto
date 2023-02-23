@@ -33,6 +33,10 @@ api.getCards();
 
 api.setUserData();
 
+api.addCard();
+
+// api.removeCard();
+
 // Секция
 
 const cardSection = new Section({ 
