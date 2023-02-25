@@ -27,26 +27,37 @@ import Api from '../components/Api.js';
 const api = new Api(config)
 
 
-api.getUserData();
+api.getUserData()
+    .then((result) => {
+        const userData = result;
+        console.log(userData);
+    });
 
-api.getCards();
+
 
 api.setUserData();
 
-api.addCard();
+// api.addCard();
 
 // api.removeCard();
 
 // Секция
 
+api.getCards()
+    .then((result) => {
+        const cards = result;
+        console.log(cards);
+        cardSection.renderInitialItems(cards);
+    });
+
 const cardSection = new Section({ 
-    items: cardsDataElement,
+
     renderer: (item) => {
         renderCard(item);
     }
 }, '.cards'
 );
-cardSection.renderInitialItems();
+
 
 
 // Карточка

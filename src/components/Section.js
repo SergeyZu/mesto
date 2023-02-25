@@ -1,7 +1,7 @@
 export default class Section {
-    constructor({ items, renderer }, selector) {
+    constructor({renderer}, selector) {
 
-        this._initialItems = items;
+        // this._initialItems = items;
         this._renderer = renderer;
         this._container = document.querySelector(selector);
     }
@@ -12,9 +12,9 @@ export default class Section {
     };
 
     // Отрисовываем элементы из массива items
-    renderInitialItems() {
+    renderInitialItems(items) {
         
-        this._initialItems.forEach((item) => {
+        items.forEach((item) => {
             this._renderer(item);
         });
     };

@@ -74,10 +74,10 @@ export default class Api {
             }
             })
             .then(res => res.json())
-            .then((result) => {
-                const userData = result;
-                console.log(userData);
-            });
+            // .then((result) => {
+            //     const userData = result;
+            //     console.log(userData);
+            // });
     }
 
     getCards () {
@@ -87,10 +87,10 @@ export default class Api {
             }
             })
             .then(res => res.json())
-            .then((result) => {
-                const cards = result;
-                console.log(cards);
-            });
+            // .then((result) => {
+            //     const cards = result;
+            //     console.log(cards);
+            // });
     }
 
     setUserData () {
@@ -115,8 +115,8 @@ export default class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: 'mountains',
-                link: 'https://unsplash.com/photos/QyXIY0d76LA'
+                name: 'Венеция',
+                link: 'https://kartinkin.net/uploads/posts/2022-12/thumbs/1670567420_1-kartinkin-net-p-venetsiya-kartinki-oboi-1.jpg'
             })
         });
     }
