@@ -33,6 +33,16 @@ export { profileTitleElement, profileSubtitleElement, popupProfileElement, formP
 
 
 
+// ПОПАП ИЗМЕНЕНИЯ АВАТАРА
+
+// Кнопка изменения аватара
+const buttonEditAvatarElement = document.querySelector('.profile__avatar-edit-button');
+
+
+export { buttonEditAvatarElement };
+
+
+
 //ПОПАП ДОБАВЛЕНИЯ КАРТОЧКИ
 
 //Попап

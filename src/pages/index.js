@@ -1,6 +1,6 @@
 import './index.css';
 
-import { formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, config, } from '../utils/constants.js';
+import { formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, buttonEditAvatarElement, config, } from '../utils/constants.js';
 
 import { cardsDataElement } from '../utils/cardsData.js';
 
@@ -18,11 +18,9 @@ import FormValidator from '../components/FormValidator.js';
 
 import UserInfo from '../components/UserInfo.js';
 
-// import { getUserData } from '../components/Api.js';
-
-// import { getCards } from '../components/Api.js';
-
 import Api from '../components/Api.js';
+
+
 
 const api = new Api(config)
 
@@ -89,6 +87,11 @@ const popupCardValidator = new FormValidator(config, popupCard);
 popupCardValidator.enableValidation();
 
 
+// Валидатор аватара
+const popupAvatar = document.querySelector('.popup__avatar-content');
+const popupAvatarValidator = new FormValidator(config, popupAvatar);
+popupAvatarValidator.enableValidation();
+
 
 // Попап настройки профиля
 
@@ -113,6 +116,21 @@ function profileFormSubmitHandler (inputValues) {
     userInfo.setUserInfo(inputValues)
     profilePopup.close();
 }
+
+
+// Попап редактирования аватара профиля
+
+const avatarPopup = new PopupWithForm ('.popup_type_avatar');
+avatarPopup.setEventListeners();
+
+function openAvatarPopup () {
+    popupCardValidator.resetValidation();
+    avatarPopup.open();
+}
+
+// function avatarFormSubmitHandler()
+
+
 
 
 // Попап создания карточки
@@ -157,3 +175,5 @@ function handleCardClick(name, link) {
 profileEditButtonElement.addEventListener('click', openProfilePopup);
 
 buttonAddCardElement.addEventListener('click', openCardPopup);
+
+buttonEditAvatarElement.addEventListener('click', openAvatarPopup);
