@@ -1,5 +1,6 @@
 .popup__avatar-content {
     height: 272px;
+    min-height: 272px;
 }
 
 @media screen and (max-width: 650px) {

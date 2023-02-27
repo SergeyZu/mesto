@@ -67,6 +67,14 @@ export default class Api {
         this.headers = config.headers;
     }
 
+    // Заменяем данные пользователя 
+    // Заменяем аватар
+    // Лайкаем карточку
+    // Удаляем лайк карточки
+     
+
+
+    // Получаем данные пользователя
     getUserData () {
         return fetch('https://nomoreparties.co/v1/cohort-60/users/me', {
             headers: {
@@ -80,6 +88,7 @@ export default class Api {
             // });
     }
 
+    // Получаем массив всех карточек
     getCards () {
         return fetch('https://nomoreparties.co/v1/cohort-60/cards', {
             headers: {
@@ -107,6 +116,7 @@ export default class Api {
         });
     }
 
+    // Добавляем карточку
     addCard () {
         return fetch('https://nomoreparties.co/v1/cohort-60/cards', {
             method: 'POST',
@@ -121,6 +131,7 @@ export default class Api {
         });
     }
 
+    // Удаляем карточку
     removeCard () {
         return fetch('https://nomoreparties.co/v1/cohort-60/cards/cardID', {
             method: 'DELETE',
@@ -135,30 +146,3 @@ export default class Api {
     }
 
 }
-
-// export function getUserData () {
-//     fetch('https://nomoreparties.co/v1/cohort-60/users/me', {
-//         headers: {
-//             authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201'
-//         }
-//         })
-//         .then(res => res.json())
-//         .then((result) => {
-//             const userData = result;
-//             console.log(userData);
-//         });
-// }
-
-
-// export function getCards () {
-//     fetch('https://nomoreparties.co/v1/cohort-60/cards', {
-//         headers: {
-//             authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201'
-//         }
-//         })
-//         .then(res => res.json())
-//         .then((result) => {
-//             const cards = result;
-//             console.log(cards);
-//         });
-// }
