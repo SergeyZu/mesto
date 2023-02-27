@@ -8,7 +8,7 @@ export default class Section {
 
     // Добавляем элемент в контейнер
     addItem(element) {
-        this._container.prepend(element)
+        this._container.append(element)
     };
 
     // Отрисовываем элементы из массива items

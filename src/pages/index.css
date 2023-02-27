@@ -30,6 +30,12 @@
 
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 
+@import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
+
+@import url(../blocks/profile/__avatar-edit-button/profile__avatar-edit-button.css);
+
+@import url(../blocks/profile/__avatar-edit-button-container/profile__avatar-edit-button-container.css);
+
 @import url(../blocks/profile/__text-block/profile__text-block.css);
 
 @import url(../blocks/profile/__title/profile__title.css);
