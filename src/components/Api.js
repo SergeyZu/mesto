@@ -62,103 +62,132 @@
 
 export default class Api {
     constructor(config) {
-        this.url = config.url;
-        this.token = config.token;
-    }
-
-    //  
-    // Заменяем аватар
-    // Лайкаем карточку
-    // Удаляем лайк карточки
+        this.baseUrl = config.baseUrl;
+        this.headers = config.headers;
+        // this.token = config.token;
+    }    
      
 
-
-    // Получаем данные пользователя
+    // Запрос на получение данных пользователя
     getUserData () {
-        return fetch(`${this.url}users/me`, {
-            headers: {
-                authorization: this.token
-            }
-            })
-            .then(res => res.json())
-            // .catch((err) => {
-            //     console.log(`Ошибка: ${err}`);
-            // });
-            // .then((result) => {
-            //     const userData = result;
-            //     console.log(userData);
-            // });
+        return fetch(`${this.baseUrl}/users/me`, {
+            headers: this.headers
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }       
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
     }
 
-    // Заменяем данные пользователя
+
+    // Запрос на изменение данных пользователя
     setUserData (userData) {
-        return fetch(`${this.url}users/me`, {
+        return fetch(`${this.baseUrl}/users/me`, {
             method: 'PATCH',
-            headers: {
-                authorization: this.token,
-                'Content-Type': 'application/json'
-            },
+            headers: this.headers,
             body: JSON.stringify(userData)
-        });
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }       
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
     }
     
-    // setUserData () {
-    //     return fetch(`${this.url}users/me`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             authorization: this.token,
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             name: 'Charles Chaplin',
-    //             about: 'Film actor, film director, screenwriter, composer, producer and editor'
-    //         })
-    //     });
-    // }
 
-
-    // Получаем массив всех карточек
-    getCards () {
-        return fetch(`${this.url}cards`, {
-            headers: {
-                authorization: this.token
-            }
-            })
-            .then(res => res.json())
-            // .then((result) => {
-            //     const cards = result;
-            //     console.log(cards);
-            // });
+    // Запрос на получение массива всех карточек
+    getInitialCards () {
+        return fetch(`${this.baseUrl}/cards`, {
+            headers: this.headers
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }       
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
     }
 
     
-    // Добавляем карточку
+    // Запрос на добавление карточки
     addCard () {
-        return fetch(`${this.url}cards`, {
+        return fetch(`${this.baseUrl}/cards`, {
             method: 'POST',
-            headers: {
-                authorization: this.token,
-                'Content-Type': 'application/json'
-            },
+            headers: this.headers,
             body: JSON.stringify({
                 name: 'Венеция',
                 link: 'https://kartinkin.net/uploads/posts/2022-12/thumbs/1670567420_1-kartinkin-net-p-venetsiya-kartinki-oboi-1.jpg'
             })
-        });
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }       
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
     }
 
-    // Удаляем карточку
+
+    // Запрос на удаление карточки
     deleteCard () {
-        return fetch(`${this.url}cards/63fe57f29790330d4dccdb8e`, {
+        return fetch(`${this.baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
-            headers: {
-                authorization: this.token,
-                'Content-Type': 'application/json'
-            },
+            headers: this.headers,
             body: JSON.stringify({
                 _id: '63fe57f29790330d4dccdb8e'
             })
-        });
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }       
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
+    }
+
+    // Запрос на постановку лайка
+    likeCard () {
+        return fetch(`${this.baseUrl}cards/${cardId}/likes`, {
+            method: 'PUT',
+            headers: this.headers
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }       
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
+    }
+
+    // Запрос на снятие лайка
+    dislikeCard () {
+        return fetch(`${this.baseUrl}cards/${cardId}/likes`, {
+            method: 'DELETE',
+            headers: this.headers
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }       
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
+    }
+
+    // Запрос на обновление аватара
+    changeAvatar () {
+        return fetch(`${this.baseUrl}users/me/avatar`, {
+            method: 'PATCH',
+            headers: this.headers
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }       
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
     }
 
 }

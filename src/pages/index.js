@@ -22,14 +22,13 @@ import Api from '../components/Api.js';
 
 
 
-// const api = new Api(config)
-
-const api = new Api(
-    {
-        url: 'https://nomoreparties.co/v1/cohort-60/',
-        token: '8e181f4a-8318-4b8b-ab26-7884d8331201'
+const api = new Api({
+    baseUrl: 'https://nomoreparties.co/v1/cohort-60',
+    headers: {
+        authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201',
+        'Content-Type': 'application/json'
     }
-)
+});
 
 
 // Данные пользователя с сервера
@@ -46,7 +45,7 @@ api.getUserData()
 
 
 api.setUserData({
-    name: 'Charles Chaplin',
+    name: 'Charley Chaplin',
     about: 'Film actor, film director, screenwriter, composer, producer and editor'
 });
 
@@ -56,7 +55,7 @@ api.setUserData({
 
 // Секция
 
-api.getCards()
+api.getInitialCards()
     .then((data) => {
         const cards = data;
         console.log(cards);
