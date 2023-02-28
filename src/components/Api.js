@@ -62,12 +62,11 @@
 
 export default class Api {
     constructor(config) {
-        this.config = config;
         this.url = config.url;
-        this.headers = config.headers;
+        this.token = config.token;
     }
 
-    // Заменяем данные пользователя 
+    //  
     // Заменяем аватар
     // Лайкаем карточку
     // Удаляем лайк карточки
@@ -76,9 +75,9 @@ export default class Api {
 
     // Получаем данные пользователя
     getUserData () {
-        return fetch('https://nomoreparties.co/v1/cohort-60/users/me', {
+        return fetch(`${this.url}users/me`, {
             headers: {
-                authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201'
+                authorization: this.token
             }
             })
             .then(res => res.json())
@@ -88,25 +87,12 @@ export default class Api {
             // });
     }
 
-    // Получаем массив всех карточек
-    getCards () {
-        return fetch('https://nomoreparties.co/v1/cohort-60/cards', {
-            headers: {
-                authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201'
-            }
-            })
-            .then(res => res.json())
-            // .then((result) => {
-            //     const cards = result;
-            //     console.log(cards);
-            // });
-    }
-
+    // Заменяем данные пользователя
     setUserData () {
-        return fetch('https://nomoreparties.co/v1/cohort-60/users/me', {
+        return fetch(`${this.url}users/me`, {
             method: 'PATCH',
             headers: {
-                authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201',
+                authorization: this.token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -116,12 +102,28 @@ export default class Api {
         });
     }
 
+
+    // Получаем массив всех карточек
+    getCards () {
+        return fetch(`${this.url}cards`, {
+            headers: {
+                authorization: this.token
+            }
+            })
+            .then(res => res.json())
+            // .then((result) => {
+            //     const cards = result;
+            //     console.log(cards);
+            // });
+    }
+
+    
     // Добавляем карточку
     addCard () {
-        return fetch('https://nomoreparties.co/v1/cohort-60/cards', {
+        return fetch(`${this.url}cards`, {
             method: 'POST',
             headers: {
-                authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201',
+                authorization: this.token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -132,11 +134,11 @@ export default class Api {
     }
 
     // Удаляем карточку
-    removeCard () {
-        return fetch('https://nomoreparties.co/v1/cohort-60/cards/cardID', {
+    deleteCard () {
+        return fetch(`${this.url}cards/63fd2ad4ecdf8d0d11fb2092`, {
             method: 'DELETE',
             headers: {
-                authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201',
+                authorization: this.token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({

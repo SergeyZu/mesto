@@ -22,14 +22,26 @@ import Api from '../components/Api.js';
 
 
 
-const api = new Api(config)
+// const api = new Api(config)
+
+const api = new Api(
+    {
+        url: 'https://nomoreparties.co/v1/cohort-60/',
+        token: '8e181f4a-8318-4b8b-ab26-7884d8331201'
+    }
+)
 
 
+// Данные пользователя с сервера
 api.getUserData()
     .then((result) => {
         const userData = result;
         console.log(userData);
-    });
+    })
+    .then((data) => {
+
+    })
+
 
 
 
@@ -37,7 +49,7 @@ api.setUserData();
 
 // api.addCard();
 
-// api.removeCard();
+// api.deleteCard()
 
 // Секция
 
