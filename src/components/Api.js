@@ -81,6 +81,9 @@ export default class Api {
             }
             })
             .then(res => res.json())
+            // .catch((err) => {
+            //     console.log(`Ошибка: ${err}`);
+            // });
             // .then((result) => {
             //     const userData = result;
             //     console.log(userData);
@@ -146,14 +149,14 @@ export default class Api {
 
     // Удаляем карточку
     deleteCard () {
-        return fetch(`${this.url}cards/63fd2ad4ecdf8d0d11fb2092`, {
+        return fetch(`${this.url}cards/63fe57f29790330d4dccdb8e`, {
             method: 'DELETE',
             headers: {
                 authorization: this.token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                _id: '63f75edf2680940b4f55d9f0'
+                _id: '63fe57f29790330d4dccdb8e'
             })
         });
     }

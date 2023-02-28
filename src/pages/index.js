@@ -34,8 +34,8 @@ const api = new Api(
 
 // Данные пользователя с сервера
 api.getUserData()
-    .then((result) => {
-        const userData = result;
+    .then((data) => {
+        const userData = data;
         console.log(userData);
     })
     .then((data) => {
@@ -57,8 +57,8 @@ api.setUserData({
 // Секция
 
 api.getCards()
-    .then((result) => {
-        const cards = result;
+    .then((data) => {
+        const cards = data;
         console.log(cards);
         cardSection.renderInitialItems(cards);
     });

@@ -66,6 +66,10 @@
 
 @import url(../blocks/card/__like/_clicked/card__like_clicked.css);
 
+@import url(../blocks/card/__like-block/card__like-block.css);
+
+@import url(../blocks/card/__like-qty/card__like-qty.css);
+
 
 
 @import url(../blocks/page/__footer/page__footer.css);
