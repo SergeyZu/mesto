@@ -45,7 +45,10 @@ api.getUserData()
 
 
 
-api.setUserData();
+api.setUserData({
+    name: 'Charles Chaplin',
+    about: 'Film actor, film director, screenwriter, composer, producer and editor'
+});
 
 // api.addCard();
 

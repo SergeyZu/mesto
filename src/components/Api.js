@@ -88,19 +88,30 @@ export default class Api {
     }
 
     // Заменяем данные пользователя
-    setUserData () {
+    setUserData (userData) {
         return fetch(`${this.url}users/me`, {
             method: 'PATCH',
             headers: {
                 authorization: this.token,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                name: 'Charles Chaplin',
-                about: 'Film actor, film director, screenwriter, composer, producer and editor'
-            })
+            body: JSON.stringify(userData)
         });
     }
+    
+    // setUserData () {
+    //     return fetch(`${this.url}users/me`, {
+    //         method: 'PATCH',
+    //         headers: {
+    //             authorization: this.token,
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             name: 'Charles Chaplin',
+    //             about: 'Film actor, film director, screenwriter, composer, producer and editor'
+    //         })
+    //     });
+    // }
 
 
     // Получаем массив всех карточек
