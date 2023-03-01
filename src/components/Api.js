@@ -1,70 +1,7 @@
-// class Api {
-//     constructor(config) {
-//         this.url = config.url;
-//         this.headers = config.headers;
-//     }
-
-//     getCards() {
-//         return fetch(this.url, {
-//             headers: this.headers  
-//         })
-//             .then((res) => {
-//                 if(res.ok) {
-//                     return res.json();
-//                 }
-//                 return Promise.reject(new Error('Ошибка'))
-//             })
-//     }
-
-//     addCard(data) {
-//         return fetch(this.url, {
-//             method: 'POST',
-//             headers: this.headers,
-//             body: JSON.stringify(data)  
-//         })
-//                 .then(handleResponse)
-//     }
-
-//     deleteCard(data) {
-//         return fetch(this.url, {
-//             method: 'DELETE',
-//             headers: this.headers,
-//             body: JSON.stringify(data)  
-//         })
-//                 .then(handleResponse)
-//     }
-
-// }
-
-
-
-
-
-// // Код с вебинара Лизы
-
-// fetch('https://.....')
-//     .then(res => {
-//         return res.ok ? res.json() : Promise.reject()
-//     })
-//     // либо
-//     // .then(res => res.ok ? res.json() : Promise.reject())
-//     .then(res => {
-//         console.log('res =>', res)
-//     })
-//     .catch()
-
-
-// // Оборачиваем предыдущий код в функцию
-// const getCards = () => {
-//     return fetch('https://.....')
-//         .then(res => res.ok ? res.json() : Promise.reject())
-// }
-
 export default class Api {
     constructor(config) {
         this.baseUrl = config.baseUrl;
         this.headers = config.headers;
-        // this.token = config.token;
     }    
      
 
@@ -73,12 +10,8 @@ export default class Api {
         return fetch(`${this.baseUrl}/users/me`, {
             headers: this.headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }       
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+
     }
 
 
@@ -89,12 +22,7 @@ export default class Api {
             headers: this.headers,
             body: JSON.stringify(userData)
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }       
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
     
 
@@ -103,12 +31,7 @@ export default class Api {
         return fetch(`${this.baseUrl}/cards`, {
             headers: this.headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }       
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
 
     
@@ -122,31 +45,22 @@ export default class Api {
                 link: 'https://kartinkin.net/uploads/posts/2022-12/thumbs/1670567420_1-kartinkin-net-p-venetsiya-kartinki-oboi-1.jpg'
             })
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }       
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
 
 
     // Запрос на удаление карточки
     deleteCard () {
-        return fetch(`${this.baseUrl}/cards/${cardId}`, {
+        return fetch(`${this.baseUrl}/cards/63fec532a6fc040db1095c85`, {
             method: 'DELETE',
             headers: this.headers,
             body: JSON.stringify({
-                _id: '63fe57f29790330d4dccdb8e'
+                _id: '63fec532a6fc040db1095c85'
             })
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }       
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
+
 
     // Запрос на постановку лайка
     likeCard () {
@@ -154,13 +68,9 @@ export default class Api {
             method: 'PUT',
             headers: this.headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }       
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
+
 
     // Запрос на снятие лайка
     dislikeCard () {
@@ -168,13 +78,9 @@ export default class Api {
             method: 'DELETE',
             headers: this.headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }       
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
+
 
     // Запрос на обновление аватара
     changeAvatar () {
@@ -182,12 +88,7 @@ export default class Api {
             method: 'PATCH',
             headers: this.headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }       
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
 
 }

@@ -1,9 +1,10 @@
 export default class Card {
 
-    constructor(data, templateSelector, openImageHandler, deleteCardHandler, likeCardHandler) {
+    constructor(data, templateSelector, openImageHandler, deleteCardHandler, likesQtyHandler) {
         this._title = data.name;
         this._image = data.link;
-        this._id = data._id;
+        this._ownerId = data.owner._id;
+        this._likeQty = data.likes.length;
         this._templateSelector = templateSelector;
         this._openImageHandler = openImageHandler;
         this._deleteCardHandler = deleteCardHandler;
@@ -54,13 +55,18 @@ export default class Card {
         return this._element;
     }
 
-    // _deleteCardHandler() {
-    //     this._element.remove();
-    //     this._element = null;
-    // }
+    deleteCardFromDom() {
+        this._element.remove();
+        this._element = null;
+    }
 
     _likedCardHandler() {
         this._cardLike.classList.toggle('card__like_clicked');
+    }
+
+    likesQtyHandler() {
+        const cardLikes = this.querySelector('.card__likes-qty');
+        cardLikes.textContent = this._likeQty;
     }
 
 }

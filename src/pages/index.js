@@ -31,19 +31,48 @@ const api = new Api({
 });
 
 
-// Данные пользователя с сервера
-api.getUserData()
-    .then((data) => {
-        const userData = data;
-        console.log(userData);
+
+
+// let userData;
+
+// api.getUserData()
+//     .then((data) => {
+//         const userData = data;
+//         console.log(userData);
+//     })
+//     .then((data) => {
+
+//     })
+
+// console.log(userData);
+
+
+// Получаем массив карточек
+// api.getInitialCards()
+//     .then((data) => { 
+//         const cards = data;
+//         console.log(cards);
+//         cardSection.renderInitialItems(cards);
+//     });
+
+
+// Получаем данные пользователя и массив карточек с сервера
+Promise.all([api.getUserData(), api.getInitialCards()])
+    .then(res => {
+        console.log(res);
+        userInfo.setUserInfo(res[0]);
+        cardSection.renderInitialItems(res[1]);
     })
-    .then((data) => {
-
-    })
 
 
+const cardSection = new Section({ 
+    renderer: (data) => {
+        renderCard(data);
+    }
+}, '.cards'
+);
 
-
+// Отправляем измененнные данные пользователя
 api.setUserData({
     name: 'Charley Chaplin',
     about: 'Film actor, film director, screenwriter, composer, producer and editor'
@@ -52,38 +81,46 @@ api.setUserData({
 // api.addCard();
 
 // api.deleteCard()
+//     .then(res => {
+//         console.log('res', res)
+//         card.deleteCardFromDom()
+    // })
+    
 
 // Секция
 
-api.getInitialCards()
-    .then((data) => {
-        const cards = data;
-        console.log(cards);
-        cardSection.renderInitialItems(cards);
-    });
 
-const cardSection = new Section({ 
 
-    renderer: (item) => {
-        renderCard(item);
-    }
-}, '.cards'
-);
+    
+
+    // const cardSection = new Section({ 
+
+//     renderer: (item) => {
+//         renderCard(item);
+//     }
+// }, '.cards'
+// );
 
 
 
 // Карточка
 
-function createCard(item) {
-    const card = new Card(item, '#card-template', handleCardClick, confirmCardDelete);
+function createCard(data) {
+    const card = new Card(
+        data,
+        '#card-template',
+        handleCardClick,
+        handleTrashClick);
     const cardElement = card.generateCard();
     return cardElement;
 };
 
-function renderCard(item) {
-const cardItem = createCard(item);
-cardSection.addItem(cardItem);
-return renderCard;
+// card.likesQtyHandler();
+
+function renderCard(data) {
+    const cardItem = createCard(data);
+    cardSection.addItem(cardItem);
+    return renderCard;
 };
 
 
@@ -168,11 +205,13 @@ function handleCardFormSubmit(inputValues) {
 const cardDeletePopup = new PopupWithConfirmation ('.popup_type_delete-card', confirmCardDelete);
 cardDeletePopup.setEventListeners();
 
-function confirmCardDelete() {
+function handleTrashClick() {
     cardDeletePopup.open();
 }
 
-
+function confirmCardDelete() {
+    
+}
 
 
 // Попап с картинкой
