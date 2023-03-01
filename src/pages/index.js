@@ -55,13 +55,19 @@ const api = new Api({
 //         cardSection.renderInitialItems(cards);
 //     });
 
+let user;
+
+let userId;
 
 // Получаем данные пользователя и массив карточек с сервера
 Promise.all([api.getUserData(), api.getInitialCards()])
     .then(res => {
+        const [userData, initialCards] = res;
         console.log(res);
-        userInfo.setUserInfo(res[0]);
-        cardSection.renderInitialItems(res[1]);
+        user = userData;
+        userId = userData._id;
+        userInfo.setUserInfo(userData);
+        cardSection.renderInitialItems(initialCards);
     })
 
 
