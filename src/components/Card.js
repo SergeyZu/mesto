@@ -3,8 +3,8 @@ export default class Card {
     constructor(data, templateSelector, openImageHandler, deleteCardHandler, likesQtyHandler) {
         this._title = data.name;
         this._image = data.link;
-        this._ownerId = data.owner._id;
-        this._likeQty = data.likes.length;
+        // this._ownerId = data.owner._id;
+        // this._likeQty = data.likes.length;
         this._templateSelector = templateSelector;
         this._openImageHandler = openImageHandler;
         this._deleteCardHandler = deleteCardHandler;

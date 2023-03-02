@@ -36,13 +36,13 @@ export default class Api {
 
     
     // Запрос на добавление карточки
-    addCard () {
+    addCard (data) {
         return fetch(`${this.baseUrl}/cards`, {
             method: 'POST',
             headers: this.headers,
             body: JSON.stringify({
-                name: 'Венеция',
-                link: 'https://kartinkin.net/uploads/posts/2022-12/thumbs/1670567420_1-kartinkin-net-p-venetsiya-kartinki-oboi-1.jpg'
+                name: data.name,
+                link: data.link
             })
         })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));

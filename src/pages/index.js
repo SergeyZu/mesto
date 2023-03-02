@@ -200,10 +200,18 @@ function openCardPopup () {
     cardPopup.open();
 }
 
-function handleCardFormSubmit(inputValues) {
-    renderCard(inputValues);
+function handleCardFormSubmit(data) {
+    api.addCard(data)
+        .then(res => {
+            renderCard(res)
+        })
     cardPopup.close();
 }
+
+// function handleCardFormSubmit(inputValues) {
+//     renderCard(inputValues);
+//     cardPopup.close();
+// }
 
 
 // Попап удаления карточки
