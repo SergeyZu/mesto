@@ -79,10 +79,10 @@ const cardSection = new Section({
 );
 
 // Отправляем измененнные данные пользователя
-api.setUserData({
-    name: 'Charley Chaplin',
-    about: 'Film actor, film director, screenwriter, composer, producer and editor'
-});
+// api.setUserData({
+//     name: 'Charley Chaplin',
+//     about: 'Film actor, film director, screenwriter, composer, producer and editor'
+// });
 
 // api.addCard();
 
@@ -170,9 +170,19 @@ function openProfilePopup () {
 }
 
 function profileFormSubmitHandler (inputValues) {
-    userInfo.setUserInfo(inputValues)
-    profilePopup.close();
+    api.setUserData(inputValues)
+        .then(res => {
+            userInfo.setUserInfo(res)
+            profilePopup.close();
+
+        })
+    
 }
+
+// function profileFormSubmitHandler (inputValues) {
+//     userInfo.setUserInfo(inputValues)
+//     profilePopup.close();
+// }
 
 
 // Попап редактирования аватара профиля

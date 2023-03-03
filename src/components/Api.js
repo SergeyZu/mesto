@@ -16,11 +16,11 @@ export default class Api {
 
 
     // Запрос на изменение данных пользователя
-    setUserData (userData) {
+    setUserData (inputValues) {
         return fetch(`${this.baseUrl}/users/me`, {
-            method: 'PATCH',
+            method: 'PATCH', 
             headers: this.headers,
-            body: JSON.stringify(userData)
+            body: JSON.stringify(inputValues)
         })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
