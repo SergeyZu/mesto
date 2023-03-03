@@ -78,13 +78,6 @@ const cardSection = new Section({
 }, '.cards'
 );
 
-// Отправляем измененнные данные пользователя
-// api.setUserData({
-//     name: 'Charley Chaplin',
-//     about: 'Film actor, film director, screenwriter, composer, producer and editor'
-// });
-
-// api.addCard();
 
 // api.deleteCard()
 //     .then(res => {
