@@ -3,20 +3,13 @@ export default class Card {
     constructor(data, templateSelector, openImageHandler, deleteCardHandler, likesQtyHandler) {
         this._title = data.name;
         this._image = data.link;
+        this._cardId = data._id;
         // this._ownerId = data.owner._id;
         this._likesQty = data.likes.length;
         this._templateSelector = templateSelector;
         this._openImageHandler = openImageHandler;
         this._deleteCardHandler = deleteCardHandler;
     }
-
-    // constructor(data, templateSelector, openImageHandler) {
-    //     this._title = data.name;
-    //     this._image = data.link;
-    //     this._templateSelector = templateSelector;
-    //     this._openImageHandler = openImageHandler;
-    // }
-
 
     _getTemplate() {
         const cardElement = document
@@ -31,7 +24,7 @@ export default class Card {
     _setEventListeners() {
         this._cardImage = this._element.querySelector('.card__image');
         this._cardTrash = this._element.querySelector('.card__trash');
-        this._cardLike = this._element.querySelector('.card__like');
+        this._cardLikeButton = this._element.querySelector('.card__like');
 
         this._cardImage.addEventListener('click', () => {
             this._openImageHandler(this._title, this._image);
@@ -39,7 +32,7 @@ export default class Card {
 
         this._cardTrash.addEventListener('click', () => this._deleteCardHandler());
         
-        this._cardLike.addEventListener('click', () => this._likedCardHandler());
+        this._cardLikeButton.addEventListener('click', () => this._likedCardHandler());
     }
 
     generateCard() {
@@ -56,10 +49,12 @@ export default class Card {
         return this._element;
     }
 
-    
+    isLiked() {
+        this._cardLikeButton.classList.contains('card__like_clicked');
+    }
 
     _likedCardHandler() {
-        this._cardLike.classList.toggle('card__like_clicked');
+        this._cardLikeButton.classList.toggle('card__like_clicked');
     }
 
     // likesQtyHandler() {

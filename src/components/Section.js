@@ -7,8 +7,18 @@ export default class Section {
     }
 
     // Добавляем элемент в контейнер
-    addItem(element) {
+   
+    // addItem(element) {
+    //     this._container.append(element)
+    // };
+
+   
+    addInitialItem(element) {
         this._container.append(element)
+    };
+
+    addUserItem(element) {
+        this._container.prepend(element)
     };
 
     // Отрисовываем элементы из массива items

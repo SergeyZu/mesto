@@ -73,11 +73,17 @@ Promise.all([api.getUserData(), api.getInitialCards()])
 
 const cardSection = new Section({ 
     renderer: (data) => {
-        renderCard(data);
+        renderInitialCard(data);
     }
 }, '.cards'
 );
 
+
+// Отправляем на сервер инфу о добавлении лайка
+// api.likeCard()
+//     .then(res => {
+//         console.log(res)
+//     })
 
 // api.deleteCard()
 //     .then(res => {
@@ -114,12 +120,23 @@ function createCard(data) {
     return cardElement;
 };
 
-// card.likesQtyHandler();
 
-function renderCard(data) {
+// function renderInitialCard(data) {
+//     const cardItem = createCard(data);
+//     cardSection.addItem(cardItem);
+//     return renderInitialCard;
+// };
+
+function renderInitialCard(data) {
     const cardItem = createCard(data);
-    cardSection.addItem(cardItem);
-    return renderCard;
+    cardSection.addInitialItem(cardItem);
+    return renderInitialCard;
+};
+
+function renderNewCard(data) {
+    const cardItem = createCard(data);
+    cardSection.addUserItem(cardItem);
+    return renderNewCard;
 };
 
 
@@ -206,7 +223,7 @@ function openCardPopup () {
 function handleCardFormSubmit(data) {
     api.addCard(data)
         .then(res => {
-            renderCard(res)
+            renderNewCard(res)
         })
     cardPopup.close();
 }
