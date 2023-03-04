@@ -1,14 +1,15 @@
 export default class Card {
 
-    constructor(data, templateSelector, openImageHandler, deleteCardHandler, likesQtyHandler) {
+    constructor(data, templateSelector, handleCardClick, handleTrashClick, handleLikeClick) {
         this._title = data.name;
         this._image = data.link;
         this._cardId = data._id;
-        // this._ownerId = data.owner._id;
         this._likesQty = data.likes.length;
+        // this._ownerId = data.owner._id;
         this._templateSelector = templateSelector;
-        this._openImageHandler = openImageHandler;
-        this._deleteCardHandler = deleteCardHandler;
+        this._handleCardClick = handleCardClick;
+        this._handleLikeClick = handleLikeClick;
+        this._handleTrashClick = handleTrashClick;
     }
 
     _getTemplate() {
@@ -27,10 +28,12 @@ export default class Card {
         this._cardLikeButton = this._element.querySelector('.card__like');
 
         this._cardImage.addEventListener('click', () => {
-            this._openImageHandler(this._title, this._image);
+            this._handleCardClick(this._title, this._image);
         });
 
-        this._cardTrash.addEventListener('click', () => this._deleteCardHandler());
+        this._cardTrash.addEventListener('click', () => this._handleTrashClick());
+
+        this._cardLikeButton.addEventListener('click', () => this._handleLikeClick());
         
         this._cardLikeButton.addEventListener('click', () => this._likedCardHandler());
     }
@@ -56,11 +59,6 @@ export default class Card {
     _likedCardHandler() {
         this._cardLikeButton.classList.toggle('card__like_clicked');
     }
-
-    // likesQtyHandler() {
-    //     this._cardLikes = this_element.querySelector('.card__likes-qty');
-    //     this._cardLikes.textContent = this._likesQty;
-    // }
 
     deleteCardFromDom() {
         this._element.remove();

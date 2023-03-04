@@ -32,29 +32,6 @@ const api = new Api({
 
 
 
-
-// let userData;
-
-// api.getUserData()
-//     .then((data) => {
-//         const userData = data;
-//         console.log(userData);
-//     })
-//     .then((data) => {
-
-//     })
-
-// console.log(userData);
-
-
-// Получаем массив карточек
-// api.getInitialCards()
-//     .then((data) => { 
-//         const cards = data;
-//         console.log(cards);
-//         cardSection.renderInitialItems(cards);
-//     });
-
 let user;
 
 let userId;
@@ -79,8 +56,8 @@ const cardSection = new Section({
 );
 
 
-// Отправляем на сервер инфу о добавлении лайка
-// api.likeCard()
+// Отправляем на сервер инфо о добавлении лайка
+// api.setLike()
 //     .then(res => {
 //         console.log(res)
 //     })
@@ -109,23 +86,46 @@ const cardSection = new Section({
 
 
 // Карточка
-
 function createCard(data) {
+
+    // handleLikeClick ((card) => {
+    //     if (card.isLiked()) {
+    //         api.removeLike(card)
+    //             .then(res => {
+    //                 console.log(res)
+    //             })
+    //     } else {
+    //         api.setLike(card)
+    //             .then(res => {
+    //                 console.log(res)
+    //             })
+    //     }
+    // })
+
     const card = new Card(
         data,
         '#card-template',
         handleCardClick,
-        handleTrashClick);
+        handleTrashClick)
+        // handleLikeClick);
+
     const cardElement = card.generateCard();
     return cardElement;
 };
 
-
-// function renderInitialCard(data) {
-//     const cardItem = createCard(data);
-//     cardSection.addItem(cardItem);
-//     return renderInitialCard;
-// };
+// function handleLikeClick(card) {
+//     if (card.isLiked) {
+//         api.removeLike(card)
+//             .then(res => {
+//                 console.log(res)
+//             })
+//     } else {
+//         api.setLike(card)
+//             .then(res => {
+//                 console.log(res)
+//             })
+//     }
+// }
 
 function renderInitialCard(data) {
     const cardItem = createCard(data);
@@ -138,6 +138,8 @@ function renderNewCard(data) {
     cardSection.addUserItem(cardItem);
     return renderNewCard;
 };
+
+
 
 
 // Валидатор профиля

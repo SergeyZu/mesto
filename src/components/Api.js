@@ -1,14 +1,14 @@
 export default class Api {
     constructor(config) {
-        this.baseUrl = config.baseUrl;
-        this.headers = config.headers;
+        this._baseUrl = config.baseUrl;
+        this._headers = config.headers;
     }    
      
 
     // Запрос на получение данных пользователя
     getUserData () {
-        return fetch(`${this.baseUrl}/users/me`, {
-            headers: this.headers
+        return fetch(`${this._baseUrl}/users/me`, {
+            headers: this._headers
         })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
 
@@ -17,9 +17,9 @@ export default class Api {
 
     // Запрос на изменение данных пользователя
     setUserData (inputValues) {
-        return fetch(`${this.baseUrl}/users/me`, {
+        return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH', 
-            headers: this.headers,
+            headers: this._headers,
             body: JSON.stringify(inputValues)
         })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
@@ -28,8 +28,8 @@ export default class Api {
 
     // Запрос на получение массива всех карточек
     getInitialCards () {
-        return fetch(`${this.baseUrl}/cards`, {
-            headers: this.headers
+        return fetch(`${this._baseUrl}/cards`, {
+            headers: this._headers
         })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
@@ -37,9 +37,9 @@ export default class Api {
     
     // Запрос на добавление карточки
     addCard (data) {
-        return fetch(`${this.baseUrl}/cards`, {
+        return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
-            headers: this.headers,
+            headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -50,10 +50,10 @@ export default class Api {
 
 
     // Запрос на удаление карточки
-    deleteCard () {
-        return fetch(`${this.baseUrl}/cards/63fec532a6fc040db1095c85`, {
+    deleteCard (cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
-            headers: this.headers,
+            headers: this._headers,
             body: JSON.stringify({
                 _id: '63fec532a6fc040db1095c85'
             })
@@ -63,30 +63,30 @@ export default class Api {
 
 
     // Запрос на постановку лайка
-    likeCard () {
-        return fetch(`${this.baseUrl}cards/${cardId}/likes`, {
+    setLike (cardId) {
+        return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
             method: 'PUT',
-            headers: this.headers
+            headers: this._headers
         })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
 
 
     // Запрос на снятие лайка
-    dislikeCard () {
-        return fetch(`${this.baseUrl}cards/${cardId}/likes`, {
+    removeLike (cardId) {
+        return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
             method: 'DELETE',
-            headers: this.headers
+            headers: this._headers
         })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
 
 
     // Запрос на обновление аватара
-    changeAvatar () {
-        return fetch(`${this.baseUrl}users/me/avatar`, {
+    changeAvatar (avatar) {
+        return fetch(`${this._baseUrl}users/me/${avatar}`, {
             method: 'PATCH',
-            headers: this.headers
+            headers: this._headers
         })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
