@@ -44,6 +44,8 @@ Promise.all([api.getUserData(), api.getInitialCards()])
         user = userData;
         userId = userData._id;
         userInfo.setUserInfo(userData);
+
+        // userInfo.setUserInfo(userData.name, userData.about);
         cardSection.renderInitialItems(initialCards);
     })
 
@@ -167,7 +169,9 @@ popupAvatarValidator.enableValidation();
 const profilePopup = new PopupWithForm ('.popup_type_profile', profileFormSubmitHandler);
 profilePopup.setEventListeners();
 
-const userInfo = new UserInfo ({nameSelector: '.profile__title', aboutSelector:'.profile__subtitle'});
+// const userInfo = new UserInfo ({nameSelector: '.profile__title', aboutSelector:'.profile__subtitle'});
+
+const userInfo = new UserInfo ({nameSelector: '.profile__title', aboutSelector:'.profile__subtitle', avatarSelector: '.profile__avatar'});
 
 function renderInitialInfo () {
     const initialInfo = userInfo.getUserInfo();
@@ -190,6 +194,8 @@ function profileFormSubmitHandler (inputValues) {
         })
     
 }
+
+
 
 // function profileFormSubmitHandler (inputValues) {
 //     userInfo.setUserInfo(inputValues)
