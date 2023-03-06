@@ -23,9 +23,9 @@ import Api from '../components/Api.js';
 
 
 const api = new Api({
-    baseUrl: 'https://nomoreparties.co/v1/cohort-60',
+    baseUrl: 'https://nomoreparties.co/v1/cohort-61',
     headers: {
-        authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201',
+        authorization: 'e4cf1203-298c-4ad3-b815-4ccead265bb8',
         'Content-Type': 'application/json'
     }
 });
@@ -193,13 +193,6 @@ function profileFormSubmitHandler (inputValues) {
 }
 
 
-
-// function profileFormSubmitHandler (inputValues) {
-//     userInfo.setUserInfo(inputValues)
-//     profilePopup.close();
-// }
-
-
 // Попап редактирования аватара профиля
 
 const avatarPopup = new PopupWithForm ('.popup_type_avatar');
@@ -246,7 +239,6 @@ cardDeletePopup.setEventListeners();
 
 function handleTrashClick() {
     cardDeletePopup.open();
-    // buttonDeleteConfirmationElement.addEventListener('click', confirmCardDelete);
 }
 
 function confirmCardDelete() {
