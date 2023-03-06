@@ -108,10 +108,11 @@ function createCard(data) {
         data,
         '#card-template',
         handleCardClick,
-        handleTrashClick)
+        handleTrashClick,
+        userId)
         // handleLikeClick);
 
-    const cardElement = card.generateCard();
+    const cardElement = card.generateCard(userId);
     return cardElement;
 };
 
