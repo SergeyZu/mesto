@@ -237,12 +237,15 @@ function handleCardFormSubmit(data) {
 const cardDeletePopup = new PopupWithConfirmation ('.popup_type_delete-card', confirmCardDelete);
 cardDeletePopup.setEventListeners();
 
-function handleTrashClick() {
+let initialCardId
+
+function handleTrashClick(cardId) {
+    initialCardId = cardId;
     cardDeletePopup.open();
 }
 
-function confirmCardDelete() {
-    api.deleteCard()
+function confirmCardDelete(initialCardId) {
+    api.deleteCard(initialCardId)
     .then(res => {
         console.log('res =>', res)
         // card.deleteCardFromDom()

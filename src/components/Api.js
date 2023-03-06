@@ -51,7 +51,7 @@ export default class Api {
 
     // Запрос на удаление карточки
     deleteCard (cardId) {
-        return fetch(`${this._baseUrl}/cards/${'6405cc3acf8e9f116c89443c'}`, {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
             headers: this._headers
             // body: JSON.stringify({
