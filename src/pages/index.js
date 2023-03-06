@@ -1,6 +1,6 @@
 import './index.css';
 
-import { formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, buttonEditAvatarElement, config, } from '../utils/constants.js';
+import { formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, buttonEditAvatarElement, buttonDeleteConfirmationElement, config} from '../utils/constants.js';
 
 import { cardsDataElement } from '../utils/cardsData.js';
 
@@ -64,11 +64,7 @@ const cardSection = new Section({
 //         console.log(res)
 //     })
 
-// api.deleteCard()
-//     .then(res => {
-//         console.log('res', res)
-//         card.deleteCardFromDom()
-    // })
+
     
 
 // Секция
@@ -243,17 +239,22 @@ function handleCardFormSubmit(data) {
 // }
 
 
-// Попап удаления карточки
+// Попап подтверждения удаления карточки
 
 const cardDeletePopup = new PopupWithConfirmation ('.popup_type_delete-card', confirmCardDelete);
 cardDeletePopup.setEventListeners();
 
 function handleTrashClick() {
     cardDeletePopup.open();
+    // buttonDeleteConfirmationElement.addEventListener('click', confirmCardDelete);
 }
 
 function confirmCardDelete() {
-    
+    api.deleteCard()
+    .then(res => {
+        console.log('res =>', res)
+        // card.deleteCardFromDom()
+    })
 }
 
 
@@ -273,3 +274,5 @@ profileEditButtonElement.addEventListener('click', openProfilePopup);
 buttonAddCardElement.addEventListener('click', openCardPopup);
 
 buttonEditAvatarElement.addEventListener('click', openAvatarPopup);
+
+// buttonDeleteConfirmationElement.addEventListener('click', confirmCardDelete);

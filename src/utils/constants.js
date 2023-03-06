@@ -71,6 +71,16 @@ export { popupCardElement, buttonAddCardElement, formCardCloseButtonElement, for
 
 
 
+
+// ПОПАП ПОДТВЕРЖДЕНИЯ УДАЛЕНИЯ КАРТОЧКИ
+
+// Попап
+const popupDeleteCard = document.querySelector('.popup_type_delete-card');
+
+// Кнопка подтверждения удаления карточки
+export const buttonDeleteConfirmationElement = popupDeleteCard.querySelector('.popup__delete-button');
+
+
 // ПОПАП КАРТИНКА
 
 //Попап

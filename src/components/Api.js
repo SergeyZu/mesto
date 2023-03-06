@@ -51,12 +51,12 @@ export default class Api {
 
     // Запрос на удаление карточки
     deleteCard (cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+        return fetch(`${this._baseUrl}/cards/${'64057f37cf8e9f116c8800d7'}`, {
             method: 'DELETE',
-            headers: this._headers,
-            body: JSON.stringify({
-                _id: '63fec532a6fc040db1095c85'
-            })
+            headers: this._headers
+            // body: JSON.stringify({
+            //     _id: '63fec532a6fc040db1095c85'
+            // })
         })
         .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }

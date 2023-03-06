@@ -54,7 +54,7 @@ export default class Card {
         this._cardImage.alt = this._title;
         this._cardLikes.textContent = this._likesQty;
         this._iLikedIt = this._likes.includes(userId);
-        this._isMyCard();
+        this._hideTrashIcon();
         return this._element;
     }
 
@@ -62,10 +62,11 @@ export default class Card {
         this._cardLikeButton.classList.contains('card__like_clicked');
     }
 
-    _isMyCard() {
+    _hideTrashIcon() {
         if (this._ownerId !== this._userId) {
             this._cardTrash.classList.add('card__hide-trash');
         }
+        return
     }
 
     _handleLikeClick() {
