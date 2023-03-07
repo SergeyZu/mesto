@@ -112,19 +112,6 @@ function createCard(data) {
     return cardElement;
 };
 
-// function handleLikeClick(card) {
-//     if (card.isLiked) {
-//         api.removeLike(card)
-//             .then(res => {
-//                 console.log(res)
-//             })
-//     } else {
-//         api.setLike(card)
-//             .then(res => {
-//                 console.log(res)
-//             })
-//     }
-// }
 
 function renderInitialCard(data) {
     const cardItem = createCard(data);
@@ -225,11 +212,6 @@ function handleCardFormSubmit(data) {
         })
     cardPopup.close();
 }
-
-// function handleCardFormSubmit(inputValues) {
-//     renderCard(inputValues);
-//     cardPopup.close();
-// }
 
 
 // Попап подтверждения удаления карточки
