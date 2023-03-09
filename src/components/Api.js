@@ -1,3 +1,11 @@
+const handleResponse = (res) => {
+    if (res.ok) {
+        return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`)
+}
+
+
 export default class Api {
     constructor(config) {
         this._baseUrl = config.baseUrl;
@@ -10,8 +18,9 @@ export default class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
-
+        .then(handleResponse); 
+        // Альтернативный вариант записи вместо handleResponse:
+        // .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
     }
 
 
@@ -22,7 +31,7 @@ export default class Api {
             headers: this._headers,
             body: JSON.stringify(inputValues)
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+        .then(handleResponse); 
     }
     
 
@@ -31,7 +40,7 @@ export default class Api {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+        .then(handleResponse); 
     }
 
     
@@ -45,7 +54,7 @@ export default class Api {
                 link: data.link
             })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+        .then(handleResponse); 
     }
 
 
@@ -55,7 +64,7 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+        .then(handleResponse); 
     }
 
 
@@ -65,7 +74,7 @@ export default class Api {
             method: 'PUT',
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+        .then(handleResponse); 
     }
 
 
@@ -75,7 +84,7 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+        .then(handleResponse); 
     }
 
 
@@ -85,7 +94,7 @@ export default class Api {
             method: 'PATCH',
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+        .then(handleResponse); 
     }
 
 }

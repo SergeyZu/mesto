@@ -2,8 +2,6 @@ import './index.css';
 
 import { formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, buttonEditAvatarElement, buttonDeleteConfirmationElement, config} from '../utils/constants.js';
 
-import { cardsDataElement } from '../utils/cardsData.js';
-
 import Card from '../components/Card.js';
 
 import Section from '../components/Section.js';
@@ -21,18 +19,34 @@ import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
 
-
-const api = new Api({
+const apiConfig = {
     baseUrl: 'https://nomoreparties.co/v1/cohort-61',
     headers: {
         authorization: 'e4cf1203-298c-4ad3-b815-4ccead265bb8',
         'Content-Type': 'application/json'
     }
-});
+}
+
+// const apiConfig2 = {
+//     baseUrl: 'https://nomoreparties.co/v1/cohort-60',
+//     headers: {
+//         authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201',
+//         'Content-Type': 'application/json'
+//     }
+// }
+
+// const apiConfig3 = {
+//     baseUrl: 'https://nomoreparties.co/v1/cohort-59',
+//     headers: {
+//         authorization: '22a7889f-111c-4ac8-a920-423d2b40567f',
+//         'Content-Type': 'application/json'
+//     }
+// }
 
 
+const api = new Api(apiConfig);
 
-let user;
+
 
 let userId;
 
@@ -41,7 +55,6 @@ Promise.all([api.getUserData(), api.getInitialCards()])
     .then(res => {
         const [userData, initialCards] = res;
         console.log(res);
-        user = userData;
         userId = userData._id;
         userInfo.setUserInfo(userData);
 
@@ -50,6 +63,7 @@ Promise.all([api.getUserData(), api.getInitialCards()])
     })
 
 
+// Секция
 const cardSection = new Section({ 
     renderer: (data) => {
         renderInitialCard(data);
@@ -63,24 +77,6 @@ const cardSection = new Section({
 //     .then(res => {
 //         console.log(res)
 //     })
-
-
-    
-
-// Секция
-
-
-
-    
-
-    // const cardSection = new Section({ 
-
-//     renderer: (item) => {
-//         renderCard(item);
-//     }
-// }, '.cards'
-// );
-
 
 
 // Карточка

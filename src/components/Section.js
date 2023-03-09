@@ -6,17 +6,12 @@ export default class Section {
         this._container = document.querySelector(selector);
     }
 
-    // Добавляем элемент в контейнер
-   
-    // addItem(element) {
-    //     this._container.append(element)
-    // };
-
-   
+    // Добавляем начальные элементы в контейнер
     addInitialItem(element) {
         this._container.append(element)
     };
 
+    // Добавляем новый элемент в контейнер
     addUserItem(element) {
         this._container.prepend(element)
     };
