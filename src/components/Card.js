@@ -89,7 +89,7 @@ export default class Card {
 
     deleteCardFromDom() {
         this._element.remove();
-        this._element = null;
+        // this._element = null;
     }
 
 }

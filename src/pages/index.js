@@ -230,7 +230,7 @@ function handleTrashClick(cardId) {
 function confirmCardDelete(cardId) {
     api.deleteCard(cardId)
     .then(res => {
-        // console.log('res =>', res)
+        console.log('res =>', res)
         newCard.deleteCardFromDom()
         // card.deleteCardFromDom()
     })
