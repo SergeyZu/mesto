@@ -78,7 +78,7 @@ const cardSection = new Section({
 //         console.log(res)
 //     })
 
-
+let newCard
 // Карточка
 function createCard(data) {
 
@@ -96,15 +96,22 @@ function createCard(data) {
     //     }
     // })
 
-    const card = new Card(
+    // const card = new Card(
+    //     data,
+    //     '#card-template',
+    //     handleCardClick,
+    //     handleTrashClick,
+    //     userId)
+    //     // handleLikeClick);
+    newCard = new Card(
         data,
         '#card-template',
         handleCardClick,
         handleTrashClick,
         userId)
-        // handleLikeClick);
 
-    const cardElement = card.generateCard(userId);
+    // const cardElement = card.generateCard(userId);
+    const cardElement = newCard.generateCard(userId);
     return cardElement;
 };
 
@@ -215,17 +222,16 @@ function handleCardFormSubmit(data) {
 const cardDeletePopup = new PopupWithConfirmation ('.popup_type_delete-card', confirmCardDelete);
 cardDeletePopup.setEventListeners();
 
-let initialCardId
 
 function handleTrashClick(cardId) {
-    initialCardId = cardId;
-    cardDeletePopup.open();
+    cardDeletePopup.open(cardId);
 }
 
-function confirmCardDelete(initialCardId) {
-    api.deleteCard(initialCardId)
+function confirmCardDelete(cardId) {
+    api.deleteCard(cardId)
     .then(res => {
-        console.log('res =>', res)
+        // console.log('res =>', res)
+        newCard.deleteCardFromDom()
         // card.deleteCardFromDom()
     })
 }

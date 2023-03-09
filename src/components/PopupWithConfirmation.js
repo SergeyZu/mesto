@@ -8,18 +8,20 @@ export default class PopupWithConfirmation extends Popup {
         this._form = this._popup.querySelector('.popup__form');
     }
 
+    open(id) {
+        this._id = id;
+        super.open();
+    }
+
     setEventListeners() {
         super.setEventListeners();
         this._form.addEventListener('submit', (event) => {
             event.preventDefault();
-            this._handler();
+            this._handler(this._id);
             super.close();
         });
     }
 
-    // open(submitHandler) {
-    //     super.open();
-    //     this._handler = submitHandler;
-    // }
+    
 
 }
