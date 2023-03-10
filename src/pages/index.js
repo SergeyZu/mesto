@@ -61,6 +61,9 @@ Promise.all([api.getUserData(), api.getInitialCards()])
         // userInfo.setUserInfo(userData.name, userData.about);
         cardSection.renderInitialItems(initialCards);
     })
+    .catch((err) => {
+        console.log(err);
+    });
 
 
 // Секция
@@ -77,32 +80,16 @@ const cardSection = new Section({
 //     .then(res => {
 //         console.log(res)
 //     })
+    // .catch((err) => {
+    //     console.log(err);
+    // });
+
 
 let newCard
+
 // Карточка
 function createCard(data) {
-
-    // handleLikeClick ((card) => {
-    //     if (card.isLiked()) {
-    //         api.removeLike(card)
-    //             .then(res => {
-    //                 console.log(res)
-    //             })
-    //     } else {
-    //         api.setLike(card)
-    //             .then(res => {
-    //                 console.log(res)
-    //             })
-    //     }
-    // })
-
-    // const card = new Card(
-    //     data,
-    //     '#card-template',
-    //     handleCardClick,
-    //     handleTrashClick,
-    //     userId)
-    //     // handleLikeClick);
+    
     newCard = new Card(
         data,
         '#card-template',
@@ -113,6 +100,36 @@ function createCard(data) {
     // const cardElement = card.generateCard(userId);
     const cardElement = newCard.generateCard(userId);
     return cardElement;
+
+    // handleLikeClick ((card) => {
+    //     if (card.isLiked()) {
+    //         api.removeLike(card)
+    //             .then(res => {
+    //                 console.log(res)
+    //             })
+                // .catch((err) => {
+                //     console.log(err);
+                // });
+
+    //     } else {
+    //         api.setLike(card)
+    //             .then(res => {
+    //                 console.log(res)
+    //             })
+                // .catch((err) => {
+                //     console.log(err);
+                // });
+
+    //     }
+    // })
+
+    // const card = new Card(
+    //     data,
+    //     '#card-template',
+    //     handleCardClick,
+    //     handleTrashClick,
+    //     userId)
+    //     // handleLikeClick);
 };
 
 
@@ -179,6 +196,9 @@ function profileFormSubmitHandler (inputValues) {
             profilePopup.close();
 
         })
+        .catch((err) => {
+            console.log(err);
+        });    
     
 }
 
@@ -211,9 +231,13 @@ function openCardPopup () {
 function handleCardFormSubmit(data) {
     api.addCard(data)
         .then(res => {
-            renderNewCard(res)
+            renderNewCard(res);
+            cardPopup.close();
         })
-    cardPopup.close();
+        .catch((err) => {
+            console.log(err);
+        });
+    // cardPopup.close();
 }
 
 
@@ -232,8 +256,10 @@ function confirmCardDelete(cardId) {
     .then(res => {
         console.log('res =>', res)
         newCard.deleteCardFromDom()
-        // card.deleteCardFromDom()
     })
+    .catch((err) => {
+        console.log(err);
+    });
 }
 
 

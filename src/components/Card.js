@@ -52,8 +52,8 @@ export default class Card {
         this._cardTitle.textContent = this._title;        
         this._cardImage.src = this._image;
         this._cardImage.alt = this._title;
-        this._cardLikes.textContent = this._likesQty;
         this._iLikedIt = this._likes.includes(userId);
+        this._getLikesQty();
         this._hideTrashIcon();
         return this._element;
     }
@@ -69,27 +69,33 @@ export default class Card {
         return
     }
 
+    _getLikesQty () {
+        this._cardLikes.textContent = this._likesQty;
+    }
+
     _handleLikeClick() {
         if (this._iLikedIt) {
             this._cardLikeButton.classList.remove('card__like_clicked');
         } else {
             this._cardLikeButton.classList.add('card__like_clicked');
         }
-        return this._iLikedIt
+        return !this._iLikedIt
     }
-
-    // _likedCardHandler() {
-    //     if (this._iLikedIt) {
-    //         this._cardLikeButton.classList.add('card__like_clicked');
-    //     } else {
-    //         this._cardLikeButton.classList.remove('card__like_clicked');
-    //     }
-        
-    // }
 
     deleteCardFromDom() {
         this._element.remove();
-        // this._element = null;
+        this._element = null;
     }
+
+    // deleteCardFromDom(cardId) {
+    //     const allCards = document.querySelectorAll('.card');
+    //     const cardsArray = Array.from(allCards);
+    //     cardsArray.forEach((card) => {
+    //         if (this._cardId === cardId) {
+    //             card.remove()
+    //         }
+
+    //     })
+    // }
 
 }
