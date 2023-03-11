@@ -85,21 +85,28 @@ const cardSection = new Section({
     // });
 
 
-let newCard
+let card
 
 // Карточка
 function createCard(data) {
     
-    newCard = new Card(
+    card = new Card(
+    // const card = new Card(
+
         data,
         '#card-template',
         handleCardClick,
         handleTrashClick,
+        handleLikeClick,
         userId)
 
+    
+
     // const cardElement = card.generateCard(userId);
-    const cardElement = newCard.generateCard(userId);
+    const cardElement = card.generateCard(userId);
     return cardElement;
+
+    
 
     // handleLikeClick ((card) => {
     //     if (card.isLiked()) {
@@ -107,30 +114,45 @@ function createCard(data) {
     //             .then(res => {
     //                 console.log(res)
     //             })
-                // .catch((err) => {
-                //     console.log(err);
-                // });
+    //             .catch((err) => {
+    //                 console.log(err);
+    //             });
 
     //     } else {
     //         api.setLike(card)
     //             .then(res => {
     //                 console.log(res)
     //             })
-                // .catch((err) => {
-                //     console.log(err);
-                // });
+    //             .catch((err) => {
+    //                 console.log(err);
+    //             });
 
     //     }
     // })
 
-    // const card = new Card(
-    //     data,
-    //     '#card-template',
-    //     handleCardClick,
-    //     handleTrashClick,
-    //     userId)
-    //     // handleLikeClick);
+    
 };
+
+const handleLikeClick = (cardId) => {
+    if (card.isLiked()) {
+        api.removeLike(cardId)
+            .then(res => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+    } else {
+        api.setLike(cardId)
+            .then(res => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+}
 
 
 function renderInitialCard(data) {
@@ -255,7 +277,7 @@ function confirmCardDelete(cardId) {
     api.deleteCard(cardId)
     .then(res => {
         console.log('res =>', res)
-        newCard.deleteCardFromDom()
+        card.deleteCardFromDom()
     })
     .catch((err) => {
         console.log(err);

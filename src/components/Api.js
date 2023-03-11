@@ -2,7 +2,7 @@ const handleResponse = (res) => {
     if (res.ok) {
         return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`)
+    return Promise.reject(`Ошибка: ${res.status}`);
 }
 
 
@@ -70,7 +70,7 @@ export default class Api {
 
     // Запрос на постановку лайка
     setLike (cardId) {
-        return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: 'PUT',
             headers: this._headers
         })
@@ -80,7 +80,7 @@ export default class Api {
 
     // Запрос на снятие лайка
     removeLike (cardId) {
-        return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: 'DELETE',
             headers: this._headers
         })
