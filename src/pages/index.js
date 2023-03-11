@@ -85,13 +85,13 @@ const cardSection = new Section({
     // });
 
 
-let card
+// let card
 
 // Карточка
 function createCard(data) {
-    
-    card = new Card(
-    // const card = new Card(
+
+    // Создание экземпляра карточки
+    const card = new Card(
 
         data,
         '#card-template',
@@ -99,60 +99,73 @@ function createCard(data) {
         handleTrashClick,
         handleLikeClick,
         userId)
-
     
+    // Попап подтверждения удаления карточки
+    const cardDeletePopup = new PopupWithConfirmation ('.popup_type_delete-card', confirmCardDelete);
+    cardDeletePopup.setEventListeners();
 
-    // const cardElement = card.generateCard(userId);
+    function handleTrashClick(cardId) {
+        cardDeletePopup.open(cardId);
+    }
+
+    function confirmCardDelete(cardId) {
+        api.deleteCard(cardId)
+        .then(res => {
+            console.log('res =>', res)
+            card.deleteCardFromDom()
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }
+
+    // Лайк карточки
+    const handleLikeClick = (cardId) => {
+        if (card.isLiked()) {
+            api.removeLike(cardId)
+                .then(res => {
+                    console.log(res)
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+    
+        } else {
+            api.setLike(cardId)
+                .then(res => {
+                    console.log(res)
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }    
+
     const cardElement = card.generateCard(userId);
     return cardElement;
 
-    
-
-    // handleLikeClick ((card) => {
-    //     if (card.isLiked()) {
-    //         api.removeLike(card)
-    //             .then(res => {
-    //                 console.log(res)
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err);
-    //             });
-
-    //     } else {
-    //         api.setLike(card)
-    //             .then(res => {
-    //                 console.log(res)
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err);
-    //             });
-
-    //     }
-    // })
-
-    
 };
 
-const handleLikeClick = (cardId) => {
-    if (card.isLiked()) {
-        api.removeLike(cardId)
-            .then(res => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+// const handleLikeClick = (cardId) => {
+//     if (card.isLiked()) {
+//         api.removeLike(cardId)
+//             .then(res => {
+//                 console.log(res)
+//             })
+//             .catch((err) => {
+//                 console.log(err);
+//             });
 
-    } else {
-        api.setLike(cardId)
-            .then(res => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
-}
+//     } else {
+//         api.setLike(cardId)
+//             .then(res => {
+//                 console.log(res)
+//             })
+//             .catch((err) => {
+//                 console.log(err);
+//             });
+//     }
+// }
 
 
 function renderInitialCard(data) {
@@ -263,26 +276,26 @@ function handleCardFormSubmit(data) {
 }
 
 
-// Попап подтверждения удаления карточки
+// // Попап подтверждения удаления карточки
 
-const cardDeletePopup = new PopupWithConfirmation ('.popup_type_delete-card', confirmCardDelete);
-cardDeletePopup.setEventListeners();
+// const cardDeletePopup = new PopupWithConfirmation ('.popup_type_delete-card', confirmCardDelete);
+// cardDeletePopup.setEventListeners();
 
 
-function handleTrashClick(cardId) {
-    cardDeletePopup.open(cardId);
-}
+// function handleTrashClick(cardId) {
+//     cardDeletePopup.open(cardId);
+// }
 
-function confirmCardDelete(cardId) {
-    api.deleteCard(cardId)
-    .then(res => {
-        console.log('res =>', res)
-        card.deleteCardFromDom()
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-}
+// function confirmCardDelete(cardId) {
+//     api.deleteCard(cardId)
+//     .then(res => {
+//         console.log('res =>', res)
+//         card.deleteCardFromDom()
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+// }
 
 
 // Попап с картинкой
