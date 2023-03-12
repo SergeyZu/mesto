@@ -47,7 +47,6 @@ const apiConfig = {
 const api = new Api(apiConfig);
 
 
-
 let userId;
 
 // Получаем данные пользователя и массив карточек с сервера
