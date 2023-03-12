@@ -35,7 +35,7 @@ export default class Card {
             this._cardClickHandler(this._title, this._image);
         });
 
-        this._cardTrash.addEventListener('click', () => this._trashClickHandler(this._cardId));
+        this._cardTrash.addEventListener('click', () => this._trashClickHandler(this._element, this._cardId));
 
         this._cardLikeButton.addEventListener('click', () => this._likeClickHandler(this._cardId));
 
