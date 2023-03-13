@@ -69,26 +69,18 @@ export default class Card {
         this._cardLikes.textContent = this._likesQty;
     }
 
-    _isLiked() {
-        return this._likes.some((like) => {
-            like._id === this._userId
-        }) 
-    }
-
-    // _isLiked(like) {
-    //     this._likes.forEach((like) => {
-    //         return like._id === this._userId
-    //     })
-    //     return this._likes.find(() => {
-    //         like._id === this._userId
-    //     }) 
-    // }
 
     // _isLiked() {
-    //     return this._likes.find((like) => {
-    //         like._id === this._userId
+    //     const iLikedIt = this._likes.some((like) => {
+    //         like._id === this._userId;
     //     }) 
+    //     return iLikedIt
     // }
+
+    _isLiked() {
+        const iLikedIt = this._likes.some((like) => like._id === this._userId)
+        return iLikedIt
+    }
 
     _toggleLikeIcon() {
         if (this._isLiked()) {
@@ -107,15 +99,7 @@ export default class Card {
             this._setCardLike(this._cardId);
             this._cardLikeButton.classList.add('card__like_clicked');
         }
-        return this._element;
     }
-
-    
-    
-
-    // isLiked() {
-    //     this._cardLikeButton.classList.contains('card__like_clicked');
-    // }
 
     _hideTrashIcon() {
         if (this._ownerId !== this._userId) {
@@ -123,32 +107,5 @@ export default class Card {
         }
         return
     }
-
-    
-
-    // _toggleLikeIcon() {
-    //     if (this._isLiked) {
-    //         this._cardLikeButton.classList.remove('card__like_clicked');
-    //     } else {
-    //         this._cardLikeButton.classList.add('card__like_clicked');
-    //     }
-        // return this._iLikedIt
-    // }
-
-    // deleteCardFromDom() {
-    //     this._element.remove();
-    //     this._element = null;
-    // }
-
-    // deleteCardFromDom(cardId) {
-    //     const allCards = document.querySelectorAll('.card');
-    //     const cardsArray = Array.from(allCards);
-    //     cardsArray.forEach((card) => {
-    //         if (this._cardId === cardId) {
-    //             card.remove()
-    //         }
-
-    //     })
-    // }
 
 }
