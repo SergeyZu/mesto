@@ -96,7 +96,8 @@ function createCard(data) {
         '#card-template',
         handleCardClick,
         handleTrashClick,
-        handleLikeClick,
+        setCardLike,
+        removeCardLike,
         userId)    
 
     const cardElement = card.generateCard(userId);
@@ -124,28 +125,27 @@ function confirmCardDelete(element, cardId) {
 }
 
 // Лайк карточки
-const handleLikeClick = (cardId) => {
-    if (card.isLiked()) {
-        api.removeLike(cardId)
+function setCardLike(cardId) {
+    api.setLike(cardId)
             .then(res => {
                 console.log(res)
             })
             .catch((err) => {
                 console.log(err);
             });
+}
 
-    } else {
-        api.setLike(cardId)
+function removeCardLike(cardId) {
+    api.removeLike(cardId)
             .then(res => {
                 console.log(res)
             })
             .catch((err) => {
                 console.log(err);
             });
-    }
-}    
+}
 
-// const handleLikeClick = (cardId) => {
+// const handleLikeClick = (card, cardId) => {
 //     if (card.isLiked()) {
 //         api.removeLike(cardId)
 //             .then(res => {
@@ -164,7 +164,9 @@ const handleLikeClick = (cardId) => {
 //                 console.log(err);
 //             });
 //     }
-// }
+// }    
+
+
 
 
 function renderInitialCard(data) {
