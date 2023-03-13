@@ -241,7 +241,7 @@ function profileFormSubmitHandler (inputValues) {
 
 // Попап редактирования аватара профиля
 
-const avatarPopup = new PopupWithForm ('.popup_type_avatar');
+const avatarPopup = new PopupWithForm ('.popup_type_avatar', handleAvatarFormSubmit);
 avatarPopup.setEventListeners();
 
 function openAvatarPopup () {
@@ -249,7 +249,16 @@ function openAvatarPopup () {
     avatarPopup.open();
 }
 
-// function avatarFormSubmitHandler()
+function handleAvatarFormSubmit(data) {
+    return api.changeAvatar(data.avatar)
+        .then(res => {
+            avatarPopup.close();
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
 
 
 

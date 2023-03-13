@@ -70,10 +70,9 @@ export default class Card {
     }
 
     _isLiked() {
-        this._likes.find((like) => {
+        return this._likes.some((like) => {
             like._id === this._userId
         }) 
-        return 
     }
 
     // _isLiked(like) {

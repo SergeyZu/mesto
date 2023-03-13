@@ -90,9 +90,12 @@ export default class Api {
 
     // Запрос на обновление аватара
     changeAvatar (avatar) {
-        return fetch(`${this._baseUrl}users/me/${avatar}`, {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
-            headers: this._headers
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: avatar
+            })        
         })
         .then(handleResponse); 
     }
