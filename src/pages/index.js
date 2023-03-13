@@ -252,8 +252,9 @@ function openAvatarPopup () {
 function handleAvatarFormSubmit(data) {
     return api.changeAvatar(data.avatar)
         .then(res => {
-            avatarPopup.close();
+            userInfo.setUserInfo(res)
             console.log(res)
+            avatarPopup.close();
         })
         .catch((err) => {
             console.log(err);
@@ -285,29 +286,6 @@ function handleCardFormSubmit(data) {
     // cardPopup.close();
 }
 
-
-// // Попап подтверждения удаления карточки
-
-// const cardDeletePopup = new PopupWithConfirmation ('.popup_type_delete-card', confirmCardDelete);
-// cardDeletePopup.setEventListeners();
-
-
-// function handleTrashClick(cardId) {
-//     cardDeletePopup.open(cardId);
-// }
-
-// function confirmCardDelete(cardId) {
-//     api.deleteCard(cardId)
-//     .then(res => {
-//         console.log('res =>', res)
-//         card.deleteCardFromDom()
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     });
-// }
-
-
 // Попап с картинкой
 
 const imagePopup = new PopupWithImage ('.popup_type_image')
@@ -324,5 +302,3 @@ profileEditButtonElement.addEventListener('click', openProfilePopup);
 buttonAddCardElement.addEventListener('click', openCardPopup);
 
 buttonEditAvatarElement.addEventListener('click', openAvatarPopup);
-
-// buttonDeleteConfirmationElement.addEventListener('click', confirmCardDelete);

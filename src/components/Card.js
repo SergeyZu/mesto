@@ -1,7 +1,7 @@
 export default class Card {
 
     // constructor(data, templateSelector, cardClickHandler, trashClickHandler, handleLikeClick) {
-    constructor(data, templateSelector, cardClickHandler, trashClickHandler, setCardLike, removeCardLike,userId) {
+    constructor(data, templateSelector, cardClickHandler, trashClickHandler, setCardLike, removeCardLike, userId) {
 
         this._title = data.name;
         this._image = data.link;
@@ -64,18 +64,9 @@ export default class Card {
         return this._element;
     }
 
-
     _getLikesQty() {
         this._cardLikes.textContent = this._likesQty;
     }
-
-
-    // _isLiked() {
-    //     const iLikedIt = this._likes.some((like) => {
-    //         like._id === this._userId;
-    //     }) 
-    //     return iLikedIt
-    // }
 
     _isLiked() {
         const iLikedIt = this._likes.some((like) => like._id === this._userId)
