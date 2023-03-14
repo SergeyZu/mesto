@@ -21,13 +21,4 @@ export default class UserInfo {
         // this._id.textContent = data._id
     }
 
-    // UserID(data) {
-    //     this.UserID.textContent = data._id;
-    // }
-    // getUserId(data) {
-    //     return data._id
-    // }
-
-
-    
 }
