@@ -35,6 +35,9 @@ export { profileTitleElement, profileSubtitleElement, popupProfileElement, formP
 
 // ПОПАП ИЗМЕНЕНИЯ АВАТАРА
 
+//Попап
+const popupAvatarElement = document.querySelector('.popup_type_avatar');
+
 // Кнопка изменения аватара
 const buttonEditAvatarElement = document.querySelector('.profile__avatar-edit-button');
 
@@ -97,6 +100,19 @@ const popupImageCloseButtonElement = popupImageElement.querySelector('.popup__cl
 
 
 export { popupImageElement, popupTitle, popupImage, popupImageCloseButtonElement };
+
+
+
+// КНОПКИ САБМИТА ПОПАПОВ
+
+const profilePopupSubmitButon = popupProfileElement.querySelector('.popup__button');
+
+const newCardPopupSubmitButon = popupCardElement.querySelector('.popup__button');
+
+const avatarPopupSubmitButon = popupAvatarElement.querySelector('.popup__button');
+
+
+export {  profilePopupSubmitButon, newCardPopupSubmitButon, avatarPopupSubmitButon }
 
 
 

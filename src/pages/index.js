@@ -1,6 +1,6 @@
 import './index.css';
 
-import { formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, buttonEditAvatarElement, buttonDeleteConfirmationElement, config} from '../utils/constants.js';
+import { formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, buttonEditAvatarElement, profilePopupSubmitButon, newCardPopupSubmitButon, avatarPopupSubmitButon, config} from '../utils/constants.js';
 
 import Card from '../components/Card.js';
 
@@ -27,7 +27,7 @@ const apiConfig = {
     }
 }
 
-// const apiConfig2 = {
+// const apiConfig = {
 //     baseUrl: 'https://nomoreparties.co/v1/cohort-60',
 //     headers: {
 //         authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201',
@@ -35,7 +35,7 @@ const apiConfig = {
 //     }
 // }
 
-// const apiConfig3 = {
+// const apiConfig = {
 //     baseUrl: 'https://nomoreparties.co/v1/cohort-59',
 //     headers: {
 //         authorization: '22a7889f-111c-4ac8-a920-423d2b40567f',
@@ -73,18 +73,6 @@ const cardSection = new Section({
 }, '.cards'
 );
 
-
-// Отправляем на сервер инфо о добавлении лайка
-// api.setLike()
-//     .then(res => {
-//         console.log(res)
-//     })
-    // .catch((err) => {
-    //     console.log(err);
-    // });
-
-
-// let card
 
 // Карточка
 function createCard(data) {
@@ -128,13 +116,14 @@ function confirmCardDelete(element, cardId) {
 function setCardLike(cardId) {
     api.setLike(cardId)
             .then(res => {
-                console.log(res)
+                console.log(res);
             })
             .catch((err) => {
                 console.log(err);
             });
 }
 
+// Дизлайк карточки
 function removeCardLike(cardId) {
     api.removeLike(cardId)
             .then(res => {
@@ -144,30 +133,6 @@ function removeCardLike(cardId) {
                 console.log(err);
             });
 }
-
-// const handleLikeClick = (card, cardId) => {
-//     if (card.isLiked()) {
-//         api.removeLike(cardId)
-//             .then(res => {
-//                 console.log(res)
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//             });
-
-//     } else {
-//         api.setLike(cardId)
-//             .then(res => {
-//                 console.log(res)
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//             });
-//     }
-// }    
-
-
-
 
 function renderInitialCard(data) {
     const cardItem = createCard(data);
@@ -180,8 +145,6 @@ function renderNewCard(data) {
     cardSection.addUserItem(cardItem);
     return renderNewCard;
 };
-
-
 
 
 // Валидатор профиля
@@ -209,9 +172,9 @@ popupAvatarValidator.enableValidation();
 const profilePopup = new PopupWithForm ('.popup_type_profile', profileFormSubmitHandler);
 profilePopup.setEventListeners();
 
-// const userInfo = new UserInfo ({nameSelector: '.profile__title', aboutSelector:'.profile__subtitle'});
 
 const userInfo = new UserInfo ({nameSelector: '.profile__title', aboutSelector:'.profile__subtitle', avatarSelector: '.profile__avatar'});
+
 
 function renderInitialInfo () {
     const initialInfo = userInfo.getUserInfo();
@@ -225,17 +188,20 @@ function openProfilePopup () {
     renderInitialInfo();
 }
 
-function profileFormSubmitHandler (inputValues) {
-    api.setUserData(inputValues)
-        .then(res => {
-            userInfo.setUserInfo(res)
-            profilePopup.close();
 
+function profileFormSubmitHandler (inputValues) {
+    profilePopupSubmitButon.textContent = 'Сохранение...';
+    api.setUserData(inputValues)    
+        .then(res => {
+            userInfo.setUserInfo(res);
         })
         .catch((err) => {
             console.log(err);
-        });    
-    
+        })
+        .finally(() => {
+            profilePopupSubmitButon.textContent = 'Сохранить';
+            profilePopup.close();
+        })
 }
 
 
@@ -250,15 +216,19 @@ function openAvatarPopup () {
 }
 
 function handleAvatarFormSubmit(data) {
+    avatarPopupSubmitButon.textContent = 'Сохранение...';
     return api.changeAvatar(data.avatar)
         .then(res => {
-            userInfo.setUserInfo(res)
+            userInfo.setUserInfo(res);
             console.log(res)
-            avatarPopup.close();
         })
         .catch((err) => {
             console.log(err);
-        });
+        })
+        .finally(() => {
+            avatarPopupSubmitButon.textContent = 'Сохранить';
+            avatarPopup.close();
+        })
 }
 
 
@@ -275,15 +245,18 @@ function openCardPopup () {
 }
 
 function handleCardFormSubmit(data) {
+    newCardPopupSubmitButon.textContent = 'Сохранение...';
     api.addCard(data)
         .then(res => {
             renderNewCard(res);
-            cardPopup.close();
         })
         .catch((err) => {
             console.log(err);
-        });
-    // cardPopup.close();
+        })
+        .finally(() => {
+            newCardPopupSubmitButon.textContent = 'Создать';
+            cardPopup.close();
+        })
 }
 
 // Попап с картинкой
