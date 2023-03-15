@@ -37,7 +37,7 @@ export default class Card {
 
         this._cardTrash.addEventListener('click', () => this._trashClickHandler(this._element, this._cardId));
 
-        this._cardLikeButton.addEventListener('click', () => this._likeClickHandler());
+        this._cardLikeButton.addEventListener('click', () => this._checkLikeState());
     }
 
     generateCard() {
@@ -50,10 +50,9 @@ export default class Card {
         this._cardTitle.textContent = this._title;        
         this._cardImage.src = this._image;
         this._cardImage.alt = this._title;
-        // this._iLikedIt = this._likes.includes(userId);
         this._getLikesQty();
         this._hideTrashIcon();
-        this._toggleLikeIcon(this._isLiked());
+        this._isLiked();
         return this._element;
     }
 
@@ -65,53 +64,25 @@ export default class Card {
         this._cardLikes.textContent = this._likesQty;
     }
 
-    // _isLiked() {
-    //     return this._likes.some((like) => like._id === this._userId)
-    // }
-
     _isLiked() {
-        const iLikedIt = this._likes.some((like) => like._id === this._userId)
-        return iLikedIt
-    }
+        if (this._likes.some((user) => {
+            return this._userId === user._id;
+        })) {
+            this._cardLikeButton.classList.add('card__like_clicked');
+        }
+     }
 
-    _toggleLikeIcon() {
-        if (this._isLiked()) {
-            this._cardLikeButton.classList.add('card__like_clicked')
+    _checkLikeState() {
+        if (this._cardLikeButton.classList.contains('card__like_clicked')) {
+           this._removeCardLike(this._cardId);
         } else {
-            this._cardLikeButton.classList.remove('card__like_clicked');
+           this._setCardLike(this._cardId);
         }
     }
 
     setLikesQty(card) {
         this._isLiked();
         this._cardLikes.textContent = card.likes.length;
-        // return card.likes.some((like) => like._id === this._userId) 
-    }
-
-    // _likeClickHandler() {
-    //     if (this._isLiked()) {
-    //         this._removeCardLike(this._cardId);
-    //         this._cardLikeButton.classList.remove('card__like_clicked');
-    //     } else {
-    //         this._setCardLike(this._cardId);
-    //         this._cardLikeButton.classList.add('card__like_clicked');
-    //     }
-    // }
-
-    // _likeClickHandler() {
-    //     if (this._isLiked()) {
-    //         this._removeCardLike(this._cardId);
-    //     } else {
-    //         this._setCardLike(this._cardId);
-    //     }
-    // }
-
-    _likeClickHandler() {
-        if (this._isLiked()) {
-            this._removeCardLike(this._cardId);
-        } else {
-            this._setCardLike(this._cardId);
-        }
     }
 
     setIconLiked() {

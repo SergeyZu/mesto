@@ -88,39 +88,14 @@ function createCard(data) {
         removeCardLike,
         userId)    
 
-    // // Лайк карточки
-    // function setCardLike(cardId) {
-    //     api.setLike(cardId)
-    //             .then(res => {
-    //                 console.log(res);
-    //                 card.setIconLiked();
-    //                 card.setLikesQty(res);
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err);
-    //             });
-    // }
-
-    // // Дизлайк карточки
-    // function removeCardLike(cardId) {
-    //     api.removeLike(cardId)
-    //             .then(res => {
-    //                 console.log(res)
-    //                 card.setIconDisliked();
-    //                 card.setLikesQty(res)
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err);
-    //             });
-    // }
 
     // Лайк карточки
     function setCardLike() {
         api.setLike(card.getId())
                 .then(res => {
                     console.log(res);
-                    card.setIconLiked();
                     card.setLikesQty(res);
+                    card.setIconLiked();
                 })
                 .catch((err) => {
                     console.log(err);
@@ -131,9 +106,9 @@ function createCard(data) {
     function removeCardLike() {
         api.removeLike(card.getId())
                 .then(res => {
-                    console.log(res)
+                    console.log(res);
+                    card.setLikesQty(res);
                     card.setIconDisliked();
-                    card.setLikesQty(res)
                 })
                 .catch((err) => {
                     console.log(err);
@@ -166,27 +141,6 @@ function confirmCardDelete(element, cardId) {
     });
 }
 
-// // Лайк карточки
-// function setCardLike(cardId) {
-//     api.setLike(cardId)
-//             .then(res => {
-//                 console.log(res);
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//             });
-// }
-
-// // Дизлайк карточки
-// function removeCardLike(cardId) {
-//     api.removeLike(cardId)
-//             .then(res => {
-//                 console.log(res)
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//             });
-// }
 
 function renderInitialCard(data) {
     const cardItem = createCard(data);
