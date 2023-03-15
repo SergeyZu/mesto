@@ -88,7 +88,6 @@ function createCard(data) {
         removeCardLike,
         userId)    
 
-
     // Лайк карточки
     function setCardLike() {
         api.setLike(card.getId())
@@ -117,7 +116,6 @@ function createCard(data) {
 
     const cardElement = card.generateCard(userId);
     return cardElement;
-
 
 };
 
@@ -198,7 +196,7 @@ function openProfilePopup () {
 
 
 function profileFormSubmitHandler (inputValues) {
-    profilePopupSubmitButon.textContent = 'Сохранение...';
+    profilePopup.renderLoading(true, 'Сохранение...');
     api.setUserData(inputValues)    
         .then(res => {
             userInfo.setUserInfo(res);
@@ -206,9 +204,6 @@ function profileFormSubmitHandler (inputValues) {
         })
         .catch((err) => {
             console.log(err);
-        })
-        .finally(() => {
-            profilePopupSubmitButon.textContent = 'Сохранить';
         })
 }
 
@@ -224,7 +219,7 @@ function openAvatarPopup () {
 }
 
 function handleAvatarFormSubmit(data) {
-    avatarPopupSubmitButon.textContent = 'Сохранение...';
+    avatarPopup.renderLoading(true, 'Сохранение...');
     return api.changeAvatar(data.avatar)
         .then(res => {
             userInfo.setUserInfo(res);
@@ -234,12 +229,7 @@ function handleAvatarFormSubmit(data) {
         .catch((err) => {
             console.log(err);
         })
-        .finally(() => {
-            avatarPopupSubmitButon.textContent = 'Сохранить';
-        })
 }
-
-
 
 
 // Попап создания карточки
@@ -253,7 +243,7 @@ function openCardPopup () {
 }
 
 function handleCardFormSubmit(data) {
-    newCardPopupSubmitButon.textContent = 'Сохранение...';
+    cardPopup.renderLoading(true, 'Сохранение...');
     api.addCard(data)
         .then(res => {
             renderNewCard(res);
@@ -261,9 +251,6 @@ function handleCardFormSubmit(data) {
         })
         .catch((err) => {
             console.log(err);
-        })
-        .finally(() => {
-            newCardPopupSubmitButon.textContent = 'Создать';
         })
 }
 
