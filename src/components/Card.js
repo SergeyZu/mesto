@@ -57,12 +57,21 @@ export default class Card {
         return this._element;
     }
 
+    getId() {
+        return this._cardId;
+    }
+
     _getLikesQty() {
         this._cardLikes.textContent = this._likesQty;
     }
 
+    // _isLiked() {
+    //     return this._likes.some((like) => like._id === this._userId)
+    // }
+
     _isLiked() {
-        return this._likes.some((like) => like._id === this._userId)
+        const iLikedIt = this._likes.some((like) => like._id === this._userId)
+        return iLikedIt
     }
 
     _toggleLikeIcon() {
@@ -73,14 +82,44 @@ export default class Card {
         }
     }
 
+    setLikesQty(card) {
+        this._isLiked();
+        this._cardLikes.textContent = card.likes.length;
+        // return card.likes.some((like) => like._id === this._userId) 
+    }
+
+    // _likeClickHandler() {
+    //     if (this._isLiked()) {
+    //         this._removeCardLike(this._cardId);
+    //         this._cardLikeButton.classList.remove('card__like_clicked');
+    //     } else {
+    //         this._setCardLike(this._cardId);
+    //         this._cardLikeButton.classList.add('card__like_clicked');
+    //     }
+    // }
+
+    // _likeClickHandler() {
+    //     if (this._isLiked()) {
+    //         this._removeCardLike(this._cardId);
+    //     } else {
+    //         this._setCardLike(this._cardId);
+    //     }
+    // }
+
     _likeClickHandler() {
         if (this._isLiked()) {
             this._removeCardLike(this._cardId);
-            this._cardLikeButton.classList.remove('card__like_clicked');
         } else {
             this._setCardLike(this._cardId);
-            this._cardLikeButton.classList.add('card__like_clicked');
         }
+    }
+
+    setIconLiked() {
+        this._cardLikeButton.classList.add('card__like_clicked');
+    }
+
+    setIconDisliked() {
+        this._cardLikeButton.classList.remove('card__like_clicked');
     }
 
     _hideTrashIcon() {

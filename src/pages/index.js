@@ -88,8 +88,61 @@ function createCard(data) {
         removeCardLike,
         userId)    
 
+    // // Лайк карточки
+    // function setCardLike(cardId) {
+    //     api.setLike(cardId)
+    //             .then(res => {
+    //                 console.log(res);
+    //                 card.setIconLiked();
+    //                 card.setLikesQty(res);
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err);
+    //             });
+    // }
+
+    // // Дизлайк карточки
+    // function removeCardLike(cardId) {
+    //     api.removeLike(cardId)
+    //             .then(res => {
+    //                 console.log(res)
+    //                 card.setIconDisliked();
+    //                 card.setLikesQty(res)
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err);
+    //             });
+    // }
+
+    // Лайк карточки
+    function setCardLike() {
+        api.setLike(card.getId())
+                .then(res => {
+                    console.log(res);
+                    card.setIconLiked();
+                    card.setLikesQty(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+    }
+
+    // Дизлайк карточки
+    function removeCardLike() {
+        api.removeLike(card.getId())
+                .then(res => {
+                    console.log(res)
+                    card.setIconDisliked();
+                    card.setLikesQty(res)
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+    }
+
     const cardElement = card.generateCard(userId);
     return cardElement;
+
 
 };
 
@@ -106,33 +159,34 @@ function confirmCardDelete(element, cardId) {
     .then(res => {
         console.log('res =>', res);
         element.remove();
+        cardDeletePopup.close();
     })
     .catch((err) => {
         console.log(err);
     });
 }
 
-// Лайк карточки
-function setCardLike(cardId) {
-    api.setLike(cardId)
-            .then(res => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-}
+// // Лайк карточки
+// function setCardLike(cardId) {
+//     api.setLike(cardId)
+//             .then(res => {
+//                 console.log(res);
+//             })
+//             .catch((err) => {
+//                 console.log(err);
+//             });
+// }
 
-// Дизлайк карточки
-function removeCardLike(cardId) {
-    api.removeLike(cardId)
-            .then(res => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-}
+// // Дизлайк карточки
+// function removeCardLike(cardId) {
+//     api.removeLike(cardId)
+//             .then(res => {
+//                 console.log(res)
+//             })
+//             .catch((err) => {
+//                 console.log(err);
+//             });
+// }
 
 function renderInitialCard(data) {
     const cardItem = createCard(data);
@@ -194,13 +248,13 @@ function profileFormSubmitHandler (inputValues) {
     api.setUserData(inputValues)    
         .then(res => {
             userInfo.setUserInfo(res);
+            profilePopup.close();
         })
         .catch((err) => {
             console.log(err);
         })
         .finally(() => {
             profilePopupSubmitButon.textContent = 'Сохранить';
-            profilePopup.close();
         })
 }
 
@@ -221,13 +275,13 @@ function handleAvatarFormSubmit(data) {
         .then(res => {
             userInfo.setUserInfo(res);
             console.log(res)
+            avatarPopup.close();
         })
         .catch((err) => {
             console.log(err);
         })
         .finally(() => {
             avatarPopupSubmitButon.textContent = 'Сохранить';
-            avatarPopup.close();
         })
 }
 
@@ -249,13 +303,13 @@ function handleCardFormSubmit(data) {
     api.addCard(data)
         .then(res => {
             renderNewCard(res);
+            cardPopup.close();
         })
         .catch((err) => {
             console.log(err);
         })
         .finally(() => {
             newCardPopupSubmitButon.textContent = 'Создать';
-            cardPopup.close();
         })
 }
 
