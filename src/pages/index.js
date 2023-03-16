@@ -1,6 +1,6 @@
 import './index.css';
 
-import { formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, buttonEditAvatarElement, profilePopupSubmitButon, newCardPopupSubmitButon, avatarPopupSubmitButon, config} from '../utils/constants.js';
+import { formNameElement, formAboutElement, profileEditButtonElement, buttonAddCardElement, buttonEditAvatarElement, config} from '../utils/constants.js';
 
 import Card from '../components/Card.js';
 
@@ -27,25 +27,8 @@ const apiConfig = {
     }
 }
 
-// const apiConfig = {
-//     baseUrl: 'https://nomoreparties.co/v1/cohort-60',
-//     headers: {
-//         authorization: '8e181f4a-8318-4b8b-ab26-7884d8331201',
-//         'Content-Type': 'application/json'
-//     }
-// }
-
-// const apiConfig = {
-//     baseUrl: 'https://nomoreparties.co/v1/cohort-59',
-//     headers: {
-//         authorization: '22a7889f-111c-4ac8-a920-423d2b40567f',
-//         'Content-Type': 'application/json'
-//     }
-// }
-
 
 const api = new Api(apiConfig);
-
 
 let userId;
 
@@ -56,8 +39,6 @@ Promise.all([api.getUserData(), api.getInitialCards()])
         console.log(res);
         userId = userData._id;
         userInfo.setUserInfo(userData);
-
-        // userInfo.setUserInfo(userData.name, userData.about);
         cardSection.renderInitialItems(initialCards);
     })
     .catch((err) => {
@@ -66,13 +47,10 @@ Promise.all([api.getUserData(), api.getInitialCards()])
 
 
 // Секция
-const cardSection = new Section({ 
-    renderer: (data) => {
-        renderInitialCard(data);
-    }
+const cardSection = new Section({  
+    renderer: renderInitialCard
 }, '.cards'
 );
-
 
 // Карточка
 function createCard(data) {
@@ -143,13 +121,11 @@ function confirmCardDelete(element, cardId) {
 function renderInitialCard(data) {
     const cardItem = createCard(data);
     cardSection.addInitialItem(cardItem);
-    return renderInitialCard;
 };
 
 function renderNewCard(data) {
     const cardItem = createCard(data);
     cardSection.addUserItem(cardItem);
-    return renderNewCard;
 };
 
 
@@ -196,7 +172,7 @@ function openProfilePopup () {
 
 
 function profileFormSubmitHandler (inputValues) {
-    profilePopup.renderLoading(true, 'Сохранение...');
+    profilePopup.renderLoading(true);
     api.setUserData(inputValues)    
         .then(res => {
             userInfo.setUserInfo(res);
@@ -204,6 +180,9 @@ function profileFormSubmitHandler (inputValues) {
         })
         .catch((err) => {
             console.log(err);
+        })
+        .finally(() => {
+            profilePopup.renderLoading(false)
         })
 }
 
@@ -214,12 +193,12 @@ const avatarPopup = new PopupWithForm ('.popup_type_avatar', handleAvatarFormSub
 avatarPopup.setEventListeners();
 
 function openAvatarPopup () {
-    popupCardValidator.resetValidation();
+    popupAvatarValidator.resetValidation();
     avatarPopup.open();
 }
 
 function handleAvatarFormSubmit(data) {
-    avatarPopup.renderLoading(true, 'Сохранение...');
+    avatarPopup.renderLoading(true);
     return api.changeAvatar(data.avatar)
         .then(res => {
             userInfo.setUserInfo(res);
@@ -228,6 +207,9 @@ function handleAvatarFormSubmit(data) {
         })
         .catch((err) => {
             console.log(err);
+        })
+        .finally(() => {
+            avatarPopup.renderLoading(false)
         })
 }
 
@@ -243,7 +225,7 @@ function openCardPopup () {
 }
 
 function handleCardFormSubmit(data) {
-    cardPopup.renderLoading(true, 'Сохранение...');
+    cardPopup.renderLoading(true);
     api.addCard(data)
         .then(res => {
             renderNewCard(res);
@@ -251,6 +233,9 @@ function handleCardFormSubmit(data) {
         })
         .catch((err) => {
             console.log(err);
+        })
+        .finally(() => {
+            cardPopup.renderLoading(false)
         })
 }
 
@@ -262,7 +247,6 @@ imagePopup.setEventListeners();
 function handleCardClick(name, link) {    
     imagePopup.open(name, link);
 }
-
 
 
 profileEditButtonElement.addEventListener('click', openProfilePopup);

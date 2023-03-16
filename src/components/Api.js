@@ -1,26 +1,38 @@
-const handleResponse = (res) => {
-    if (res.ok) {
-        return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-}
-
-
 export default class Api {
     constructor(config) {
         this._baseUrl = config.baseUrl;
         this._headers = config.headers;
     }    
      
+    _handleResponse (res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    }
+    // Альтернативный вариант записи вместо handleResponse:
+        // .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+    
+    
+    _request(url, options) {
+        return fetch(url, options).then(this._handleResponse)
+    }
+
 
     // Запрос на получение данных пользователя
     getUserData () {
+        
+    // Попробовал реализовать запросы через _request(), - не смог разобраться, почему сервер вместо данных пользователя возвращает undefined/
+    
+        // this._request(`${this._baseUrl}/users/me`, 
+        //     {headers: this._headers}
+        // )
+
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
-        .then(handleResponse); 
-        // Альтернативный вариант записи вместо handleResponse:
-        // .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+        .then(this._handleResponse); 
+        
     }
 
 
@@ -31,7 +43,7 @@ export default class Api {
             headers: this._headers,
             body: JSON.stringify(inputValues)
         })
-        .then(handleResponse); 
+        .then(this._handleResponse); 
     }
     
 
@@ -40,7 +52,7 @@ export default class Api {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
-        .then(handleResponse); 
+        .then(this._handleResponse); 
     }
 
     
@@ -54,7 +66,7 @@ export default class Api {
                 link: data.link
             })
         })
-        .then(handleResponse); 
+        .then(this._handleResponse); 
     }
 
 
@@ -64,7 +76,7 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers
         })
-        .then(handleResponse); 
+        .then(this._handleResponse); 
     }
 
 
@@ -74,7 +86,7 @@ export default class Api {
             method: 'PUT',
             headers: this._headers
         })
-        .then(handleResponse); 
+        .then(this._handleResponse); 
     }
 
 
@@ -84,7 +96,7 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers
         })
-        .then(handleResponse); 
+        .then(this._handleResponse); 
     }
 
 
@@ -97,7 +109,7 @@ export default class Api {
                 avatar: avatar
             })        
         })
-        .then(handleResponse); 
+        .then(this._handleResponse); 
     }
 
 }

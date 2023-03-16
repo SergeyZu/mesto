@@ -16,7 +16,6 @@ export default class PopupWithForm extends Popup {
         this._inputs.forEach((input) => {
             inputValues[input.name] = input.value;
         });
-        // console.log(inputValues);
         return inputValues;        
     }
 
@@ -28,7 +27,7 @@ export default class PopupWithForm extends Popup {
         });
     }
 
-    renderLoading(isLoading, loadingText) {
+    renderLoading(isLoading, loadingText='Сохранение...') {
         if (isLoading) {
             this._submitButton.textContent = loadingText;
         } else {
